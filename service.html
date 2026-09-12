@@ -1,0 +1,1031 @@
+```html
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>服務項目｜靖靖塔羅 JingJing Tarot</title>
+
+    <meta
+        name="description"
+        content="靖靖塔羅｜塔羅占卜、生命靈數、解夢、光天使靈氣與代觀元辰宮服務。"
+    >
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            background: #f7f3ed;
+            color: #625b54;
+            font-family:
+                "Noto Sans TC",
+                "PingFang TC",
+                "Microsoft JhengHei",
+                sans-serif;
+            line-height: 1.8;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* =========================
+           導覽列
+        ========================= */
+
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+
+            background: rgba(255, 253, 249, 0.95);
+            backdrop-filter: blur(8px);
+
+            border-bottom: 1px solid #e8e0d7;
+        }
+
+        .nav-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+
+            padding: 16px 24px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: 600;
+            color: #71675f;
+            letter-spacing: 2px;
+            white-space: nowrap;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        .nav-links a {
+            font-size: 14px;
+            color: #766e67;
+            transition: 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #9a8778;
+        }
+
+        .nav-links a.active {
+            color: #9a8778;
+            font-weight: 600;
+        }
+
+        /* =========================
+           Hero
+        ========================= */
+
+        .hero {
+            max-width: 1000px;
+            margin: 0 auto;
+
+            padding: 100px 24px 80px;
+
+            text-align: center;
+        }
+
+        .hero-symbol {
+            font-size: 26px;
+            color: #a99788;
+            margin-bottom: 16px;
+        }
+
+        .hero h1 {
+            margin: 0;
+
+            font-size: 42px;
+            font-weight: 500;
+            letter-spacing: 6px;
+
+            color: #625a53;
+        }
+
+        .hero .english {
+            margin-top: 8px;
+
+            font-size: 14px;
+            letter-spacing: 4px;
+            color: #a29488;
+        }
+
+        .hero .subtitle {
+            margin: 28px auto 0;
+
+            max-width: 650px;
+
+            font-size: 16px;
+            color: #827970;
+        }
+
+        .hero .description {
+            max-width: 650px;
+            margin: 12px auto 0;
+
+            font-size: 14px;
+            color: #9a9189;
+        }
+
+        /* =========================
+           服務區
+        ========================= */
+
+        .services-section {
+            max-width: 1100px;
+            margin: 0 auto;
+
+            padding: 20px 24px 90px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .section-title h2 {
+            margin: 0;
+
+            font-size: 28px;
+            font-weight: 500;
+            letter-spacing: 3px;
+
+            color: #665e57;
+        }
+
+        .section-title p {
+            margin-top: 10px;
+
+            font-size: 14px;
+            color: #9a9189;
+        }
+
+        /* =========================
+           服務卡片
+        ========================= */
+
+        .services-grid {
+            display: grid;
+
+            grid-template-columns: repeat(2, 1fr);
+
+            gap: 28px;
+        }
+
+        .service-card {
+            position: relative;
+
+            background: #fffdf9;
+
+            border: 1px solid #e9e1d8;
+            border-radius: 20px;
+
+            padding: 34px 32px 32px;
+
+            box-shadow:
+                0 8px 25px rgba(100, 85, 70, 0.05);
+
+            transition:
+                transform 0.3s ease,
+                box-shadow 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-4px);
+
+            box-shadow:
+                0 14px 30px rgba(100, 85, 70, 0.09);
+        }
+
+        .service-icon {
+            font-size: 28px;
+            margin-bottom: 14px;
+        }
+
+        .service-card h3 {
+            margin: 0;
+
+            font-size: 21px;
+            font-weight: 500;
+            letter-spacing: 1px;
+
+            color: #625a53;
+        }
+
+        .price-area {
+            margin-top: 18px;
+            margin-bottom: 20px;
+
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .price {
+            font-size: 25px;
+            font-weight: 600;
+            color: #927e6e;
+        }
+
+        .price span {
+            font-size: 14px;
+            font-weight: 400;
+            color: #9a9189;
+        }
+
+        .discount-label {
+            display: inline-block;
+
+            padding: 3px 10px;
+
+            border-radius: 20px;
+
+            background: #eee5db;
+            color: #927e6e;
+
+            font-size: 12px;
+            letter-spacing: 1px;
+        }
+
+        /* =========================
+           服務說明預留區
+        ========================= */
+
+        .service-description {
+            min-height: 92px;
+
+            padding: 18px 18px;
+
+            background: #f7f3ed;
+
+            border-radius: 12px;
+
+            color: #81786f;
+            font-size: 14px;
+
+            margin-bottom: 24px;
+        }
+
+        .service-description p {
+            margin: 0;
+        }
+
+        .description-placeholder {
+            color: #aaa097;
+        }
+
+        /* =========================
+           預約按鈕
+        ========================= */
+
+        .service-button {
+            display: inline-block;
+
+            padding: 10px 24px;
+
+            border: 1px solid #cfc1b4;
+            border-radius: 30px;
+
+            color: #75685e;
+            background: transparent;
+
+            font-size: 14px;
+            letter-spacing: 1px;
+
+            transition: 0.3s ease;
+        }
+
+        .service-button:hover {
+            background: #eee8df;
+            border-color: #bca99a;
+        }
+
+        /* =========================
+           價格說明
+        ========================= */
+
+        .price-note {
+            max-width: 850px;
+
+            margin: 65px auto 0;
+
+            padding: 30px 34px;
+
+            background: #eee8df;
+
+            border-radius: 18px;
+
+            text-align: center;
+        }
+
+        .price-note h3 {
+            margin: 0 0 12px;
+
+            font-size: 19px;
+            font-weight: 500;
+
+            color: #6d625a;
+            letter-spacing: 2px;
+        }
+
+        .price-note p {
+            margin: 0;
+
+            font-size: 14px;
+            color: #827970;
+        }
+
+        /* =========================
+           預約 CTA
+        ========================= */
+
+        .cta-section {
+            background: #f2ede6;
+
+            padding: 80px 24px;
+
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            margin: 0;
+
+            font-size: 27px;
+            font-weight: 500;
+
+            color: #665e57;
+            letter-spacing: 2px;
+        }
+
+        .cta-section p {
+            margin: 14px auto 28px;
+
+            font-size: 14px;
+            color: #8c827a;
+        }
+
+        .cta-button {
+            display: inline-block;
+
+            padding: 13px 32px;
+
+            background: #fffdf9;
+
+            border: 1px solid #d8ccc0;
+            border-radius: 30px;
+
+            color: #71655d;
+
+            font-size: 14px;
+            letter-spacing: 1px;
+
+            transition: 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background: #eee8df;
+            border-color: #bca99a;
+        }
+
+        /* =========================
+           Footer
+        ========================= */
+
+        footer {
+            padding: 40px 24px;
+
+            background: #fffdf9;
+
+            text-align: center;
+
+            border-top: 1px solid #e9e1d8;
+        }
+
+        .footer-brand {
+            font-size: 17px;
+            letter-spacing: 2px;
+            color: #766b63;
+        }
+
+        .footer-links {
+            margin-top: 14px;
+
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+
+            font-size: 13px;
+            color: #9a9189;
+        }
+
+        .copyright {
+            margin-top: 16px;
+
+            font-size: 12px;
+            color: #aaa097;
+        }
+
+        /* =========================
+           手機版
+        ========================= */
+
+        @media (max-width: 800px) {
+
+            .nav-inner {
+                padding: 14px 18px;
+
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .nav-links {
+                justify-content: center;
+                gap: 12px 18px;
+            }
+
+            .nav-links a {
+                font-size: 13px;
+            }
+
+            .hero {
+                padding: 75px 20px 60px;
+            }
+
+            .hero h1 {
+                font-size: 34px;
+                letter-spacing: 4px;
+            }
+
+            .hero .subtitle {
+                font-size: 15px;
+            }
+
+            .services-section {
+                padding: 10px 18px 70px;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .service-card {
+                padding: 28px 24px;
+            }
+
+            .section-title h2 {
+                font-size: 25px;
+            }
+
+            .price-note {
+                padding: 25px 22px;
+            }
+
+            .cta-section {
+                padding: 65px 20px;
+            }
+
+            .cta-section h2 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- =========================
+         導覽列
+    ========================= -->
+
+    <nav>
+        <div class="nav-inner">
+
+            <a href="index.html" class="logo">
+                靖靖塔羅
+            </a>
+
+            <div class="nav-links">
+
+                <a href="index.html">
+                    首頁
+                </a>
+
+                <a href="about.html">
+                    關於我
+                </a>
+
+                <a href="service.html" class="active">
+                    服務項目
+                </a>
+
+                <a href="class.html">
+                    課程訊息
+                </a>
+
+                <a href="tarotcard.html">
+                    線上抽牌
+                </a>
+
+                <a href="crystal.html">
+                    水晶飾品
+                </a>
+
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- =========================
+         Hero
+    ========================= -->
+
+    <header class="hero">
+
+        <div class="hero-symbol">
+            ✦
+        </div>
+
+        <h1>
+            服務項目
+        </h1>
+
+        <div class="english">
+            SERVICES
+        </div>
+
+        <p class="subtitle">
+            在牌卡、數字與心的探索之間，
+            陪你整理當下，看見自己的方向。
+        </p>
+
+        <p class="description">
+            每一項服務，都是一次與自己好好聊聊的時間。
+        </p>
+
+    </header>
+
+
+    <!-- =========================
+         服務項目
+    ========================= -->
+
+    <main class="services-section">
+
+        <div class="section-title">
+
+            <h2>
+                選擇適合你的服務
+            </h2>
+
+            <p>
+                依照目前的需求，選擇你想探索的主題
+            </p>
+
+        </div>
+
+
+        <div class="services-grid">
+
+
+            <!-- =====================
+                 塔羅｜單題
+            ====================== -->
+
+            <div class="service-card">
+
+                <div class="service-icon">
+                    🔮
+                </div>
+
+                <h3>
+                    塔羅占卜｜單題
+                </h3>
+
+                <div class="price-area">
+
+                    <div class="price">
+                        NT$200
+                        <span>／題</span>
+                    </div>
+
+                </div>
+
+                <div class="service-description">
+
+                    <!--
+                    未來可在這裡填寫「塔羅占卜單題」的服務說明。
+                    例如：適合有一個明確問題，希望快速整理目前狀態的人。
+                    -->
+
+                    <p class="description-placeholder">
+                        服務說明待補充。
+                    </p>
+
+                </div>
+
+                <a
+                    href="https://cal.com/jing9562939/15min?user=jing9562939"
+                    class="service-button"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    立即預約
+                </a>
+
+            </div>
+
+
+            <!-- =====================
+                 塔羅｜半小時
+            ====================== -->
+
+            <div class="service-card">
+
+                <div class="service-icon">
+                    🃏
+                </div>
+
+                <h3>
+                    塔羅占卜｜半小時
+                </h3>
+
+                <div class="price-area">
+
+                    <div class="price">
+                        NT$500
+                        <span>／30分鐘</span>
+                    </div>
+
+                </div>
+
+                <div class="service-description">
+
+                    <!-- 未來填寫半小時塔羅服務說明 -->
+
+                    <p class="description-placeholder">
+                        服務說明待補充。
+                    </p>
+
+                </div>
+
+                <a
+                    href="https://cal.com/jing9562939/15min?user=jing9562939"
+                    class="service-button"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    立即預約
+                </a>
+
+            </div>
+
+
+            <!-- =====================
+                 塔羅｜一小時
+            ====================== -->
+
+            <div class="service-card">
+
+                <div class="service-icon">
+                    🌙
+                </div>
+
+                <h3>
+                    塔羅占卜｜一小時
+                </h3>
+
+                <div class="price-area">
+
+                    <div class="price">
+                        NT$1,000
+                        <span>／60分鐘</span>
+                    </div>
+
+                </div>
+
+                <div class="service-description">
+
+                    <!-- 未來填寫一小時塔羅服務說明 -->
+
+                    <p class="description-placeholder">
+                        服務說明待補充。
+                    </p>
+
+                </div>
+
+                <a
+                    href="https://cal.com/jing9562939/15min?user=jing9562939"
+                    class="service-button"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    立即預約
+                </a>
+
+            </div>
+
+
+            <!-- =====================
+                 生命靈數
+            ====================== -->
+
+            <div class="service-card">
+
+                <div class="service-icon">
+                    ✨
+                </div>
+
+                <h3>
+                    生命靈數
+                </h3>
+
+                <div class="price-area">
+
+                    <div class="price">
+                        NT$500
+                        <span>／次</span>
+                    </div>
+
+                </div>
+
+                <div class="service-description">
+
+                    <!--
+                    未來可在這裡填寫：
+                    命盤內容、流年分析、適合對象、服務時間等。
+                    -->
+
+                    <p class="description-placeholder">
+                        命盤及流年服務說明待補充。
+                    </p>
+
+                </div>
+
+                <a
+                    href="https://cal.com/jing9562939/15min?user=jing9562939"
+                    class="service-button"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    立即預約
+                </a>
+
+            </div>
+
+
+            <!-- =====================
+                 解夢
+            ====================== -->
+
+            <div class="service-card">
+
+                <div class="service-icon">
+                    🌿
+                </div>
+
+                <h3>
+                    解夢
+                </h3>
+
+                <div class="price-area">
+
+                    <div class="price">
+                        NT$300
+                        <span>／次</span>
+                    </div>
+
+                </div>
+
+                <div class="service-description">
+
+                    <!-- 未來填寫解夢服務說明 -->
+
+                    <p class="description-placeholder">
+                        服務說明待補充。
+                    </p>
+
+                </div>
+
+                <a
+                    href="https://cal.com/jing9562939/15min?user=jing9562939"
+                    class="service-button"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    立即預約
+                </a>
+
+            </div>
+
+
+            <!-- =====================
+                 光天使靈氣
+            ====================== -->
+
+            <div class="service-card">
+
+                <div class="service-icon">
+                    🤍
+                </div>
+
+                <h3>
+                    光天使靈氣
+                </h3>
+
+                <div class="price-area">
+
+                    <div class="price">
+                        NT$1,200
+                        <span>／次</span>
+                    </div>
+
+                    <span class="discount-label">
+                        優惠價
+                    </span>
+
+                </div>
+
+                <div class="service-description">
+
+                    <!--
+                    未來填寫光天使靈氣服務說明。
+                    可介紹服務方式、進行時間、流程等。
+                    -->
+
+                    <p class="description-placeholder">
+                        服務說明待補充。
+                    </p>
+
+                </div>
+
+                <a
+                    href="https://cal.com/jing9562939/15min?user=jing9562939"
+                    class="service-button"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    立即預約
+                </a>
+
+            </div>
+
+
+            <!-- =====================
+                 代觀元辰宮
+            ====================== -->
+
+            <div class="service-card">
+
+                <div class="service-icon">
+                    🏡
+                </div>
+
+                <h3>
+                    代觀元辰宮
+                </h3>
+
+                <div class="price-area">
+
+                    <div class="price">
+                        NT$1,200
+                        <span>／次</span>
+                    </div>
+
+                    <span class="discount-label">
+                        優惠價
+                    </span>
+
+                </div>
+
+                <div class="service-description">
+
+                    <!--
+                    未來填寫代觀元辰宮服務說明。
+                    可介紹服務內容、流程及注意事項。
+                    -->
+
+                    <p class="description-placeholder">
+                        服務說明待補充。
+                    </p>
+
+                </div>
+
+                <a
+                    href="https://cal.com/jing9562939/15min?user=jing9562939"
+                    class="service-button"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    立即預約
+                </a>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- =========================
+             價格說明
+        ========================= -->
+
+        <div class="price-note">
+
+            <h3>
+                價格說明
+            </h3>
+
+            <p>
+                部分服務目前提供階段性優惠價格，
+                未來將依服務內容與年度規劃進行價格調整。
+                實際服務價格以預約時網站公告為準。
+            </p>
+
+        </div>
+
+    </main>
+
+
+    <!-- =========================
+         CTA
+    ========================= -->
+
+    <section class="cta-section">
+
+        <h2>
+            想和自己聊聊嗎？
+        </h2>
+
+        <p>
+            選擇適合你的服務，為自己留一點時間。
+        </p>
+
+        <a
+            href="https://cal.com/jing9562939/15min?user=jing9562939"
+            class="cta-button"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            立即線上預約
+        </a>
+
+    </section>
+
+
+    <!-- =========================
+         Footer
+    ========================= -->
+
+    <footer>
+
+        <div class="footer-brand">
+            靖靖塔羅 JingJing Tarot
+        </div>
+
+        <div class="footer-links">
+
+            <a href="#">
+                LINE
+            </a>
+
+            <a href="#">
+                Instagram
+            </a>
+
+        </div>
+
+        <div class="copyright">
+            © 2026 JingJing Tarot. All Rights Reserved.
+        </div>
+
+    </footer>
+
+
+</body>
+</html>
+```
