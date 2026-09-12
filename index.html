@@ -9,6 +9,7 @@
     <meta name="description" content="靖靖塔羅 JingJing Tarot｜塔羅占卜、線上抽牌、水晶飾品與課程資訊。找到答案，也找回自己的方向。">
 
     <style>
+
         /* =========================
            基本設定
         ========================= */
@@ -36,6 +37,7 @@
             text-decoration: none;
             color: inherit;
         }
+
 
         /* =========================
            導覽列
@@ -95,6 +97,7 @@
             background: #eee6dc;
             color: #59534d;
         }
+
 
         /* =========================
            首頁主視覺
@@ -162,6 +165,18 @@
             margin: 0 auto 30px;
         }
 
+        /* =========================
+           Hero 按鈕
+        ========================= */
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
         .hero-button {
             display: inline-block;
             padding: 11px 28px;
@@ -175,6 +190,28 @@
         .hero-button:hover {
             background: #e9e0d5;
         }
+
+        /* =========================
+           線上預約按鈕
+        ========================= */
+
+        .booking-button {
+            display: inline-block;
+            padding: 11px 28px;
+            border: 1px solid #8c8379;
+            border-radius: 30px;
+            color: #fff;
+            background: #8c8379;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        .booking-button:hover {
+            background: #6f675f;
+            border-color: #6f675f;
+            transform: translateY(-2px);
+        }
+
 
         /* =========================
            共用區塊
@@ -204,6 +241,7 @@
             color: #a0988f;
             font-size: 14px;
         }
+
 
         /* =========================
            六大服務卡片
@@ -260,6 +298,95 @@
             padding-bottom: 2px;
         }
 
+
+        /* =========================
+           最新消息
+        ========================= */
+
+        .news-section {
+            background: #f2ede6;
+            border-top: 1px solid #e8dfd5;
+            border-bottom: 1px solid #e8dfd5;
+        }
+
+        .news-inner {
+            max-width: 1100px;
+            margin: auto;
+            padding: 85px 25px;
+        }
+
+        .news-list {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        .news-card {
+            background: rgba(255, 253, 249, 0.9);
+            border: 1px solid #e7ded4;
+            border-radius: 18px;
+            padding: 28px 25px;
+
+            transition:
+                transform 0.3s,
+                box-shadow 0.3s;
+        }
+
+        .news-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(100, 90, 80, 0.08);
+        }
+
+        .news-date {
+            color: #a18f7e;
+            font-size: 13px;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+
+        .news-tag {
+            display: inline-block;
+            background: #e9e1d7;
+            color: #8d7d6d;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+
+        .news-card h3 {
+            margin: 5px 0 10px;
+            font-size: 19px;
+            font-weight: 400;
+            color: #68615a;
+        }
+
+        .news-card p {
+            margin: 0;
+            font-size: 14px;
+            color: #8d857d;
+            line-height: 1.8;
+        }
+
+        .news-more {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .news-more a {
+            display: inline-block;
+            color: #81766c;
+            font-size: 14px;
+            border-bottom: 1px solid #bdb1a5;
+            padding-bottom: 3px;
+            transition: 0.3s;
+        }
+
+        .news-more a:hover {
+            color: #5f574f;
+        }
+
+
         /* =========================
            關於靖靖
         ========================= */
@@ -285,6 +412,7 @@
             color: #756b62;
             letter-spacing: 2px;
         }
+
 
         /* =========================
            預約 CTA
@@ -321,7 +449,9 @@
 
         .cta-button:hover {
             background: #6f675f;
+            transform: translateY(-2px);
         }
+
 
         /* =========================
            Footer
@@ -353,6 +483,7 @@
             font-size: 11px;
             color: #9c948b;
         }
+
 
         /* =========================
            手機版
@@ -392,9 +523,29 @@
                 font-size: 20px;
             }
 
+            .hero-buttons {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .hero-button,
+            .booking-button {
+                width: 200px;
+                text-align: center;
+            }
+
             .cards {
                 grid-template-columns: 1fr;
                 gap: 16px;
+            }
+
+            .news-list {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .news-inner {
+                padding: 65px 20px;
             }
 
             .section {
@@ -404,11 +555,15 @@
             .section-title {
                 margin-bottom: 35px;
             }
+
         }
+
     </style>
 </head>
 
+
 <body>
+
 
     <!-- =========================
          導覽列
@@ -462,9 +617,25 @@
                 陪你梳理當下，看見不同的可能。
             </p>
 
-            <a href="service.html" class="hero-button">
-                探索塔羅服務
-            </a>
+
+            <!-- Hero 按鈕 -->
+
+            <div class="hero-buttons">
+
+                <a href="service.html" class="hero-button">
+                    探索塔羅服務
+                </a>
+
+                <a
+                    href="https://cal.com/jing9562939/15min?user=jing9562939"
+                    class="booking-button"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    線上預約
+                </a>
+
+            </div>
 
         </div>
 
@@ -617,6 +788,119 @@
 
 
     <!-- =========================
+         最新消息
+    ========================== -->
+
+    <section class="news-section">
+
+        <div class="news-inner">
+
+            <div class="section-title">
+
+                <h2>最新消息</h2>
+
+                <p>
+                    Latest News
+                </p>
+
+            </div>
+
+
+            <div class="news-list">
+
+
+                <!-- 最新消息 1 -->
+
+                <div class="news-card">
+
+                    <div class="news-date">
+                        09 / 19－09 / 20
+                    </div>
+
+                    <span class="news-tag">
+                        活動
+                    </span>
+
+                    <h3>
+                        塔羅 × 水晶市集
+                    </h3>
+
+                    <p>
+                        歡迎來找靖靖聊聊，
+                        透過塔羅與水晶，
+                        陪你看看最近的自己。
+                    </p>
+
+                </div>
+
+
+                <!-- 最新消息 2 -->
+
+                <div class="news-card">
+
+                    <div class="news-date">
+                        NEW
+                    </div>
+
+                    <span class="news-tag">
+                        水晶
+                    </span>
+
+                    <h3>
+                        水晶飾品新品
+                    </h3>
+
+                    <p>
+                        手工挑選水晶與設計，
+                        找一份適合自己的
+                        日常陪伴。
+                    </p>
+
+                </div>
+
+
+                <!-- 最新消息 3 -->
+
+                <div class="news-card">
+
+                    <div class="news-date">
+                        SOON
+                    </div>
+
+                    <span class="news-tag">
+                        課程
+                    </span>
+
+                    <h3>
+                        塔羅課程資訊
+                    </h3>
+
+                    <p>
+                        初學者也可以慢慢開始，
+                        近期課程內容
+                        陸續更新中。
+                    </p>
+
+                </div>
+
+
+            </div>
+
+
+            <div class="news-more">
+
+                <a href="class.html">
+                    查看更多課程資訊 →
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
          關於靖靖
     ========================== -->
 
@@ -667,19 +951,25 @@
 
     <section class="cta">
 
-        <h2>準備好與自己聊聊了嗎？</h2>
+        <h2>
+            準備好與自己聊聊了嗎？
+        </h2>
 
         <p>
             選擇適合你的服務，
             開始一段屬於自己的探索。
         </p>
 
-        <!--
-            之後可以把這裡改成你的 LINE 官方帳號網址
-        -->
 
-        <a href="service.html" class="cta-button">
-            查看服務與預約方式
+        <!-- 線上預約 -->
+
+        <a
+            href="https://cal.com/jing9562939/15min?user=jing9562939"
+            class="cta-button"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            立即線上預約
         </a>
 
     </section>
@@ -718,6 +1008,7 @@
         </div>
 
     </footer>
+
 
 </body>
 </html>
