@@ -2,148 +2,307 @@
 <html lang="zh-TW">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>線上抽牌｜靖靖塔羅 JingJing Tarot</title>
-<meta name="description" content="靖靖塔羅線上抽牌：偉特塔羅牌、雷諾曼、天使神諭卡，多種牌陣任你選擇。">
+<meta name="description" content="靖靖塔羅線上抽牌：偉特塔羅牌、雷諾曼、大天使神諭卡，點選牌框就能抽牌。">
+<meta name="theme-color" content="#f7f3ed">
+<link rel="canonical" href="https://jing9562939.github.io/jingjingtarot/tarotcard.html">
 
 <style>
-* { box-sizing: border-box; }
+/* =====================================================
+   靖靖塔羅 JingJing Tarot｜全站共用樣式
+===================================================== */
+
+/* ---------- 色彩與常用數值（改這裡，全站同步） ---------- */
+:root {
+    --bg:            #f7f3ed;
+    --bg-soft:       #f5f0e9;
+    --bg-sand:       #eee8df;
+    --bg-sand-2:     #f2ede6;
+    --bg-paper:      #fffdf9;
+    --card:          rgba(255, 253, 249, 0.85);
+    --line:          #e8e0d7;
+    --line-strong:   #d8cec2;
+
+    --text:          #5f5a55;
+    --text-heading:  #625d57;
+    --text-body:     #766f68;
+    --text-muted:    #938a81;
+    --text-faint:    #a0988f;
+
+    --accent:        #8c8379;
+    --accent-dark:   #6f675f;
+
+    --shadow-soft:   0 10px 30px rgba(100, 90, 80, 0.08);
+    --max-width:     1100px;
+    --font:          "Noto Sans TC", "Microsoft JhengHei", "PingFang TC", sans-serif;
+}
+
+
+/* ---------- 基本設定 ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+
 html { scroll-behavior: smooth; }
+
 body {
     margin: 0;
-    font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
-    background: #f7f3ed;
-    color: #5f5a55;
+    font-family: var(--font);
+    background: var(--bg);
+    color: var(--text);
     line-height: 1.8;
 }
+
 a { text-decoration: none; color: inherit; }
-[hidden] { display: none !important; }
 
-/* ===== 導覽列（與首頁相同） ===== */
+img { max-width: 100%; height: auto; }
+
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+/* 鍵盤使用者可略過導覽列 */
+.skip-link {
+    position: absolute; left: -9999px; top: 0;
+    background: var(--accent); color: #fff; padding: 8px 16px; z-index: 2000;
+}
+.skip-link:focus { left: 10px; top: 10px; }
+
+
+/* ---------- 導覽列 ---------- */
 header {
-    background: rgba(255,253,249,0.96);
+    background: rgba(255, 253, 249, 0.96);
     border-bottom: 1px solid #e8e0d6;
-    position: sticky; top: 0; z-index: 1000;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
-.nav-container {
-    max-width: 1100px; margin: auto; padding: 16px 25px;
-    display: flex; justify-content: space-between; align-items: center; gap: 20px;
-}
-.logo { font-size: 22px; font-weight: 500; color: #716c66; letter-spacing: 1px; white-space: nowrap; }
-.logo span { display: block; font-size: 12px; letter-spacing: 2px; color: #a39a90; margin-top: -4px; }
-nav { display: flex; gap: 5px; flex-wrap: wrap; justify-content: center; }
-nav a { padding: 8px 12px; font-size: 14px; color: #77716a; border-radius: 20px; transition: 0.3s; }
-nav a:hover, nav a.active { background: #eee6dc; color: #59534d; }
 
-/* ===== 頁面標題 ===== */
+.nav-container {
+    max-width: var(--max-width);
+    margin: auto;
+    padding: 16px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: 500;
+    color: #716c66;
+    letter-spacing: 1px;
+    white-space: nowrap;
+}
+.logo span {
+    display: block;
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: #a39a90;
+    margin-top: -4px;
+}
+
+nav { display: flex; gap: 5px; flex-wrap: wrap; justify-content: center; }
+nav a {
+    padding: 8px 12px;
+    font-size: 14px;
+    color: #77716a;
+    border-radius: 20px;
+    transition: background 0.3s, color 0.3s;
+}
+nav a:hover,
+nav a[aria-current="page"] { background: #eee6dc; color: #59534d; }
+
+
+/* ---------- 頁面主視覺（內頁） ---------- */
 .page-hero {
-    text-align: center; padding: 60px 20px 35px;
+    min-height: 360px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 70px 20px;
     background: radial-gradient(circle at 50% 30%, #fffdf9 0%, #f8f3ec 55%, #eee7dd 100%);
 }
-.page-hero h1 { margin: 0; font-size: 36px; font-weight: 400; letter-spacing: 5px; color: #625d57; }
-.page-hero .english { font-size: 14px; letter-spacing: 4px; color: #9b938a; }
-.hero-line { width: 70px; height: 1px; background: #bdb3a8; margin: 20px auto; }
-.page-hero p { margin: 0 auto; max-width: 560px; font-size: 15px; color: #918980; }
+.page-hero-content { max-width: 760px; }
+.page-symbol { font-size: 40px; margin-bottom: 12px; }
+.page-hero h1 {
+    margin: 0;
+    font-size: 42px;
+    font-weight: 400;
+    letter-spacing: 5px;
+    color: var(--text-heading);
+}
+.page-hero .english { margin-top: 5px; font-size: 15px; letter-spacing: 4px; color: #9b938a; }
+.page-line { width: 60px; height: 1px; background: #bdb3a8; margin: 25px auto; }
+.page-hero p { margin: 0; font-size: 15px; color: #918980; }
 
-.section { max-width: 1100px; margin: auto; padding: 50px 25px 90px; }
 
-/* ===== 按鈕 ===== */
+/* ---------- 共用區塊 ---------- */
+.section { max-width: var(--max-width); margin: auto; padding: 85px 25px; }
+
+.section-title { text-align: center; margin-bottom: 50px; }
+.section-title h2 {
+    margin: 0;
+    font-size: 28px;
+    font-weight: 400;
+    letter-spacing: 3px;
+    color: #665f58;
+}
+.section-title p { margin: 8px 0 0; color: var(--text-faint); font-size: 14px; }
+
+
+/* ---------- 預約 CTA ---------- */
+.cta { text-align: center; background: var(--bg-soft); padding: 90px 20px; }
+.cta h2 { margin: 0 0 12px; font-size: 28px; font-weight: 400; letter-spacing: 3px; color: #655e57; }
+.cta p { color: #928980; font-size: 14px; margin: 0 0 25px; }
+
+.cta-button {
+    display: inline-block;
+    padding: 12px 32px;
+    border-radius: 30px;
+    background: var(--accent);
+    color: #fff;
+    font-size: 14px;
+    transition: background 0.3s, transform 0.3s;
+}
+.cta-button:hover { background: var(--accent-dark); transform: translateY(-2px); }
+
+
+/* ---------- Footer ---------- */
+footer {
+    background: #e4ddd4;
+    text-align: center;
+    padding: 35px 20px;
+    color: #817970;
+    font-size: 13px;
+}
+footer .brand { font-size: 18px; letter-spacing: 2px; margin-bottom: 8px; }
+footer .social { margin: 15px 0; }
+footer .social a { margin: 0 10px; }
+footer .social a:hover { color: #5f574f; }
+footer .copyright { font-size: 11px; color: #9c948b; }
+
+
+/* ---------- 手機版 ---------- */
+@media (max-width: 800px) {
+    .nav-container { flex-direction: column; padding: 15px 15px 10px; }
+    nav { gap: 2px; }
+    nav a { font-size: 13px; padding: 6px 8px; }
+
+    .page-hero { min-height: 320px; padding: 60px 20px; }
+    .page-hero h1 { font-size: 34px; letter-spacing: 3px; }
+    .page-hero .english { font-size: 13px; }
+
+    .section { padding: 65px 20px; }
+    .section-title { margin-bottom: 35px; }
+}
+
+
+/* ---------- 減少動態（系統設定為「減少動態效果」時） ---------- */
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { transition: none !important; animation: none !important; }
+}
+
+
+/* ---------- 行程類別標籤（首頁「最新公告」與課程訊息頁共用） ---------- */
+.tag { display: inline-block; padding: 1px 12px; border-radius: 20px; font-size: 12px; line-height: 1.7; white-space: nowrap; }
+.tag.market { background: #f0dccb; color: #8a5a3a; }   /* 擺攤 */
+.tag.study  { background: #dfe3f0; color: #56608a; }   /* 進修 */
+.tag.teach  { background: #dbe6d8; color: #4f6b4a; }   /* 教學 */
+.tag.trip   { background: #f2dde0; color: #94505a; }   /* 員工旅遊 */
+
+</style>
+
+<style>
+/* ===== 線上抽牌 頁面專用樣式（版型與首頁、課程訊息相同） ===== */
+[hidden] { display: none !important; }
+body { min-height: 100vh; min-height: 100dvh; display: flex; flex-direction: column; }
+main { flex: 1; display: flex; flex-direction: column; }
+footer { padding: 16px 20px; }
+footer .brand { font-size: 16px; margin-bottom: 0; }
+footer .social { margin: 4px 0; }
+
+/* ---------- 第一頁：左（線上抽牌）右（抽牌小提醒） ---------- */
+.home-hero {
+    width: 100%; max-width: var(--max-width); margin: 0 auto; padding: 30px 25px 10px;
+    display: grid; grid-template-columns: 1fr 1.05fr; gap: 48px; align-items: center;
+}
+.hero-text .symbol { font-size: 26px; color: #b9a27c; line-height: 1; margin-bottom: 14px; }
+.hero-text h1 { margin: 0; font-size: 46px; font-weight: 400; letter-spacing: 5px; color: var(--text-heading); line-height: 1.3; }
+.hero-text .english { margin-top: 2px; font-size: 15px; letter-spacing: 4px; color: #9b938a; }
+.hero-text .line { width: 56px; height: 1px; background: #bdb3a8; margin: 18px 0; }
+.hero-text h2 { margin: 0 0 10px; font-size: 22px; font-weight: 400; color: #746d65; }
+.hero-text p { margin: 0; font-size: 15px; color: #918980; max-width: 420px; }
+
+.board-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px; }
+.board-head h2 {
+    margin: 0; font-size: 17px; font-weight: 500; color: #7d6c55; letter-spacing: 2px;
+    border-left: 3px solid #c4a86b; padding-left: 10px;
+}
+.notice-card {
+    background: var(--card); border: 1px solid #e7ded4; border-radius: 14px; padding: 16px 22px 16px 40px; margin: 0;
+    font-size: 14px; color: #8d857d; line-height: 1.9;
+}
+.notice-card li { padding: 2px 0; }
+
+/* 牌種與牌陣選擇 */
+.select-area { width: 100%; max-width: var(--max-width); margin: 0 auto; padding: 14px 25px 30px; }
+.deck-row { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; padding: 16px 0; border-top: 1px solid #e8dfd5; }
+.deck-name {
+    min-width: 150px; font-size: 17px; font-weight: 500; color: #7d6c55; letter-spacing: 2px;
+    border-left: 3px solid #c4a86b; padding-left: 10px; line-height: 1.5;
+}
+.deck-name small { display: block; font-size: 12px; font-weight: 400; color: var(--text-faint); letter-spacing: 1px; }
+.spread-btns { display: flex; flex-wrap: wrap; gap: 12px; }
+.spread-btn {
+    padding: 10px 24px; border-radius: 12px; font-size: 14px; font-family: inherit;
+    border: 1px solid #ddd2c4; background: rgba(255,253,249,0.9); color: #6d665f; cursor: pointer; transition: 0.25s;
+}
+.spread-btn:hover { background: #eee6dc; border-color: #bda98a; transform: translateY(-2px); box-shadow: 0 6px 16px rgba(100,90,80,0.08); }
+.spread-btn small { display: block; font-size: 11px; color: #a39a90; }
+
+/* ---------- 第二頁：抽牌 ---------- */
+.draw-wrap { width: 100%; max-width: var(--max-width); margin: 0 auto; padding: 26px 25px 50px; }
+.crumb { text-align: center; font-size: 13px; color: #a18f7e; letter-spacing: 1px; }
+.draw-title { text-align: center; margin: 4px 0 14px; font-size: 26px; font-weight: 400; letter-spacing: 3px; color: #665f58; }
+
 .btn {
-    padding: 11px 30px; border-radius: 30px; font-size: 14px; font-family: inherit;
-    cursor: pointer; transition: 0.3s;
+    padding: 10px 26px; border-radius: 30px; font-size: 14px; font-family: inherit; cursor: pointer; transition: 0.3s;
     border: 1px solid #8c8379; background: #8c8379; color: #fff; display: inline-block;
 }
 .btn:hover { background: #6f675f; border-color: #6f675f; transform: translateY(-2px); }
 .btn.ghost { background: rgba(255,255,255,0.55); color: #6d665f; border-color: #aaa096; }
 .btn.ghost:hover { background: #e9e0d5; }
 .btn:disabled { opacity: 0.45; cursor: not-allowed; transform: none; }
-.controls { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin: 28px 0; }
-
-/* ===== 第一頁：選擇牌種與牌陣 ===== */
-.deck-section { margin-bottom: 46px; }
-.deck-title {
-    font-size: 22px; font-weight: 500; color: #7d6c55; letter-spacing: 2px;
-    border-left: 4px solid #c4a86b; padding-left: 12px; margin: 0 0 16px;
-}
-.deck-intro {
-    background: rgba(255,253,249,0.85); border: 1px solid #e8e0d7; border-radius: 16px;
-    padding: 16px 22px; font-size: 14px; color: #8d857d; margin-bottom: 16px;
-}
-.sub-deck { margin-bottom: 18px; }
-.sub-deck h4 { margin: 0 0 8px; font-size: 15px; font-weight: 500; color: #8d7d6d; }
-.spread-btns { display: flex; flex-wrap: wrap; gap: 12px; }
-.spread-btn {
-    padding: 12px 26px; border-radius: 12px; font-size: 14px; font-family: inherit;
-    border: 1px solid #ddd2c4; background: rgba(255,253,249,0.9); color: #6d665f;
-    cursor: pointer; transition: 0.25s;
-}
-.spread-btn:hover { background: #eee6dc; border-color: #bda98a; transform: translateY(-2px); box-shadow: 0 6px 16px rgba(100,90,80,0.08); }
-.spread-btn small { display: block; font-size: 11px; color: #a39a90; }
-
-/* ===== 抽牌小提醒（選擇牌陣頁上方） ===== */
-.notice-strip {
-    max-width: 760px; margin: 0 auto 40px; padding: 18px 26px;
-    background: rgba(255,253,249,0.9); border: 1px solid #e7ded4; border-left: 4px solid #c4a86b; border-radius: 14px;
-}
-.notice-title { font-size: 15px; font-weight: 500; color: #7d6c55; letter-spacing: 2px; margin-bottom: 4px; }
-.notice-strip ul { margin: 0; padding-left: 20px; font-size: 14px; color: #8d857d; }
-.notice-strip li { padding: 2px 0; }
-
-/* ===== （舊）注意事項 ===== */
-.notice-box {
-    max-width: 640px; margin: 0 auto; padding: 32px 30px;
-    background: rgba(255,253,249,0.95); border: 1px solid #e7ded4; border-radius: 18px;
-}
-.notice-box h3 { margin: 0 0 4px; text-align: center; font-weight: 400; font-size: 22px; color: #68615a; letter-spacing: 2px; }
-.notice-box .sub { text-align: center; font-size: 13px; color: #a0988f; margin-bottom: 20px; }
-.notice-box ol { margin: 0; padding-left: 22px; font-size: 14.5px; color: #77706a; }
-.notice-box li { padding: 4px 0; }
-.agree { display: flex; gap: 10px; align-items: center; justify-content: center; margin-top: 22px; font-size: 14px; color: #6d665f; cursor: pointer; }
-.agree input { width: 17px; height: 17px; accent-color: #8c8379; }
-
-/* ===== 抽牌頁 ===== */
-.crumb { text-align: center; font-size: 13px; color: #a18f7e; letter-spacing: 1px; }
-.draw-title { text-align: center; margin: 4px 0 18px; font-size: 26px; font-weight: 400; letter-spacing: 3px; color: #665f58; }
-.question-box { text-align: center; margin-bottom: 8px; }
-.question-box input {
-    width: 100%; max-width: 460px; padding: 11px 20px; border: 1px solid #d9cfc3; border-radius: 30px;
-    background: rgba(255,253,249,0.9); color: #5f5a55; font-size: 15px; font-family: inherit; text-align: center; outline: none;
-}
-.question-box input:focus { border-color: #aaa096; }
-
-.top-controls { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin: 6px 0 4px; }
-.progress {
-    text-align: center; margin: 24px auto 20px; font-size: 15px; color: #7d6c55;
-    letter-spacing: 1px; min-height: 28px;
-}
+.top-controls { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+.progress { text-align: center; margin: 18px auto 18px; font-size: 15px; color: #7d6c55; letter-spacing: 1px; min-height: 28px; }
 .progress b { color: #a1824a; font-weight: 500; }
 
 /* 牌位 */
-.spread { display: flex; flex-direction: column; align-items: center; gap: 28px; }
+.spread { display: flex; flex-direction: column; align-items: center; gap: 24px; }
 .spread-row { display: flex; justify-content: center; align-items: flex-start; gap: 22px; }
 .slot { width: clamp(64px, 19vw, 150px); text-align: center; }
+.slot-label { font-size: 14px; letter-spacing: 1px; color: #a1824a; margin-bottom: 8px; }
 .slot.main .slot-label { display: inline-block; padding: 0 14px; border: 1px solid #c4a86b; border-radius: 6px; background: #f3ead6; color: #8a6d33; }
 .spread-row.has-main .slot:not(.main) { margin-top: 46px; }
 .spread.one .slot { width: clamp(120px, 40vw, 210px); }
-.slot-label { font-size: 14px; letter-spacing: 1px; color: #a1824a; margin-bottom: 8px; }
+
 .card-wrap { perspective: 900px; width: 100%; aspect-ratio: 7 / 12; }
-.card-wrap.empty {
-    border: 1.5px dashed #cfc3b3; border-radius: 10px; background: rgba(255,253,249,0.5);
+button.card-wrap.empty {
+    display: flex; align-items: center; justify-content: center; padding: 0; font-family: inherit;
+    font-size: 13px; letter-spacing: 1px; color: #b3a590; cursor: pointer;
+    border: 1.5px dashed #cfc3b3; border-radius: 10px; background: rgba(255,253,249,0.5); transition: 0.25s;
 }
-.card-wrap.empty.next { border-color: #c4a86b; background: rgba(196,168,107,0.10); }
-.card {
-    position: relative; width: 100%; height: 100%;
-    transform-style: preserve-3d; transition: transform 0.8s;
-}
+button.card-wrap.empty:hover { border-color: #c4a86b; background: rgba(196,168,107,0.14); color: #8a6d33; }
+button.card-wrap.empty.next { border-color: #c4a86b; background: rgba(196,168,107,0.10); color: #8a6d33; }
+.card { position: relative; width: 100%; height: 100%; transform-style: preserve-3d; transition: transform 0.8s; }
 .card.flipped { transform: rotateY(180deg); }
 .face {
     position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden;
-    border-radius: 10px; overflow: hidden; border: 1px solid #d9cfc3;
-    box-shadow: 0 6px 18px rgba(100,90,80,0.14);
+    border-radius: 10px; overflow: hidden; border: 1px solid #d9cfc3; box-shadow: 0 6px 18px rgba(100,90,80,0.14);
 }
-.back, .fan-card {
-    background:
-        var(--back-img,
+.back {
+    background: var(--back-img,
         repeating-linear-gradient(45deg, rgba(255,255,255,0.12) 0 6px, transparent 6px 12px),
         linear-gradient(160deg, #a89c8f, #7d7368));
     background-size: cover; background-position: center;
@@ -156,40 +315,21 @@ nav a:hover, nav a.active { background: #eee6dc; color: #59534d; }
 .slot-name { margin-top: 10px; min-height: 48px; font-size: 15px; color: #68615a; line-height: 1.5; }
 .pos { display: inline-block; margin-top: 3px; padding: 1px 10px; border-radius: 20px; font-size: 12px; background: #e9e1d7; color: #8d7d6d; }
 .pos.rev { background: #ead9d0; color: #94644d; }
-
-/* 牌堆 */
-.fan-title { text-align: center; margin: 50px 0 14px; font-size: 14px; color: #a0988f; letter-spacing: 1px; }
-.fan {
-    display: flex; flex-wrap: wrap; justify-content: center; gap: 4px;
-    max-width: 960px; margin: 0 auto; padding: 14px; border-radius: 16px;
-    background: rgba(238,230,220,0.5); border: 1px solid #e8dfd5;
-}
-.fan-card {
-    width: 46px; aspect-ratio: 7 / 12; border-radius: 5px; border: 1px solid #d9cfc3;
-    cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; padding: 0;
-}
-.fan-card:hover { transform: translateY(-8px); box-shadow: 0 6px 12px rgba(100,90,80,0.25); }
-.fan-card.taken { visibility: hidden; pointer-events: none; }
-.fan.done .fan-card { pointer-events: none; opacity: 0.5; }
-@keyframes shake { 0%,100% { transform: translateX(0); } 25% { transform: translateX(-10px); } 75% { transform: translateX(10px); } }
-.fan.shuffling { animation: shake 0.4s 3; }
+@keyframes shake { 0%,100% { transform: translateX(0); } 25% { transform: translateX(-8px); } 75% { transform: translateX(8px); } }
+.spread.shuffling { animation: shake 0.4s 3; }
 
 /* 結果 */
-.summary {
-    max-width: 700px; margin: 46px auto 0; padding: 28px 25px;
-    background: rgba(255,253,249,0.95); border: 1px solid #e7ded4; border-radius: 18px;
-}
+.summary { max-width: 700px; margin: 40px auto 0; padding: 26px 25px; background: rgba(255,253,249,0.95); border: 1px solid #e7ded4; border-radius: 18px; }
 .summary h3 { margin: 0 0 8px; font-weight: 400; font-size: 20px; text-align: center; color: #68615a; }
-.summary .q { text-align: center; font-size: 14px; color: #a18f7e; margin-bottom: 12px; }
 .summary ul { list-style: none; margin: 0; padding: 0; font-size: 14px; }
 .summary li { padding: 7px 0; border-bottom: 1px dashed #e3dacf; display: flex; justify-content: space-between; gap: 12px; }
 .summary li:last-child { border-bottom: none; }
 .summary li span:first-child { color: #8d857d; }
-.summary .book { margin-top: 26px; padding-top: 20px; border-top: 1px solid #e8dfd5; }
+.summary .btns { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-top: 20px; }
+.summary .book { margin-top: 24px; padding-top: 18px; border-top: 1px solid #e8dfd5; }
 .summary .book-tip { text-align: center; font-size: 13px; color: #a0988f; }
-.summary .btns { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-top: 22px; }
 
-/* ===== 彈出視窗 ===== */
+/* 彈出視窗 */
 .modal { position: fixed; inset: 0; background: rgba(60,52,45,0.55); z-index: 3000; display: flex; align-items: center; justify-content: center; padding: 16px; }
 .modal-box { position: relative; background: #fffdf9; border-radius: 18px; padding: 26px 20px 22px; max-width: 520px; width: 100%; max-height: 92vh; overflow: auto; text-align: center; }
 .modal-close { position: absolute; top: 8px; right: 12px; border: none; background: none; font-size: 22px; color: #8d857d; cursor: pointer; }
@@ -198,63 +338,69 @@ nav a:hover, nav a.active { background: #eee6dc; color: #59534d; }
 .modal-box .tip { font-size: 13px; color: #8d857d; margin: 10px 0; }
 .modal-box .btns { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-top: 12px; }
 
-/* ===== Footer ===== */
-footer { background: #e4ddd4; text-align: center; padding: 35px 20px; color: #817970; font-size: 13px; }
-footer .brand { font-size: 18px; letter-spacing: 2px; margin-bottom: 8px; }
-footer .social { margin: 15px 0; }
-footer .social a { margin: 0 10px; }
-footer .copyright { font-size: 11px; color: #9c948b; }
-
-/* ===== 手機版 ===== */
 @media (max-width: 800px) {
-    .nav-container { flex-direction: column; padding: 15px 15px 10px; }
-    nav { gap: 2px; }
-    nav a { font-size: 13px; padding: 6px 8px; }
-    .page-hero h1 { font-size: 28px; letter-spacing: 3px; }
-    .section { padding: 36px 14px 65px; }
-    .spread-row { gap: 8px; }
+    .home-hero { grid-template-columns: 1fr; gap: 22px; padding: 24px 20px 6px; text-align: center; }
+    .hero-text h1 { font-size: 34px; letter-spacing: 3px; }
+    .hero-text .english { font-size: 13px; }
+    .hero-text .line { margin: 16px auto; }
+    .hero-text h2 { font-size: 19px; }
+    .hero-text p { margin-left: auto; margin-right: auto; }
+    .notice-card { text-align: left; }
+    .select-area { padding: 10px 20px 26px; }
+    .deck-row { gap: 12px; padding: 14px 0; }
+    .deck-name { min-width: 100%; }
+    .draw-wrap { padding: 20px 14px 40px; }
+    .spread-row { gap: 6px; }
     .slot-label { font-size: 12px; }
     .slot-name { font-size: 12.5px; }
     .spread-row.has-main .slot:not(.main) { margin-top: 30px; }
-    .spread-row { gap: 6px; }
-    .fan-card { width: 32px; }
-    .spread-btn { padding: 10px 18px; }
-    .notice-box { padding: 26px 20px; }
+    button.card-wrap.empty { font-size: 12px; }
 }
 </style>
 </head>
 
 <body>
 
+<a class="skip-link" href="#main">跳到主要內容</a>
+
 <header>
     <div class="nav-container">
         <a href="index.html" class="logo">靖靖塔羅<span>JingJing Tarot</span></a>
-        <nav>
+        <nav aria-label="主選單">
             <a href="index.html">首頁</a>
             <a href="about.html">關於我</a>
             <a href="service.html">服務項目</a>
             <a href="class.html">課程訊息</a>
-            <a href="tarotcard.html" class="active">線上抽牌</a>
+            <a href="tarotcard.html" aria-current="page">線上抽牌</a>
             <a href="crystal.html">水晶飾品</a>
         </nav>
     </div>
 </header>
 
-<section class="page-hero">
-    <div style="font-size:42px;">🃏</div>
-    <h1>線上抽牌</h1>
-    <div class="english">Online Card Reading</div>
-    <div class="hero-line"></div>
-    <p>選擇牌卡種類與牌陣，靜下心來，讓牌卡陪你看見當下。</p>
-</section>
+<main id="main">
 
-<main class="section">
+    <!-- ① 選擇牌種與牌陣：左（線上抽牌）右（抽牌小提醒） -->
+    <div id="viewSelect">
+        <section class="home-hero">
+            <div class="hero-text">
+                <div class="symbol" aria-hidden="true">✦</div>
+                <h1>線上抽牌</h1>
+                <div class="english">Online Card Reading</div>
+                <div class="line"></div>
+                <h2>靜下心，抽一張屬於你的牌</h2>
+                <p>選擇牌卡種類與牌陣，點選牌框就能抽牌。</p>
+            </div>
+            <div class="board">
+                <div class="board-head"><h2>抽牌小提醒</h2></div>
+                <ul class="notice-card" id="noticeList"></ul>
+            </div>
+        </section>
 
-    <!-- ① 選擇牌種與牌陣 -->
-    <div id="viewSelect"></div>
+        <section class="select-area" id="selectArea" aria-label="選擇牌種與牌陣"></section>
+    </div>
 
-    <!-- ③ 抽牌 -->
-    <div id="viewDraw" hidden>
+    <!-- ② 抽牌 -->
+    <div id="viewDraw" class="draw-wrap" hidden>
         <div class="crumb" id="crumb"></div>
         <h2 class="draw-title" id="drawTitle"></h2>
         <div class="top-controls">
@@ -264,15 +410,6 @@ footer .copyright { font-size: 11px; color: #9c948b; }
         <div class="progress" id="progress"></div>
 
         <div class="spread" id="spread"></div>
-
-        <div class="controls">
-            <button class="btn" id="finishBtn" hidden>完成抽牌</button>
-        </div>
-
-        <div id="fanArea">
-            <div class="fan-title">請憑直覺，依序點選你的牌</div>
-            <div class="fan" id="fan"></div>
-        </div>
 
         <div class="summary" id="summary" hidden>
             <h3>本次抽牌結果</h3>
@@ -287,7 +424,6 @@ footer .copyright { font-size: 11px; color: #9c948b; }
                 <div class="btns" id="bookBtns"></div>
             </div>
         </div>
-
     </div>
 
 </main>
@@ -302,7 +438,8 @@ footer .copyright { font-size: 11px; color: #9c948b; }
 <footer>
     <div class="brand">靖靖塔羅 JingJing Tarot</div>
     <div class="social">
-        <a href="#">LINE</a> | <a href="https://www.instagram.com/jing9562939/">Instagram</a>
+        <a href="https://liff.line.me/1645278921-kWRPP32q/?accountId=531eukcu" target="_blank" rel="noopener noreferrer">LINE</a> |
+        <a href="https://www.instagram.com/jing9562939/" target="_blank" rel="noopener noreferrer">Instagram</a>
     </div>
     <div class="copyright">© 2026 JingJing Tarot. All Rights Reserved.</div>
 </footer>
@@ -313,35 +450,26 @@ footer .copyright { font-size: 11px; color: #9c948b; }
    一、可自行修改的設定
 ===================================================== */
 
-/* --- 抽牌前注意事項（想增減直接改這裡） --- */
+/* --- 抽牌小提醒（想增減直接改這裡，每行一句，結尾加逗號） --- */
 const NOTICES = [
     "抽牌前請先靜下心，心中想好一個明確的問題。",
     "一次只問一個問題，避免短時間內重複詢問同一件事。",
     "抽牌結果僅供參考，不取代醫療、法律、投資等專業意見。"
 ];
 
-/* --- 聯絡與預約連結（請填入你的網址；留空則不顯示該按鈕） ---
-   LINE：個人帳號格式 https://line.me/ti/p/你的ID　官方帳號格式 https://line.me/R/ti/p/@你的ID */
+/* --- 聯絡與預約連結（留空則不顯示該按鈕） --- */
 const LINE_URL = "https://liff.line.me/1645278921-kWRPP32q/?accountId=531eukcu";
 const IG_URL   = "https://www.instagram.com/jing9562939/";
 
 /* --- 牌陣定義 ---
-   labels：每個牌位名稱（也決定張數）　main：放大並強調的主要牌位編號
-   perRow：每列幾張（預設 4）；layout：自訂每列的牌位編號
-   free  ：true = 無牌陣，自由連續抽牌，max 為上限 */
+   labels：每個牌位名稱（也決定張數）　main：標示為「主要牌」的牌位編號
+   perRow：每列幾張（預設 4）　layout：自訂每列的牌位編號 */
 const SP = {
     universal: { name: "萬用牌陣", labels: ["主要牌","次要牌","次要牌","次要牌","心態牌"], perRow: 4, main: [0] },
-    free:      { name: "無牌陣", free: true, max: 10 },
-    single:    { name: "單張牌", labels: ["本次指引"], main: [0] },
     time:      { name: "時間之流", labels: ["過去","現在","未來"] },
     choose2:   { name: "二擇一牌陣", labels: ["現況","選擇 A 過程","選擇 A 結果","選擇 B 過程","選擇 B 結果"], layout: [[0],[1,2],[3,4]] },
-    choose3:   { name: "三擇一牌陣", labels: ["現況","選擇 A 過程","選擇 A 結果","選擇 B 過程","選擇 B 結果","選擇 C 過程","選擇 C 結果"], layout: [[0],[1,2],[3,4],[5,6]] },
-    past1:     { name: "單人前世今生", labels: ["前世","今生","靈魂課題","未來指引"] },
-    past2:     { name: "雙人前世今生", labels: ["甲方前世","乙方前世","兩人前世關係","甲方今生","乙方今生","兩人今生關係"], layout: [[0,1,2],[3,4,5]] },
-    past3:     { name: "三人前世今生", labels: ["甲方前世","乙方前世","丙方前世","甲方今生","乙方今生","丙方今生","三人關係"], layout: [[0,1,2],[3,4,5],[6]] },
-    three:     { name: "三張牌陣", labels: ["現況","建議","結果"] },
-    five:      { name: "五張牌陣", labels: ["現況","阻礙","建議","近期發展","結果"], layout: [[0,1,2],[3,4]] },
-    grid9:     { name: "九宮格牌陣", labels: ["1","2","3","4","5","6","7","8","9"], perRow: 3 }
+    single:    { name: "單張牌", labels: ["本次指引"], main: [0] },
+    three:     { name: "三張牌陣", labels: ["現況","建議","結果"] }
 };
 
 /* --- 牌名 --- */
@@ -352,43 +480,26 @@ const TAROT_NAMES = (() => {
     ["權杖","聖杯","寶劍","錢幣"].forEach(s => ranks.forEach(r => all.push(s + r)));
     return all;
 })();
-
 const LENORMAND_NAMES = ["騎士","幸運草","船","房子","樹","烏雲","蛇","棺材","花束","鐮刀","鞭子","鳥","小孩","狐狸","熊","星星","鸛鳥","狗","塔","花園","山","岔路","老鼠","心","戒指","書","信","男人","女人","百合","太陽","月亮","鑰匙","魚","錨","十字架"];
-
 /* 大天使神諭卡牌名：依圖檔順序填入即可；留空則顯示「大天使 1、大天使 2…」 */
-const ARCHANGEL_NAMES   = [];
+const ARCHANGEL_NAMES = [];
 
 /* --- 牌組定義 ---
-   folder：圖片資料夾　start：第一張圖的編號（tarot 從 00，其餘從 01）
-   reversible：是否有正逆位（雷諾曼與神諭卡通常不分，預設為 false，想要請改成 true） */
+   folder：圖片資料夾　start：第一張圖的編號（塔羅從 00，其餘從 01）　ext：圖片副檔名
+   reversible：是否有正逆位 */
 const SECTIONS = [
-    {
-        title: "偉特塔羅牌",
-        intro: "經典偉特塔羅 78 張牌，正逆位一起抽。",
-        decks: [{
-            id: "tarot", label: "", folder: "images/tarot/", ext: ".jpg", start: 0, pad: 2,
-            count: 78, names: TAROT_NAMES, reversible: true, noun: "牌",
-            spreads: [SP.universal, SP.time, SP.choose2]
-        }]
-    },
-    {
-        title: "雷諾曼",
-        intro: "雷諾曼 36 張牌，直接、務實，適合詢問具體事件。",
-        decks: [{
-            id: "lenormand", label: "", folder: "images/lenormand/", ext: ".jpg", start: 1, pad: 2,
-            count: 36, names: LENORMAND_NAMES, reversible: false, noun: "牌",
-            spreads: [SP.single, SP.three, SP.universal]
-        }]
-    },
-    {
-        title: "天使神諭卡",
-        intro: "收到來自天使的訊息與祝福。",
-        decks: [
-            { id: "archangel", label: "大天使神諭卡", folder: "images/archangel/", ext: ".jpg", start: 1, pad: 2,
-              count: 45, names: ARCHANGEL_NAMES, fallbackName: "大天使", reversible: false, noun: "卡",
-              spreads: [SP.single] }
-        ]
-    }
+    { title: "偉特塔羅牌", decks: [{
+        id: "tarot", label: "", folder: "images/tarot/", ext: ".jpg", start: 0, pad: 2,
+        count: 78, names: TAROT_NAMES, reversible: true,
+        spreads: [SP.universal, SP.time, SP.choose2] }] },
+    { title: "雷諾曼", decks: [{
+        id: "lenormand", label: "", folder: "images/lenormand/", ext: ".jpg", start: 1, pad: 2,
+        count: 36, names: LENORMAND_NAMES, reversible: false,
+        spreads: [SP.single, SP.three, SP.universal] }] },
+    { title: "天使神諭卡", decks: [{
+        id: "archangel", label: "大天使神諭卡", folder: "images/archangel/", ext: ".jpg", start: 1, pad: 2,
+        count: 45, names: ARCHANGEL_NAMES, fallbackName: "大天使", reversible: false,
+        spreads: [SP.single] }] }
 ];
 
 
@@ -416,113 +527,77 @@ function shuffled(n) {
 function cardName(deck, i) {
     return (deck.names && deck.names[i]) || (deck.fallbackName ? deck.fallbackName + " " + (i + 1) : "第 " + (i + 1) + " 號");
 }
-function imgPath(deck, i) {
-    return deck.folder + String(deck.start + i).padStart(deck.pad, "0") + deck.ext;
-}
-function slotCount(sp) { return sp.free ? sp.max : sp.labels.length; }
-function slotLabel(sp, i) { return sp.free ? "第 " + (i + 1) + " 張" : sp.labels[i]; }
+function imgPath(deck, i) { return deck.folder + String(deck.start + i).padStart(deck.pad, "0") + deck.ext; }
+const slotCount = sp => sp.labels.length;
+const isMain = (sp, i) => !!(sp.main && sp.main.includes(i));
 
 
 /* =====================================================
-   三、第一頁：選擇牌種與牌陣
+   三、第一頁：提醒＋選擇牌種與牌陣
 ===================================================== */
 function buildSelect() {
-    const box = views.select;
+    $("noticeList").innerHTML = NOTICES.map(t => "<li>" + t + "</li>").join("");
+    const box = $("selectArea");
     box.innerHTML = "";
-    const note = document.createElement("div");
-    note.className = "notice-strip";
-    note.innerHTML = '<div class="notice-title">✦ 抽牌小提醒</div><ul>' + NOTICES.map(t => "<li>" + t + "</li>").join("") + "</ul>";
-    box.appendChild(note);
-    SECTIONS.forEach(sec => {
-        const wrap = document.createElement("div");
-        wrap.className = "deck-section";
-        wrap.innerHTML = `<h2 class="deck-title">${sec.title}</h2><div class="deck-intro">${sec.intro}</div>`;
-        sec.decks.forEach(deck => {
-            const sub = document.createElement("div");
-            sub.className = "sub-deck";
-            if (deck.label) sub.innerHTML = `<h4>${deck.label}</h4>`;
-            const btns = document.createElement("div");
-            btns.className = "spread-btns";
-            deck.spreads.forEach(sp => {
-                const b = document.createElement("button");
-                b.className = "spread-btn";
-                b.innerHTML = sp.name + (sp.free ? "" : `<small>${slotCount(sp)} 張</small>`);
-                b.onclick = () => beginSpread(sec, deck, sp);
-                btns.appendChild(b);
-            });
-            sub.appendChild(btns);
-            wrap.appendChild(sub);
+    SECTIONS.forEach(sec => sec.decks.forEach(deck => {
+        const row = document.createElement("div");
+        row.className = "deck-row";
+        row.innerHTML = '<div class="deck-name">' + sec.title + (deck.label ? "<small>" + deck.label + "</small>" : "") + "</div>";
+        const btns = document.createElement("div");
+        btns.className = "spread-btns";
+        deck.spreads.forEach(sp => {
+            const b = document.createElement("button");
+            b.className = "spread-btn";
+            b.innerHTML = sp.name + "<small>" + slotCount(sp) + " 張</small>";
+            b.onclick = () => beginSpread(sec, deck, sp);
+            btns.appendChild(b);
         });
-        box.appendChild(wrap);
-    });
+        row.appendChild(btns);
+        box.appendChild(row);
+    }));
 }
 
 
 /* =====================================================
-   四、選好牌陣後直接開始抽牌
+   四、第二頁：點選牌框抽牌
 ===================================================== */
 let cur = null;
 
 function beginSpread(sec, deck, sp) {
-    cur = { sec, deck, sp, order: [], picks: [], finished: false };
+    cur = { sec, deck, sp, order: [], picks: [], drawn: 0, finished: false, busy: false };
     startDraw();
 }
 
-
-/* =====================================================
-   五、第三頁：抽牌
-===================================================== */
 function startDraw() {
     const { deck, sp, sec } = cur;
-    cur.order = shuffled(deck.count);
-    cur.picks = [];
-    cur.finished = false;
+    cur.order = shuffled(deck.count);                 // 先洗牌，之後每點一次牌框就依序翻出一張
+    cur.picks = new Array(slotCount(sp)).fill(null);  // 依牌位存放
+    cur.drawn = 0; cur.finished = false; cur.busy = true;
 
     $("crumb").textContent = sec.title + (deck.label ? "・" + deck.label : "");
     $("drawTitle").textContent = sp.name;
     $("summary").hidden = true;
-    $("fanArea").hidden = false;
-    $("finishBtn").hidden = true;
 
     // 牌背圖（有放 back 圖檔就使用，沒有則用預設花紋）
     const root = views.draw;
     root.style.removeProperty("--back-img");
-    const testImg = new Image();
-    const backUrl = deck.folder + "back" + deck.ext;
-    testImg.onload = () => root.style.setProperty("--back-img", `url("${backUrl}")`);
-    testImg.src = backUrl;
+    const t = new Image(), url = deck.folder + "back" + deck.ext;
+    t.onload = () => root.style.setProperty("--back-img", 'url("' + url + '")');
+    t.src = url;
 
-    buildFan();
     renderSlots(-1);
     show("draw");
 
-    const fan = $("fan");
-    fan.classList.add("shuffling");
     $("progress").textContent = "洗牌中⋯⋯請專注在你的問題上。";
-    setTimeout(() => { fan.classList.remove("shuffling"); updateProgress(); }, 1300);
-}
-
-function buildFan() {
-    const fan = $("fan");
-    fan.className = "fan";
-    fan.innerHTML = "";
-    cur.order.forEach((cardIdx, pos) => {
-        const b = document.createElement("button");
-        b.className = "fan-card";
-        b.setAttribute("aria-label", "牌堆第 " + (pos + 1) + " 張");
-        b.onclick = () => pick(pos, b);
-        fan.appendChild(b);
-    });
+    $("spread").classList.add("shuffling");
+    setTimeout(() => { $("spread").classList.remove("shuffling"); cur.busy = false; updateProgress(); }, 1300);
 }
 
 function layoutRows() {
-    const { sp, picks } = cur;
-    let n, perRow = sp.perRow || 4;
-    if (sp.free) n = Math.min(picks.length + (picks.length < sp.max && !cur.finished ? 1 : 0), sp.max);
-    else n = sp.labels.length;
+    const { sp } = cur;
     if (sp.layout) return sp.layout;
-    const idx = Array.from({ length: n }, (_, i) => i), rows = [];
-    for (let i = 0; i < n; i += perRow) rows.push(idx.slice(i, i + perRow));
+    const n = slotCount(sp), per = sp.perRow || 4, idx = Array.from({ length: n }, (_, i) => i), rows = [];
+    for (let i = 0; i < n; i += per) rows.push(idx.slice(i, i + per));
     return rows;
 }
 
@@ -539,29 +614,31 @@ function buildFront(deck, card) {
 
 function nameHtml(deck, card) {
     let h = card.name;
-    if (deck.reversible) h += `<br><span class="pos ${card.reversed ? "rev" : ""}">${card.reversed ? "逆位" : "正位"}</span>`;
+    if (deck.reversible) h += '<br><span class="pos ' + (card.reversed ? "rev" : "") + '">' + (card.reversed ? "逆位" : "正位") + "</span>";
     return h;
 }
+
+function nextEmpty() { return cur.picks.findIndex(p => !p); }
 
 function renderSlots(animateIdx) {
     const { deck, sp, picks } = cur;
     const spread = $("spread");
     spread.innerHTML = "";
     spread.classList.toggle("one", slotCount(sp) === 1);
-    const nextIdx = picks.length;
+    const next = nextEmpty();
 
     layoutRows().forEach(row => {
         const rowEl = document.createElement("div");
-        rowEl.className = "spread-row" + (row.some(i => sp.main && sp.main.includes(i)) ? " has-main" : "");
+        rowEl.className = "spread-row" + (row.some(i => isMain(sp, i)) && row.length > 1 ? " has-main" : "");
         row.forEach(i => {
             const slot = document.createElement("div");
-            slot.className = "slot" + (sp.main && sp.main.includes(i) ? " main" : "");
-            const filled = i < picks.length;
-            slot.innerHTML = `<div class="slot-label">${slotLabel(sp, i)}</div>
-                <div class="card-wrap ${filled ? "" : "empty" + (i === nextIdx && !cur.finished ? " next" : "")}"></div>
-                <div class="slot-name"></div>`;
-            if (filled) {
-                const wrap = slot.querySelector(".card-wrap");
+            slot.className = "slot" + (isMain(sp, i) ? " main" : "");
+            slot.innerHTML = '<div class="slot-label">' + sp.labels[i] + "</div><div class='slot-name'></div>";
+            const nameEl = slot.querySelector(".slot-name");
+
+            if (picks[i]) {
+                const wrap = document.createElement("div");
+                wrap.className = "card-wrap";
                 const card = document.createElement("div");
                 card.className = "card" + (i === animateIdx ? "" : " flipped");
                 card.appendChild(buildFront(deck, picks[i]));
@@ -569,10 +646,17 @@ function renderSlots(animateIdx) {
                 back.className = "face back";
                 card.appendChild(back);
                 wrap.appendChild(card);
-                slot.querySelector(".slot-name").innerHTML = nameHtml(deck, picks[i]);
-                if (i === animateIdx) {
-                    requestAnimationFrame(() => requestAnimationFrame(() => card.classList.add("flipped")));
-                }
+                slot.insertBefore(wrap, nameEl);
+                nameEl.innerHTML = nameHtml(deck, picks[i]);
+                if (i === animateIdx) requestAnimationFrame(() => requestAnimationFrame(() => card.classList.add("flipped")));
+            } else {
+                // 空的牌框：點一下就抽牌
+                const btn = document.createElement("button");
+                btn.className = "card-wrap empty" + (i === next ? " next" : "");
+                btn.textContent = "點此抽牌";
+                btn.setAttribute("aria-label", "抽牌：" + sp.labels[i]);
+                btn.onclick = () => drawSlot(i);
+                slot.insertBefore(btn, nameEl);
             }
             rowEl.appendChild(slot);
         });
@@ -581,63 +665,37 @@ function renderSlots(animateIdx) {
 }
 
 function updateProgress() {
-    const { sp, picks } = cur;
-    const p = $("progress");
-    if (cur.finished) { p.textContent = ""; return; }
-    if (sp.free) {
-        p.innerHTML = picks.length
-            ? `已抽 <b>${picks.length}</b> 張，可繼續抽牌，或按「完成抽牌」。`
-            : `請點選牌堆中的牌，抽出你的第 <b>1</b> 張。`;
-    } else {
-        p.innerHTML = `請抽出第 <b>${picks.length + 1}</b> 張　→　<b>${slotLabel(sp, picks.length)}</b>`;
-    }
+    if (cur.finished) { $("progress").textContent = ""; return; }
+    const n = slotCount(cur.sp), next = nextEmpty();
+    $("progress").innerHTML = "點選牌框抽牌　（<b>" + cur.drawn + " / " + n + "</b>）　下一張：<b>" + cur.sp.labels[next] + "</b>";
 }
 
-function pick(pos, btn) {
-    if (cur.finished || btn.classList.contains("taken")) return;
+function drawSlot(i) {
+    if (cur.busy || cur.finished || cur.picks[i]) return;
     const { deck, sp } = cur;
-    if ($("fan").classList.contains("shuffling")) return;
-    if (cur.picks.length >= slotCount(sp)) return;
-
-    const index = cur.order[pos];
-    cur.picks.push({
-        index,
-        name: cardName(deck, index),
-        reversed: deck.reversible ? rand(2) === 1 : false
-    });
-    btn.classList.add("taken");
-
-    const done = cur.picks.length >= slotCount(sp);
-    if (sp.free) $("finishBtn").hidden = false;
-    renderSlots(cur.picks.length - 1);
-
-    if (done) finish(false);
-    else updateProgress();
+    const index = cur.order[cur.drawn++];             // 從洗好的牌依序取一張
+    cur.picks[i] = { index, name: cardName(deck, index), reversed: deck.reversible ? rand(2) === 1 : false };
+    renderSlots(i);
+    if (cur.drawn >= slotCount(sp)) finish(); else updateProgress();
 }
 
-function finish(rerender) {
+function finish() {
     cur.finished = true;
-    $("fan").classList.add("done");
-    $("finishBtn").hidden = true;
     $("progress").textContent = "";
-    if (rerender) renderSlots(-2);
-
     const { deck, sp, picks } = cur;
     $("summaryList").innerHTML = picks.map((c, i) =>
-        `<li><span>${slotLabel(sp, i)}</span><span>${c.name}${deck.reversible ? "（" + (c.reversed ? "逆位" : "正位") + "）" : ""}</span></li>`
+        "<li><span>" + sp.labels[i] + "</span><span>" + c.name + (deck.reversible ? "（" + (c.reversed ? "逆位" : "正位") + "）" : "") + "</span></li>"
     ).join("");
-    $("fanArea").hidden = true;
     $("summary").hidden = false;
     setTimeout(() => $("summary").scrollIntoView({ behavior: "smooth", block: "center" }), 900);
 }
 
-$("finishBtn").onclick = () => { if (cur.picks.length) finish(true); };
 $("drawBack").onclick = () => show("select");
 $("redrawBtn").onclick = () => startDraw();
 
 
 /* =====================================================
-   六、分享：複製文字 / 傳到 LINE / 結果圖片 / 預約按鈕
+   五、分享：複製文字 / 傳到 LINE / 結果圖片 / 預約按鈕
 ===================================================== */
 function resultText() {
     const { deck, sp, picks, sec } = cur;
@@ -645,28 +703,21 @@ function resultText() {
         "【靖靖塔羅 線上抽牌】",
         sec.title + (deck.label ? "・" + deck.label : "") + "／" + sp.name,
         "",
-        ...picks.map((c, i) => slotLabel(sp, i) + "：" + c.name + (deck.reversible ? "（" + (c.reversed ? "逆位" : "正位") + "）" : ""))
+        ...picks.map((c, i) => sp.labels[i] + "：" + c.name + (deck.reversible ? "（" + (c.reversed ? "逆位" : "正位") + "）" : ""))
     ].join("\n");
 }
 
-function openModal(html) {
-    $("modalBody").innerHTML = html;
-    $("modal").hidden = false;
-}
+function openModal(html) { $("modalBody").innerHTML = html; $("modal").hidden = false; }
 $("modalClose").onclick = () => $("modal").hidden = true;
 $("modal").onclick = e => { if (e.target === $("modal")) $("modal").hidden = true; };
 
 async function copyText(text) {
     try {
-        if (navigator.clipboard && window.isSecureContext) {
-            await navigator.clipboard.writeText(text);
-            return true;
-        }
+        if (navigator.clipboard && window.isSecureContext) { await navigator.clipboard.writeText(text); return true; }
     } catch (e) {}
     // 備用方式（LINE / IG 內建瀏覽器常常不支援上面的方法）
     const ta = document.createElement("textarea");
-    ta.value = text;
-    ta.setAttribute("readonly", "");
+    ta.value = text; ta.setAttribute("readonly", "");
     ta.style.cssText = "position:fixed;top:0;left:0;opacity:0;";
     document.body.appendChild(ta);
     ta.focus(); ta.select(); ta.setSelectionRange(0, 99999);
@@ -686,38 +737,25 @@ $("copyBtn").onclick = async () => {
         const ta = $("manualText"); ta.value = text; ta.focus(); ta.select();
     }
 };
-
-$("lineShareBtn").onclick = () => {
-    window.open("https://line.me/R/msg/text/?" + encodeURIComponent(resultText()), "_blank");
-};
+$("lineShareBtn").onclick = () => window.open("https://line.me/R/msg/text/?" + encodeURIComponent(resultText()), "_blank");
 
 /* ---- 產生結果圖片 ---- */
-function loadImg(src) {
-    return new Promise(res => { const im = new Image(); im.onload = () => res(im); im.onerror = () => res(null); im.src = src; });
-}
+function loadImg(src) { return new Promise(res => { const im = new Image(); im.onload = () => res(im); im.onerror = () => res(null); im.src = src; }); }
 function roundPath(ctx, x, y, w, h, r) {
-    ctx.beginPath();
-    ctx.moveTo(x + r, y);
-    ctx.arcTo(x + w, y, x + w, y + h, r);
-    ctx.arcTo(x + w, y + h, x, y + h, r);
-    ctx.arcTo(x, y + h, x, y, r);
-    ctx.arcTo(x, y, x + w, y, r);
-    ctx.closePath();
+    ctx.beginPath(); ctx.moveTo(x + r, y);
+    ctx.arcTo(x + w, y, x + w, y + h, r); ctx.arcTo(x + w, y + h, x, y + h, r);
+    ctx.arcTo(x, y + h, x, y, r); ctx.arcTo(x, y, x + w, y, r); ctx.closePath();
 }
 
 async function buildResultCanvas() {
     const { deck, sp, picks, sec } = cur;
     const W = 1080, PAD = 60, GAP = 30, FONT = '"Noto Sans TC","Microsoft JhengHei",sans-serif';
-    const rows = layoutRows().map(r => r.filter(i => i < picks.length)).filter(r => r.length);
+    const rows = layoutRows();
     const imgs = await Promise.all(picks.map(c => loadImg(imgPath(deck, c.index))));
-    const isMain = i => sp.main && sp.main.includes(i);
 
-    // 先算尺寸
     const plan = rows.map(row => {
-        const weights = row.map(() => 1);
-        const unit = Math.min(row.length === 1 ? 300 : 220, (W - 2 * PAD - (row.length - 1) * GAP) / weights.reduce((a, b) => a + b, 0));
-        const widths = weights.map(w => w * unit);
-        return { row, widths, h: Math.max(...widths) * 12 / 7, off: row.some(isMain) && row.length > 1 ? 50 : 0 };
+        const unit = Math.min(row.length === 1 ? 300 : 220, (W - 2 * PAD - (row.length - 1) * GAP) / row.length);
+        return { row, unit, h: unit * 12 / 7, off: row.some(i => isMain(sp, i)) && row.length > 1 ? 50 : 0 };
     });
     const HEAD = 230, LABEL = 46, NAME = 100, ROWGAP = 20, FOOT = 110;
     const H = HEAD + plan.reduce((a, p) => a + LABEL + p.h + NAME + ROWGAP + p.off, 0) + FOOT;
@@ -727,24 +765,22 @@ async function buildResultCanvas() {
     const ctx = cv.getContext("2d");
     ctx.fillStyle = "#f7f3ed"; ctx.fillRect(0, 0, W, H);
     ctx.textAlign = "center";
-
-    ctx.fillStyle = "#625d57"; ctx.font = "500 50px " + FONT;
-    ctx.fillText("靖靖塔羅", W / 2, 95);
-    ctx.fillStyle = "#9b938a"; ctx.font = "24px " + FONT;
-    ctx.fillText("JingJing Tarot", W / 2, 135);
+    ctx.fillStyle = "#625d57"; ctx.font = "500 50px " + FONT; ctx.fillText("靖靖塔羅", W / 2, 95);
+    ctx.fillStyle = "#9b938a"; ctx.font = "24px " + FONT; ctx.fillText("JingJing Tarot", W / 2, 135);
     ctx.fillStyle = "#7d6c55"; ctx.font = "30px " + FONT;
     ctx.fillText(sec.title + (deck.label ? "・" + deck.label : "") + "｜" + sp.name, W / 2, 190);
 
     let y = HEAD;
     plan.forEach(p => {
-        const total = p.widths.reduce((a, b) => a + b, 0) + GAP * (p.row.length - 1);
+        const w = p.unit, h = p.h;
+        const total = w * p.row.length + GAP * (p.row.length - 1);
         let x = (W - total) / 2;
-        p.row.forEach((i, k) => {
-            const w = p.widths[k], h = w * 12 / 7, c = picks[i], im = imgs[i];
-            const yo = isMain(i) ? 0 : p.off;
-            ctx.fillStyle = isMain(i) ? "#a1824a" : "#857c73";
-            ctx.font = (isMain(i) ? "500 30px " : "26px ") + FONT;
-            ctx.fillText(slotLabel(sp, i), x + w / 2, y + yo + 30);
+        p.row.forEach(i => {
+            const c = picks[i], im = imgs[i];
+            const yo = isMain(sp, i) ? 0 : p.off;
+            ctx.fillStyle = isMain(sp, i) ? "#a1824a" : "#857c73";
+            ctx.font = (isMain(sp, i) ? "500 30px " : "26px ") + FONT;
+            ctx.fillText(sp.labels[i], x + w / 2, y + yo + 30);
 
             const cy = y + yo + LABEL;
             ctx.save();
@@ -758,16 +794,14 @@ async function buildResultCanvas() {
                 ctx.drawImage(im, -dw / 2, -dh / 2, dw, dh);
             } else {
                 ctx.fillStyle = "#fffdf9"; ctx.fillRect(x, cy, w, h);
-                ctx.fillStyle = "#6d665f"; ctx.font = "26px " + FONT;
-                ctx.fillText(c.name, x + w / 2, cy + h / 2);
+                ctx.fillStyle = "#6d665f"; ctx.font = "26px " + FONT; ctx.fillText(c.name, x + w / 2, cy + h / 2);
             }
             ctx.restore();
-            ctx.strokeStyle = isMain(i) ? "#c4a86b" : "#d9cfc3";
-            ctx.lineWidth = isMain(i) ? 4 : 2;
+            ctx.strokeStyle = isMain(sp, i) ? "#c4a86b" : "#d9cfc3";
+            ctx.lineWidth = isMain(sp, i) ? 4 : 2;
             roundPath(ctx, x, cy, w, h, 14); ctx.stroke();
 
-            ctx.fillStyle = "#68615a"; ctx.font = "28px " + FONT;
-            ctx.fillText(c.name, x + w / 2, cy + h + 42);
+            ctx.fillStyle = "#68615a"; ctx.font = "28px " + FONT; ctx.fillText(c.name, x + w / 2, cy + h + 42);
             if (deck.reversible) {
                 ctx.fillStyle = c.reversed ? "#94644d" : "#8d7d6d"; ctx.font = "24px " + FONT;
                 ctx.fillText(c.reversed ? "逆位" : "正位", x + w / 2, cy + h + 80);
@@ -791,17 +825,13 @@ $("imgBtn").onclick = async () => {
         const blob = await new Promise(r => cv.toBlob(r, "image/png"));
         const file = new File([blob], "jingjing-tarot.png", { type: "image/png" });
         const canShare = navigator.canShare && navigator.canShare({ files: [file] });
-
         openModal(
             '<img src="' + dataUrl + '" alt="抽牌結果">' +
             '<div class="tip">手機請長按圖片儲存，再到 LINE 或 IG 傳送。</div>' +
-            '<div class="btns">' +
-            (canShare ? '<button class="btn" id="shareImgBtn">分享圖片</button>' : "") +
+            '<div class="btns">' + (canShare ? '<button class="btn" id="shareImgBtn">分享圖片</button>' : "") +
             '<a class="btn ghost" href="' + dataUrl + '" download="jingjing-tarot.png">下載圖片</a></div>'
         );
-        if (canShare) {
-            $("shareImgBtn").onclick = () => navigator.share({ files: [file], title: "靖靖塔羅 抽牌結果" }).catch(() => {});
-        }
+        if (canShare) $("shareImgBtn").onclick = () => navigator.share({ files: [file], title: "靖靖塔羅 抽牌結果" }).catch(() => {});
     } catch (e) {
         alert("圖片產生失敗，請改用「複製文字」。");
     }
