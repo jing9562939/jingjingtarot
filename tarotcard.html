@@ -310,6 +310,7 @@ button.card-wrap.empty.next { border-color: #c4a86b; background: rgba(196,168,10
 .front { transform: rotateY(180deg); background: #fffdf9; }
 .front img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .front.reversed img, .front.reversed .fallback { transform: rotate(180deg); }
+.front.blank::after { content: ""; position: absolute; inset: 9px; border: 1px solid #efe8dc; border-radius: 6px; }
 .fallback { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; padding: 8px; font-size: 14px; color: #6d665f; text-align: center; }
 
 .slot-name { margin-top: 10px; min-height: 48px; font-size: 15px; color: #68615a; line-height: 1.5; }
@@ -478,11 +479,18 @@ const TAROT_NAMES = (() => {
     const ranks = ["王牌","二","三","四","五","六","七","八","九","十","侍者","騎士","皇后","國王"];
     const all = [...major];
     ["權杖","聖杯","寶劍","錢幣"].forEach(s => ranks.forEach(r => all.push(s + r)));
+    all.push("空白牌", "空白牌");   // 編號 78、79：空白牌，不需要圖片
     return all;
 })();
 const LENORMAND_NAMES = ["騎士","幸運草","船","房子","樹","烏雲","蛇","棺材","花束","鐮刀","鞭子","鳥","小孩","狐狸","熊","星星","鸛鳥","狗","塔","花園","山","岔路","老鼠","心","戒指","書","信","男人","女人","百合","太陽","月亮","鑰匙","魚","錨","十字架"];
 /* 大天使神諭卡牌名：依圖檔順序填入即可；留空則顯示「大天使 1、大天使 2…」 */
 const ARCHANGEL_NAMES = [];
+
+/* --- 偉特塔羅「目前要抽哪些牌」 ---
+   [[0,21],[78,79]] = 只抽大牌（00–21）＋ 兩張空白牌（78、79）。
+   小牌圖片（22–77）全部上傳後，把下面這行改成 null，就會抽全部 80 張。
+   也可以分批開放，例如 [[0,35],[78,79]] = 大牌＋權杖＋空白牌。 */
+const TAROT_DRAW_RANGES = [[0, 21], [78, 79]];
 
 /* --- 牌組定義 ---
    folder：圖片資料夾　start：第一張圖的編號（塔羅從 00，其餘從 01）　ext：圖片副檔名
@@ -490,7 +498,7 @@ const ARCHANGEL_NAMES = [];
 const SECTIONS = [
     { title: "偉特塔羅牌", decks: [{
         id: "tarot", label: "", folder: "images/tarot/", ext: ".jpg", start: 0, pad: 2,
-        count: 78, names: TAROT_NAMES, reversible: true,
+        count: 80, blankFrom: 78, ranges: TAROT_DRAW_RANGES, names: TAROT_NAMES, reversible: true,
         spreads: [SP.universal, SP.time, SP.choose2] }] },
     { title: "雷諾曼", decks: [{
         id: "lenormand", label: "", folder: "images/lenormand/", ext: ".jpg", start: 1, pad: 2,
@@ -523,6 +531,14 @@ function shuffled(n) {
     const a = Array.from({ length: n }, (_, i) => i);
     for (let i = n - 1; i > 0; i--) { const j = rand(i + 1); [a[i], a[j]] = [a[j], a[i]]; }
     return a;
+}
+// 依設定的範圍組出可抽的牌，再洗牌（沒設定 ranges 就抽整副牌）
+function shuffledDeck(deck) {
+    let pool = [];
+    if (deck.ranges) deck.ranges.forEach(([a, b]) => { for (let i = a; i <= b && i < deck.count; i++) pool.push(i); });
+    else pool = Array.from({ length: deck.count }, (_, i) => i);
+    for (let i = pool.length - 1; i > 0; i--) { const j = rand(i + 1); [pool[i], pool[j]] = [pool[j], pool[i]]; }
+    return pool;
 }
 function cardName(deck, i) {
     return (deck.names && deck.names[i]) || (deck.fallbackName ? deck.fallbackName + " " + (i + 1) : "第 " + (i + 1) + " 號");
@@ -570,7 +586,7 @@ function beginSpread(sec, deck, sp) {
 
 function startDraw() {
     const { deck, sp, sec } = cur;
-    cur.order = shuffled(deck.count);                 // 先洗牌，之後每點一次牌框就依序翻出一張
+    cur.order = shuffledDeck(deck);                 // 先洗牌，之後每點一次牌框就依序翻出一張
     cur.picks = new Array(slotCount(sp)).fill(null);  // 依牌位存放
     cur.drawn = 0; cur.finished = false; cur.busy = true;
 
@@ -603,6 +619,7 @@ function layoutRows() {
 
 function buildFront(deck, card) {
     const front = document.createElement("div");
+    if (card.blank) { front.className = "face front blank"; return front; }   // 空白牌：純白牌面
     front.className = "face front" + (card.reversed ? " reversed" : "");
     const img = new Image();
     img.src = imgPath(deck, card.index);
@@ -614,10 +631,11 @@ function buildFront(deck, card) {
 
 function nameHtml(deck, card) {
     let h = card.name;
-    if (deck.reversible) h += '<br><span class="pos ' + (card.reversed ? "rev" : "") + '">' + (card.reversed ? "逆位" : "正位") + "</span>";
+    if (deck.reversible && !card.blank) h += '<br><span class="pos ' + (card.reversed ? "rev" : "") + '">' + (card.reversed ? "逆位" : "正位") + "</span>";
     return h;
 }
 
+const isBlankCard = (deck, i) => deck.blankFrom != null && i >= deck.blankFrom;
 function nextEmpty() { return cur.picks.findIndex(p => !p); }
 
 function renderSlots(animateIdx) {
@@ -674,7 +692,8 @@ function drawSlot(i) {
     if (cur.busy || cur.finished || cur.picks[i]) return;
     const { deck, sp } = cur;
     const index = cur.order[cur.drawn++];             // 從洗好的牌依序取一張
-    cur.picks[i] = { index, name: cardName(deck, index), reversed: deck.reversible ? rand(2) === 1 : false };
+    const blank = isBlankCard(deck, index);
+    cur.picks[i] = { index, name: cardName(deck, index), blank, reversed: deck.reversible && !blank ? rand(2) === 1 : false };
     renderSlots(i);
     if (cur.drawn >= slotCount(sp)) finish(); else updateProgress();
 }
@@ -684,7 +703,7 @@ function finish() {
     $("progress").textContent = "";
     const { deck, sp, picks } = cur;
     $("summaryList").innerHTML = picks.map((c, i) =>
-        "<li><span>" + sp.labels[i] + "</span><span>" + c.name + (deck.reversible ? "（" + (c.reversed ? "逆位" : "正位") + "）" : "") + "</span></li>"
+        "<li><span>" + sp.labels[i] + "</span><span>" + c.name + (deck.reversible && !c.blank ? "（" + (c.reversed ? "逆位" : "正位") + "）" : "") + "</span></li>"
     ).join("");
     $("summary").hidden = false;
     setTimeout(() => $("summary").scrollIntoView({ behavior: "smooth", block: "center" }), 900);
@@ -703,7 +722,7 @@ function resultText() {
         "【靖靖塔羅 線上抽牌】",
         sec.title + (deck.label ? "・" + deck.label : "") + "／" + sp.name,
         "",
-        ...picks.map((c, i) => sp.labels[i] + "：" + c.name + (deck.reversible ? "（" + (c.reversed ? "逆位" : "正位") + "）" : ""))
+        ...picks.map((c, i) => sp.labels[i] + "：" + c.name + (deck.reversible && !c.blank ? "（" + (c.reversed ? "逆位" : "正位") + "）" : ""))
     ].join("\n");
 }
 
@@ -751,7 +770,7 @@ async function buildResultCanvas() {
     const { deck, sp, picks, sec } = cur;
     const W = 1080, PAD = 60, GAP = 30, FONT = '"Noto Sans TC","Microsoft JhengHei",sans-serif';
     const rows = layoutRows();
-    const imgs = await Promise.all(picks.map(c => loadImg(imgPath(deck, c.index))));
+    const imgs = await Promise.all(picks.map(c => c.blank ? null : loadImg(imgPath(deck, c.index))));
 
     const plan = rows.map(row => {
         const unit = Math.min(row.length === 1 ? 300 : 220, (W - 2 * PAD - (row.length - 1) * GAP) / row.length);
@@ -785,7 +804,9 @@ async function buildResultCanvas() {
             const cy = y + yo + LABEL;
             ctx.save();
             roundPath(ctx, x, cy, w, h, 14); ctx.clip();
-            if (im) {
+            if (c.blank) {
+                ctx.fillStyle = "#fffdf9"; ctx.fillRect(x, cy, w, h);
+            } else if (im) {
                 ctx.translate(x + w / 2, cy + h / 2);
                 if (c.reversed) ctx.rotate(Math.PI);
                 const ir = im.width / im.height, br = w / h;
@@ -802,7 +823,7 @@ async function buildResultCanvas() {
             roundPath(ctx, x, cy, w, h, 14); ctx.stroke();
 
             ctx.fillStyle = "#68615a"; ctx.font = "28px " + FONT; ctx.fillText(c.name, x + w / 2, cy + h + 42);
-            if (deck.reversible) {
+            if (deck.reversible && !c.blank) {
                 ctx.fillStyle = c.reversed ? "#94644d" : "#8d7d6d"; ctx.font = "24px " + FONT;
                 ctx.fillText(c.reversed ? "逆位" : "正位", x + w / 2, cy + h + 80);
             }
