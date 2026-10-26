@@ -3,1005 +3,398 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>關於我｜靖靖塔羅 About JingJing Tarot</title>
-
     <meta name="description" content="認識靖靖塔羅，了解我與塔羅、生命靈數與身心靈探索的故事。">
+    <meta name="theme-color" content="#f7f3ed">
+    <link rel="canonical" href="https://jing9562939.github.io/jingjingtarot/about.html">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="關於我｜靖靖塔羅 JingJing Tarot">
+    <meta property="og:description" content="認識靖靖塔羅，了解我與塔羅、生命靈數與身心靈探索的故事。">
+    <meta property="og:url" content="https://jing9562939.github.io/jingjingtarot/about.html">
 
     <style>
+/* ===== 全站共用樣式（已內嵌在此頁，不需要另外上傳 style.css） ===== */
+/* =====================================================
+   靖靖塔羅 JingJing Tarot｜全站共用樣式
+===================================================== */
 
-        /* =========================
-           基本設定
-        ========================= */
+/* ---------- 色彩與常用數值（改這裡，全站同步） ---------- */
+:root {
+    --bg:            #f7f3ed;
+    --bg-soft:       #f5f0e9;
+    --bg-sand:       #eee8df;
+    --bg-sand-2:     #f2ede6;
+    --bg-paper:      #fffdf9;
+    --card:          rgba(255, 253, 249, 0.85);
+    --line:          #e8e0d7;
+    --line-strong:   #d8cec2;
 
-        * {
-            box-sizing: border-box;
-        }
+    --text:          #5f5a55;
+    --text-heading:  #625d57;
+    --text-body:     #766f68;
+    --text-muted:    #938a81;
+    --text-faint:    #a0988f;
 
-        html {
-            scroll-behavior: smooth;
-        }
+    --accent:        #8c8379;
+    --accent-dark:   #6f675f;
 
-        body {
-            margin: 0;
-            font-family:
-                "Noto Sans TC",
-                "Microsoft JhengHei",
-                sans-serif;
-            background: #f7f3ed;
-            color: #5f5a55;
-            line-height: 1.8;
-        }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-
-        /* =========================
-           導覽列
-        ========================= */
-
-        header {
-            background: rgba(255, 253, 249, 0.96);
-            border-bottom: 1px solid #e8e0d6;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .nav-container {
-            max-width: 1100px;
-            margin: auto;
-            padding: 16px 25px;
-
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .logo {
-            font-size: 22px;
-            font-weight: 500;
-            color: #716c66;
-            letter-spacing: 1px;
-            white-space: nowrap;
-        }
-
-        .logo span {
-            display: block;
-            font-size: 12px;
-            letter-spacing: 2px;
-            color: #a39a90;
-            margin-top: -4px;
-        }
-
-        nav {
-            display: flex;
-            gap: 5px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        nav a {
-            padding: 8px 12px;
-            font-size: 14px;
-            color: #77716a;
-            border-radius: 20px;
-            transition: 0.3s;
-        }
-
-        nav a:hover {
-            background: #eee6dc;
-            color: #59534d;
-        }
+    --shadow-soft:   0 10px 30px rgba(100, 90, 80, 0.08);
+    --max-width:     1100px;
+    --font:          "Noto Sans TC", "Microsoft JhengHei", "PingFang TC", sans-serif;
+}
 
 
-        /* =========================
-           頁面主視覺
-        ========================= */
+/* ---------- 基本設定 ---------- */
+*, *::before, *::after { box-sizing: border-box; }
 
-        .page-hero {
-            min-height: 360px;
+html { scroll-behavior: smooth; }
 
-            display: flex;
-            align-items: center;
-            justify-content: center;
+body {
+    margin: 0;
+    font-family: var(--font);
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.8;
+}
 
-            text-align: center;
-            padding: 70px 20px;
+a { text-decoration: none; color: inherit; }
 
-            background:
-                radial-gradient(
-                    circle at 50% 30%,
-                    #fffdf9 0%,
-                    #f8f3ec 55%,
-                    #eee7dd 100%
-                );
-        }
+img { max-width: 100%; height: auto; }
 
-        .page-hero-content {
-            max-width: 760px;
-        }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 
-        .page-symbol {
-            font-size: 40px;
-            margin-bottom: 12px;
-        }
-
-        .page-hero h1 {
-            margin: 0;
-
-            font-size: 42px;
-            font-weight: 400;
-            letter-spacing: 5px;
-
-            color: #625d57;
-        }
-
-        .page-hero .english {
-            margin-top: 5px;
-
-            font-size: 15px;
-            letter-spacing: 4px;
-
-            color: #9b938a;
-        }
-
-        .page-line {
-            width: 60px;
-            height: 1px;
-
-            background: #bdb3a8;
-
-            margin: 25px auto;
-        }
-
-        .page-hero p {
-            margin: 0;
-
-            font-size: 15px;
-            color: #918980;
-        }
+/* 鍵盤使用者可略過導覽列 */
+.skip-link {
+    position: absolute; left: -9999px; top: 0;
+    background: var(--accent); color: #fff; padding: 8px 16px; z-index: 2000;
+}
+.skip-link:focus { left: 10px; top: 10px; }
 
 
-        /* =========================
-           共用區塊
-        ========================= */
+/* ---------- 導覽列 ---------- */
+header {
+    background: rgba(255, 253, 249, 0.96);
+    border-bottom: 1px solid #e8e0d6;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
 
-        .section {
-            max-width: 1100px;
-            margin: auto;
-            padding: 85px 25px;
-        }
+.nav-container {
+    max-width: var(--max-width);
+    margin: auto;
+    padding: 16px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
 
-        .section-title {
-            text-align: center;
-            margin-bottom: 50px;
-        }
+.logo {
+    font-size: 22px;
+    font-weight: 500;
+    color: #716c66;
+    letter-spacing: 1px;
+    white-space: nowrap;
+}
+.logo span {
+    display: block;
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: #a39a90;
+    margin-top: -4px;
+}
 
-        .section-title h2 {
-            margin: 0;
-
-            font-size: 28px;
-            font-weight: 400;
-            letter-spacing: 3px;
-
-            color: #665f58;
-        }
-
-        .section-title p {
-            margin-top: 8px;
-
-            color: #a0988f;
-            font-size: 14px;
-        }
-
-
-        /* =========================
-           我的故事
-        ========================= */
-
-        .story-section {
-            background: #fffdf9;
-        }
-
-        .story {
-            max-width: 760px;
-            margin: auto;
-        }
-
-        .story h3 {
-            margin-top: 0;
-            margin-bottom: 28px;
-
-            text-align: center;
-
-            font-size: 25px;
-            font-weight: 400;
-
-            color: #70675f;
-            letter-spacing: 2px;
-        }
-
-        .story p {
-            margin: 0 0 22px;
-
-            font-size: 15px;
-            color: #766f68;
-
-            line-height: 2.1;
-        }
+nav { display: flex; gap: 5px; flex-wrap: wrap; justify-content: center; }
+nav a {
+    padding: 8px 12px;
+    font-size: 14px;
+    color: #77716a;
+    border-radius: 20px;
+    transition: background 0.3s, color 0.3s;
+}
+nav a:hover,
+nav a[aria-current="page"] { background: #eee6dc; color: #59534d; }
 
 
-        /* =========================
-           我與塔羅
-        ========================= */
+/* ---------- 頁面主視覺（內頁） ---------- */
+.page-hero {
+    min-height: 360px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 70px 20px;
+    background: radial-gradient(circle at 50% 30%, #fffdf9 0%, #f8f3ec 55%, #eee7dd 100%);
+}
+.page-hero-content { max-width: 760px; }
+.page-symbol { font-size: 40px; margin-bottom: 12px; }
+.page-hero h1 {
+    margin: 0;
+    font-size: 42px;
+    font-weight: 400;
+    letter-spacing: 5px;
+    color: var(--text-heading);
+}
+.page-hero .english { margin-top: 5px; font-size: 15px; letter-spacing: 4px; color: #9b938a; }
+.page-line { width: 60px; height: 1px; background: #bdb3a8; margin: 25px auto; }
+.page-hero p { margin: 0; font-size: 15px; color: #918980; }
 
-        .tarot-section {
-            background: #eee8df;
-        }
 
-        .tarot-content {
-            max-width: 760px;
-            margin: auto;
+/* ---------- 共用區塊 ---------- */
+.section { max-width: var(--max-width); margin: auto; padding: 85px 25px; }
 
-            text-align: center;
-        }
+.section-title { text-align: center; margin-bottom: 50px; }
+.section-title h2 {
+    margin: 0;
+    font-size: 28px;
+    font-weight: 400;
+    letter-spacing: 3px;
+    color: #665f58;
+}
+.section-title p { margin: 8px 0 0; color: var(--text-faint); font-size: 14px; }
 
-        .tarot-content p {
-            margin-bottom: 22px;
 
-            font-size: 15px;
-            color: #766f68;
+/* ---------- 預約 CTA ---------- */
+.cta { text-align: center; background: var(--bg-soft); padding: 90px 20px; }
+.cta h2 { margin: 0 0 12px; font-size: 28px; font-weight: 400; letter-spacing: 3px; color: #655e57; }
+.cta p { color: #928980; font-size: 14px; margin: 0 0 25px; }
 
-            line-height: 2;
-        }
+.cta-button {
+    display: inline-block;
+    padding: 12px 32px;
+    border-radius: 30px;
+    background: var(--accent);
+    color: #fff;
+    font-size: 14px;
+    transition: background 0.3s, transform 0.3s;
+}
+.cta-button:hover { background: var(--accent-dark); transform: translateY(-2px); }
 
+
+/* ---------- Footer ---------- */
+footer {
+    background: #e4ddd4;
+    text-align: center;
+    padding: 35px 20px;
+    color: #817970;
+    font-size: 13px;
+}
+footer .brand { font-size: 18px; letter-spacing: 2px; margin-bottom: 8px; }
+footer .social { margin: 15px 0; }
+footer .social a { margin: 0 10px; }
+footer .social a:hover { color: #5f574f; }
+footer .copyright { font-size: 11px; color: #9c948b; }
+
+
+/* ---------- 手機版 ---------- */
+@media (max-width: 800px) {
+    .nav-container { flex-direction: column; padding: 15px 15px 10px; }
+    nav { gap: 2px; }
+    nav a { font-size: 13px; padding: 6px 8px; }
+
+    .page-hero { min-height: 320px; padding: 60px 20px; }
+    .page-hero h1 { font-size: 34px; letter-spacing: 3px; }
+    .page-hero .english { font-size: 13px; }
+
+    .section { padding: 65px 20px; }
+    .section-title { margin-bottom: 35px; }
+}
+
+
+/* ---------- 減少動態（系統設定為「減少動態效果」時） ---------- */
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { transition: none !important; animation: none !important; }
+}
+
+
+/* ---------- 行程類別標籤（首頁「最新公告」與課程訊息頁共用） ---------- */
+.tag { display: inline-block; padding: 1px 12px; border-radius: 20px; font-size: 12px; line-height: 1.7; white-space: nowrap; }
+.tag.market { background: #f0dccb; color: #8a5a3a; }   /* 擺攤 */
+.tag.study  { background: #dfe3f0; color: #56608a; }   /* 進修 */
+.tag.teach  { background: #dbe6d8; color: #4f6b4a; }   /* 教學 */
+.tag.trip   { background: #f2dde0; color: #94505a; }   /* 員工旅遊 */
+
+</style>
+
+    <style>
+        /* ===== 關於我 頁面專用樣式 ===== */
+        .story-section  { background: var(--bg-paper); }
+        .tarot-section  { background: var(--bg-sand); }
+        .values-section { background: var(--bg); }
+        .service-section { background: var(--bg-sand-2); }
+
+        .story, .tarot-content { max-width: 760px; margin: auto; }
+        .story h3 { margin: 0 0 28px; text-align: center; font-size: 25px; font-weight: 400; color: #70675f; letter-spacing: 2px; }
+        .story p { margin: 0 0 22px; font-size: 15px; color: var(--text-body); line-height: 2.1; }
+
+        .tarot-content { text-align: center; }
+        .tarot-content p { margin: 0 0 22px; font-size: 15px; color: var(--text-body); line-height: 2; }
         .quote {
-            margin-top: 35px;
-
-            padding: 25px 20px;
-
-            border-top: 1px solid #d8cec2;
-            border-bottom: 1px solid #d8cec2;
-
-            font-size: 20px;
-            letter-spacing: 2px;
-
-            color: #756b62;
+            margin-top: 35px; padding: 25px 20px; font-size: 20px; letter-spacing: 2px; color: #756b62;
+            border-top: 1px solid var(--line-strong); border-bottom: 1px solid var(--line-strong);
         }
 
-
-        /* =========================
-           我的理念
-        ========================= */
-
-        .values-section {
-            background: #f7f3ed;
-        }
-
-        .values {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 22px;
-        }
-
+        .values { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
         .value-card {
-            background: rgba(255, 253, 249, 0.85);
-
-            border: 1px solid #e8e0d7;
-            border-radius: 18px;
-
-            padding: 35px 25px;
-
-            text-align: center;
-
-            transition:
-                transform 0.3s,
-                box-shadow 0.3s;
+            background: var(--card); border: 1px solid var(--line); border-radius: 18px;
+            padding: 35px 25px; text-align: center; transition: transform 0.3s, box-shadow 0.3s;
         }
+        .value-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-soft); }
+        .value-icon { font-size: 32px; margin-bottom: 12px; }
+        .value-card h3 { margin: 5px 0 12px; font-size: 19px; font-weight: 400; color: #68615a; }
+        .value-card p { margin: 0; font-size: 14px; color: var(--text-muted); }
 
-        .value-card:hover {
-            transform: translateY(-5px);
-
-            box-shadow:
-                0 10px 30px rgba(100, 90, 80, 0.08);
-        }
-
-        .value-icon {
-            font-size: 32px;
-            margin-bottom: 12px;
-        }
-
-        .value-card h3 {
-            margin: 5px 0 12px;
-
-            font-size: 19px;
-            font-weight: 400;
-
-            color: #68615a;
-        }
-
-        .value-card p {
-            margin: 0;
-
-            font-size: 14px;
-            color: #938a81;
-        }
-
-
-        /* =========================
-           我能陪你做什麼
-        ========================= */
-
-        .service-section {
-            background: #f2ede6;
-        }
-
-        .service-content {
-            max-width: 850px;
-            margin: auto;
-        }
-
-        .service-list {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 18px;
-        }
-
-        .service-item {
-            background: rgba(255, 253, 249, 0.9);
-
-            border: 1px solid #e7ded4;
-            border-radius: 16px;
-
-            padding: 25px;
-        }
-
-        .service-item h3 {
-            margin: 0 0 8px;
-
-            font-size: 18px;
-            font-weight: 400;
-
-            color: #68615a;
-        }
-
-        .service-item p {
-            margin: 0;
-
-            font-size: 14px;
-            color: #8d857d;
-        }
-
-
-        /* =========================
-           預約 CTA
-        ========================= */
-
-        .cta {
-            text-align: center;
-
-            background: #f5f0e9;
-
-            padding: 90px 20px;
-        }
-
-        .cta h2 {
-            margin-top: 0;
-
-            font-size: 28px;
-            font-weight: 400;
-            letter-spacing: 3px;
-
-            color: #655e57;
-        }
-
-        .cta p {
-            color: #928980;
-            font-size: 14px;
-
-            margin-bottom: 25px;
-        }
-
-        .cta-button {
-            display: inline-block;
-
-            padding: 12px 32px;
-
-            border-radius: 30px;
-
-            background: #8c8379;
-            color: white;
-
-            font-size: 14px;
-
-            transition: 0.3s;
-        }
-
-        .cta-button:hover {
-            background: #6f675f;
-
-            transform: translateY(-2px);
-        }
-
-
-        /* =========================
-           Footer
-        ========================= */
-
-        footer {
-            background: #e4ddd4;
-
-            text-align: center;
-
-            padding: 35px 20px;
-
-            color: #817970;
-
-            font-size: 13px;
-        }
-
-        footer .brand {
-            font-size: 18px;
-
-            letter-spacing: 2px;
-
-            margin-bottom: 8px;
-        }
-
-        footer .social {
-            margin: 15px 0;
-        }
-
-        footer .social a {
-            margin: 0 10px;
-        }
-
-        footer .copyright {
-            font-size: 11px;
-            color: #9c948b;
-        }
-
-
-        /* =========================
-           手機版
-        ========================= */
+        .service-content { max-width: 850px; margin: auto; }
+        .service-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+        .service-item { background: rgba(255,253,249,0.9); border: 1px solid #e7ded4; border-radius: 16px; padding: 25px; }
+        .service-item h3 { margin: 0 0 8px; font-size: 18px; font-weight: 400; color: #68615a; }
+        .service-item p { margin: 0; font-size: 14px; color: #8d857d; }
 
         @media (max-width: 800px) {
-
-            .nav-container {
-                flex-direction: column;
-
-                padding:
-                    15px 15px 10px;
-            }
-
-            nav {
-                gap: 2px;
-            }
-
-            nav a {
-                font-size: 13px;
-
-                padding:
-                    6px 8px;
-            }
-
-            .page-hero {
-                min-height: 320px;
-
-                padding:
-                    60px 20px;
-            }
-
-            .page-hero h1 {
-                font-size: 34px;
-
-                letter-spacing: 3px;
-            }
-
-            .page-hero .english {
-                font-size: 13px;
-            }
-
-            .section {
-                padding:
-                    65px 20px;
-            }
-
-            .section-title {
-                margin-bottom: 35px;
-            }
-
-            .story p {
-                font-size: 14px;
-
-                line-height: 2;
-            }
-
-            .values {
-                grid-template-columns: 1fr;
-
-                gap: 16px;
-            }
-
-            .service-list {
-                grid-template-columns: 1fr;
-
-                gap: 15px;
-            }
-
-            .quote {
-                font-size: 17px;
-            }
-
+            .story p { font-size: 14px; line-height: 2; }
+            .values { grid-template-columns: 1fr; gap: 16px; }
+            .service-list { grid-template-columns: 1fr; gap: 15px; }
+            .quote { font-size: 17px; }
         }
-
     </style>
 </head>
 
-
 <body>
 
+<a class="skip-link" href="#main">跳到主要內容</a>
 
-    <!-- =========================
-         導覽列
-    ========================== -->
+<header>
+    <div class="nav-container">
+        <a href="index.html" class="logo">靖靖塔羅<span>JingJing Tarot</span></a>
+        <nav aria-label="主選單">
+            <a href="index.html">首頁</a>
+            <a href="about.html" aria-current="page">關於我</a>
+            <a href="service.html">服務項目</a>
+            <a href="class.html">課程訊息</a>
+            <a href="tarotcard.html">線上抽牌</a>
+            <a href="crystal.html">水晶飾品</a>
+        </nav>
+    </div>
+</header>
 
-    <header>
+<section class="page-hero">
+    <div class="page-hero-content">
+        <div class="page-symbol" aria-hidden="true">🌿</div>
+        <h1>關於我</h1>
+        <div class="english">About Me</div>
+        <div class="page-line"></div>
+        <p>認識靖靖，也認識這段與自己重新相遇的旅程。</p>
+    </div>
+</section>
 
-        <div class="nav-container">
-
-            <a href="index.html" class="logo">
-
-                靖靖塔羅
-
-                <span>
-                    JingJing Tarot
-                </span>
-
-            </a>
-
-
-            <nav>
-
-                <a href="index.html">
-                    首頁
-                </a>
-
-                <a href="about.html">
-                    關於我
-                </a>
-
-                <a href="service.html">
-                    服務項目
-                </a>
-
-                <a href="class.html">
-                    課程訊息
-                </a>
-
-                <a href="tarotcard.html">
-                    線上抽牌
-                </a>
-
-                <a href="crystal.html">
-                    水晶飾品
-                </a>
-
-            </nav>
-
-        </div>
-
-    </header>
-
-
-    <!-- =========================
-         頁面主視覺
-    ========================== -->
-
-    <section class="page-hero">
-
-        <div class="page-hero-content">
-
-            <div class="page-symbol">
-                🌿
-            </div>
-
-            <h1>
-                關於我
-            </h1>
-
-            <div class="english">
-                About Me
-            </div>
-
-            <div class="page-line"></div>
-
-            <p>
-                認識靖靖，也認識這段與自己重新相遇的旅程。
-            </p>
-
-        </div>
-
-    </section>
-
-
-    <!-- =========================
-         我的故事
-    ========================== -->
+<main id="main">
 
     <section class="story-section">
-
         <div class="section">
-
             <div class="section-title">
-
-                <h2>
-                    我的故事
-                </h2>
-
-                <p>
-                    My Story
-                </p>
-
+                <h2>我的故事</h2>
+                <p>My Story</p>
             </div>
-
-
             <div class="story">
-
-                <h3>
-                    嗨，我是靖靖
-                </h3>
-
-                <p>
-                    曾經的我，也在生活裡忙碌著，
-                    努力完成每一件該做的事，
-                    卻漸漸忘了聽見自己的聲音。
-                </p>
-
-                <p>
-                    一次人生的轉折，
-                    讓我開始接觸塔羅、生命靈數與身心靈療癒，
-                    也開始重新認識自己。
-                </p>
-
-                <p>
-                    我發現，占卜不是替我們決定答案，
-                    而是一面鏡子，
-                    陪我們看見內心真正的想法。
-                </p>
-
-                <p>
-                    於是，我走上這條探索自己的路，
-                    也希望將這份溫柔與陪伴，
-                    分享給每一個正在尋找方向的你。
-                </p>
-
+                <h3>嗨，我是靖靖</h3>
+                <p>曾經的我，也在生活裡忙碌著，努力完成每一件該做的事，卻漸漸忘了聽見自己的聲音。</p>
+                <p>一次人生的轉折，讓我開始接觸塔羅、生命靈數與身心靈療癒，也開始重新認識自己。</p>
+                <p>我發現，占卜不是替我們決定答案，而是一面鏡子，陪我們看見內心真正的想法。</p>
+                <p>於是，我走上這條探索自己的路，也希望將這份溫柔與陪伴，分享給每一個正在尋找方向的你。</p>
             </div>
-
         </div>
-
     </section>
-
-
-    <!-- =========================
-         我與塔羅
-    ========================== -->
 
     <section class="tarot-section">
-
         <div class="section">
-
             <div class="section-title">
-
-                <h2>
-                    我與塔羅
-                </h2>
-
-                <p>
-                    My Journey with Tarot
-                </p>
-
+                <h2>我與塔羅</h2>
+                <p>My Journey with Tarot</p>
             </div>
-
-
             <div class="tarot-content">
-
-                <p>
-                    對我來說，塔羅並不是預言未來的工具，
-                    而是一個可以讓我們停下來，
-                    好好看看自己的方式。
-                </p>
-
-                <p>
-                    當生活裡有些事情讓人迷惘，
-                    我們有時候並不是沒有答案，
-                    而是被太多聲音包圍，
-                    暫時聽不見自己真正的想法。
-                </p>
-
-                <p>
-                    透過牌卡與對話，
-                    我希望陪你整理現在的心情，
-                    看見不同的角度，
-                    也重新找回屬於自己的方向。
-                </p>
-
-
-                <div class="quote">
-                    「牌卡不是替你決定，而是陪你看見。」
-                </div>
-
+                <p>對我來說，塔羅並不是預言未來的工具，而是一個可以讓我們停下來，好好看看自己的方式。</p>
+                <p>當生活裡有些事情讓人迷惘，我們有時候並不是沒有答案，而是被太多聲音包圍，暫時聽不見自己真正的想法。</p>
+                <p>透過牌卡與對話，我希望陪你整理現在的心情，看見不同的角度，也重新找回屬於自己的方向。</p>
+                <blockquote class="quote">「牌卡不是替你決定，而是陪你看見。」</blockquote>
             </div>
-
         </div>
-
     </section>
-
-
-    <!-- =========================
-         我的理念
-    ========================== -->
 
     <section class="values-section">
-
         <div class="section">
-
             <div class="section-title">
-
-                <h2>
-                    我的理念
-                </h2>
-
-                <p>
-                    What I Believe
-                </p>
-
+                <h2>我的理念</h2>
+                <p>What I Believe</p>
             </div>
-
-
             <div class="values">
-
-
-                <!-- 理念 1 -->
-
                 <div class="value-card">
-
-                    <div class="value-icon">
-                        🌿
-                    </div>
-
-                    <h3>
-                        陪伴
-                    </h3>
-
-                    <p>
-                        不急著替你找到答案，
-                        而是陪你慢慢整理，
-                        聽見自己的聲音。
-                    </p>
-
+                    <div class="value-icon" aria-hidden="true">🌿</div>
+                    <h3>陪伴</h3>
+                    <p>不急著替你找到答案，而是陪你慢慢整理，聽見自己的聲音。</p>
                 </div>
-
-
-                <!-- 理念 2 -->
-
                 <div class="value-card">
-
-                    <div class="value-icon">
-                        ✨
-                    </div>
-
-                    <h3>
-                        覺察
-                    </h3>
-
-                    <p>
-                        透過牌卡與對話，
-                        看見當下的自己，
-                        找到新的思考角度。
-                    </p>
-
+                    <div class="value-icon" aria-hidden="true">✨</div>
+                    <h3>覺察</h3>
+                    <p>透過牌卡與對話，看見當下的自己，找到新的思考角度。</p>
                 </div>
-
-
-                <!-- 理念 3 -->
-
                 <div class="value-card">
-
-                    <div class="value-icon">
-                        🤍
-                    </div>
-
-                    <h3>
-                        尊重
-                    </h3>
-
-                    <p>
-                        每個人的人生都有自己的步調，
-                        我尊重你的選擇，
-                        也相信你擁有自己的答案。
-                    </p>
-
+                    <div class="value-icon" aria-hidden="true">🤍</div>
+                    <h3>尊重</h3>
+                    <p>每個人的人生都有自己的步調，我尊重你的選擇，也相信你擁有自己的答案。</p>
                 </div>
-
-
             </div>
-
         </div>
-
     </section>
-
-
-    <!-- =========================
-         我能陪你做什麼
-    ========================== -->
 
     <section class="service-section">
-
         <div class="section">
-
             <div class="section-title">
-
-                <h2>
-                    我能陪你做什麼
-                </h2>
-
-                <p>
-                    How I Can Support You
-                </p>
-
+                <h2>我能陪你做什麼</h2>
+                <p>How I Can Support You</p>
             </div>
-
-
             <div class="service-content">
-
                 <div class="service-list">
-
-
-                    <!-- 塔羅 -->
-
                     <div class="service-item">
-
-                        <h3>
-                            🔮 塔羅占卜
-                        </h3>
-
-                        <p>
-                            當你對工作、感情、人際關係或生活方向感到迷惘時，
-                            透過牌卡整理當下的想法與可能性。
-                        </p>
-
+                        <h3><span aria-hidden="true">🔮</span> 塔羅占卜</h3>
+                        <p>當你對工作、感情、人際關係或生活方向感到迷惘時，透過牌卡整理當下的想法與可能性。</p>
                     </div>
-
-
-                    <!-- 生命靈數 -->
-
                     <div class="service-item">
-
-                        <h3>
-                            ✨ 生命靈數
-                        </h3>
-
-                        <p>
-                            從數字的角度認識自己，
-                            看見個人特質、生命課題與不同的可能。
-                        </p>
-
+                        <h3><span aria-hidden="true">✨</span> 生命靈數</h3>
+                        <p>從數字的角度認識自己，看見個人特質、生命課題與不同的可能。</p>
                     </div>
-
-
-                    <!-- 身心靈探索 -->
-
                     <div class="service-item">
-
-                        <h3>
-                            🌙 身心靈探索
-                        </h3>
-
-                        <p>
-                            給自己一點時間與空間，
-                            在忙碌的生活裡重新整理內在的聲音。
-                        </p>
-
+                        <h3><span aria-hidden="true">🌙</span> 身心靈探索</h3>
+                        <p>給自己一點時間與空間，在忙碌的生活裡重新整理內在的聲音。</p>
                     </div>
-
-
-                    <!-- 水晶 -->
-
                     <div class="service-item">
-
-                        <h3>
-                            💎 水晶飾品
-                        </h3>
-
-                        <p>
-                            挑選自己喜歡的水晶與設計，
-                            讓一份小小的日常陪伴，
-                            成為生活中的溫柔提醒。
-                        </p>
-
+                        <h3><span aria-hidden="true">💎</span> 水晶飾品</h3>
+                        <p>挑選自己喜歡的水晶與設計，讓一份小小的日常陪伴，成為生活中的溫柔提醒。</p>
                     </div>
-
-
                 </div>
-
             </div>
-
         </div>
-
     </section>
-
-
-    <!-- =========================
-         預約 CTA
-    ========================== -->
 
     <section class="cta">
-
-        <h2>
-            想和自己聊聊嗎？
-        </h2>
-
-        <p>
-            如果你正處在人生的一個轉折點，
-            歡迎來找靖靖聊聊。
-        </p>
-
-
-        <a
-            href="https://cal.com/jing9562939/15min?user=jing9562939"
-            class="cta-button"
-            target="_blank"
-            rel="noopener noreferrer"
-        >
-            立即線上預約
-        </a>
-
+        <h2>想和自己聊聊嗎？</h2>
+        <p>如果你正處在人生的一個轉折點，歡迎來找靖靖聊聊。</p>
+        <a href="https://cal.com/jing9562939/15min?user=jing9562939" class="cta-button" target="_blank" rel="noopener noreferrer">立即線上預約</a>
     </section>
 
+</main>
 
-    <!-- =========================
-         Footer
-    ========================== -->
-
-    <footer>
-
-        <div class="brand">
-            靖靖塔羅 JingJing Tarot
-        </div>
-
-
-        <div class="social">
-
-            <!-- 之後把 # 改成你的 LINE 網址 -->
-
-            <a href="#">
-                LINE
-            </a>
-
-            |
-
-            <!-- 之後把 # 改成你的 Instagram 網址 -->
-
-            <a href="#">
-                Instagram
-            </a>
-
-        </div>
-
-
-        <div class="copyright">
-            © 2026 JingJing Tarot. All Rights Reserved.
-        </div>
-
-    </footer>
-
+<footer>
+    <div class="brand">靖靖塔羅 JingJing Tarot</div>
+    <div class="social">
+        <!-- 之後把 # 改成你的 LINE 網址 -->
+        <a href="#">LINE</a> |
+        <a href="https://www.instagram.com/jing9562939/" target="_blank" rel="noopener noreferrer">Instagram</a>
+    </div>
+    <div class="copyright">© 2026 JingJing Tarot. All Rights Reserved.</div>
+</footer>
 
 </body>
 </html>
