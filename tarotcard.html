@@ -330,6 +330,44 @@ button.card-wrap.empty.next { border-color: #c4a86b; background: rgba(196,168,10
 .summary .book { margin-top: 24px; padding-top: 18px; border-top: 1px solid #e8dfd5; }
 .summary .book-tip { text-align: center; font-size: 13px; color: #a0988f; }
 
+/* 生命靈數 */
+.n-hint { text-align: center; font-size: 14px; color: var(--text-faint); margin: 14px auto 0; max-width: 560px; }
+.n-form { display: flex; gap: 12px; justify-content: center; align-items: center; flex-wrap: wrap; margin: 18px 0 8px; font-size: 15px; color: #7d6c55; }
+.n-form input[type=date] {
+    padding: 10px 16px; border: 1px solid #d9cfc3; border-radius: 30px; background: rgba(255,253,249,0.9);
+    color: #5f5a55; font-size: 15px; font-family: inherit; outline: none;
+}
+.n-form input[type=date]:focus { border-color: #aaa096; }
+.n-msg { text-align: center; min-height: 24px; font-size: 14px; color: #94644d; }
+.n-result { display: grid; grid-template-columns: minmax(0, 380px) 1fr; gap: 36px; align-items: start; margin: 24px auto 0; max-width: 900px; }
+.nine { width: 100%; }
+.nine svg { display: block; width: 100%; height: auto; }
+.nlegend { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 16px; margin-top: 10px; font-size: 12.5px; color: #8d857d; }
+.nlegend i { display: inline-block; width: 11px; height: 11px; border-radius: 50%; border: 2.5px solid; margin-right: 5px; vertical-align: -1px; }
+.nextra { margin: 12px 0 0; padding: 4px 18px; background: var(--card); border: 1px solid #e7ded4; border-radius: 14px; font-size: 14px; }
+.nextra div { display: flex; gap: 14px; padding: 9px 0; border-bottom: 1px dashed #e3dacf; }
+.nextra div:last-child { border-bottom: none; }
+.nextra dt { flex: none; width: 64px; color: #a1824a; }
+.nextra dd { margin: 0; color: #77706a; word-break: break-all; }
+.ncell {
+    position: relative; aspect-ratio: 1; display: flex; align-items: center; justify-content: center; padding: 22px 6px 6px;
+    background: var(--card); border: 1px solid var(--line); border-radius: 12px;
+}
+.ncell .nn { position: absolute; top: 6px; left: 10px; font-size: 13px; color: #b3a590; }
+.ncell .dots { display: flex; flex-wrap: wrap; gap: 5px; justify-content: center; max-width: 92%; }
+.dot { width: 17px; height: 17px; border-radius: 50%; border: 2px solid #b9a27c; background: rgba(196,168,107,0.2); }
+.nfacts { margin: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.nfact { padding: 16px 18px; background: var(--card); border: 1px solid #e7ded4; border-radius: 16px; }
+.nfact dt { font-size: 13px; letter-spacing: 1px; color: #a1824a; }
+.nfact dd { margin: 2px 0 0; font-size: 26px; color: #68615a; line-height: 1.4; }
+.nfact dd small { display: block; font-size: 12.5px; color: #a0988f; }
+.n-note { text-align: center; font-size: 13px; color: var(--text-faint); margin: 14px 0 0; }
+@media (max-width: 800px) {
+    .n-result { grid-template-columns: 1fr; gap: 20px; }
+    .nine { max-width: 360px; margin: 0 auto; }
+    .nfact dd { font-size: 22px; }
+}
+
 /* 彈出視窗 */
 .modal { position: fixed; inset: 0; background: rgba(60,52,45,0.55); z-index: 3000; display: flex; align-items: center; justify-content: center; padding: 16px; }
 .modal-box { position: relative; background: #fffdf9; border-radius: 18px; padding: 26px 20px 22px; max-width: 520px; width: 100%; max-height: 92vh; overflow: auto; text-align: center; }
@@ -373,7 +411,7 @@ button.card-wrap.empty.next { border-color: #c4a86b; background: rgba(196,168,10
             <a href="service.html">服務項目</a>
             <a href="class.html">課程訊息</a>
             <a href="tarotcard.html" aria-current="page">線上抽牌</a>
-            <a href="crystal.html">身心靈產品</a>
+            <a href="crystal.html">水晶飾品</a>
         </nav>
     </div>
 </header>
@@ -389,7 +427,7 @@ button.card-wrap.empty.next { border-color: #c4a86b; background: rgba(196,168,10
                 <div class="english">Online Card Reading</div>
                 <div class="line"></div>
                 <h2>靜下心，抽一張屬於你的牌</h2>
-                <p>選擇牌卡種類與牌陣，點選牌框就能抽牌。</p>
+                <p>選擇牌卡或生命靈數，點選就能開始。</p>
             </div>
             <div class="board">
                 <div class="board-head"><h2>抽牌小提醒</h2></div>
@@ -427,6 +465,47 @@ button.card-wrap.empty.next { border-color: #c4a86b; background: rgba(196,168,10
         </div>
     </div>
 
+    <!-- ③ 生命靈數 -->
+    <div id="viewNumer" class="draw-wrap" hidden>
+        <div class="crumb">生命靈數</div>
+        <h2 class="draw-title">希臘生命靈數</h2>
+        <div class="top-controls">
+            <button class="btn ghost" id="nBack">← 返回線上抽牌</button>
+        </div>
+        <p class="n-hint">輸入出生年月日（西元），就能看到你的九宮格與四個重點數字。資料只會在你的瀏覽器裡計算，不會上傳。</p>
+
+        <div class="n-form">
+            <label for="nDate">出生日期</label>
+            <input type="date" id="nDate" min="1900-01-01">
+            <button class="btn" id="nCalc">開始計算</button>
+        </div>
+        <div class="n-msg" id="nMsg" aria-live="polite"></div>
+
+        <div id="nResult" hidden>
+            <div class="n-result">
+                <div><div class="nine" id="nine"></div><div class="nlegend" id="nLegend"></div></div>
+                <div>
+                    <dl class="nfacts" id="nFacts"></dl>
+                    <dl class="nextra" id="nExtra"></dl>
+                </div>
+            </div>
+            <p class="n-note">數字外面的圈數，就是這個數字出現的次數；空缺的數字沒有圈。虛線是數字之間的連線。</p>
+
+            <div class="summary">
+                <h3>下載結果，傳給靖靖說明</h3>
+                <div class="btns">
+                    <button class="btn ghost" id="nImgBtn">儲存／分享圖片</button>
+                    <button class="btn ghost" id="nCopyBtn">複製文字</button>
+                    <button class="btn ghost" id="nLineBtn">傳送到 LINE</button>
+                </div>
+                <div class="book">
+                    <div class="book-tip">想了解數字代表的意思？歡迎預約解說，並把圖片一併傳給靖靖。</div>
+                    <div class="btns" id="nBookBtns"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </main>
 
 <div class="modal" id="modal" hidden>
@@ -451,9 +530,9 @@ button.card-wrap.empty.next { border-color: #c4a86b; background: rgba(196,168,10
    一、可自行修改的設定
 ===================================================== */
 
-/* --- 塔羅占卜注意事項：（想增減直接改這裡，每行一句，結尾加逗號） --- */
+/* --- 抽牌小提醒（想增減直接改這裡，每行一句，結尾加逗號） --- */
 const NOTICES = [
-    "占卜三不占原則：不占生死健康、不占具體機率、不短時間重複二占。", 
+    "占卜三不占原則：不占生死健康、不占具體機率、不短時間重複占問同一件事 (一事不二占)。",
     "請閉上雙眼、調整呼吸。在心中想好問題後，點擊下方開始抽牌。",
     "提問小技巧：請包含對象 (人)、時間範圍與具體事件 (狀況)。例如：「我在未來三個月內，轉職的發展如何？」",
     "占卜結果僅供指引與參考，無法取代醫療、法律或財務投資等專業領域之諮詢。"
@@ -516,7 +595,7 @@ const SECTIONS = [
    二、工具
 ===================================================== */
 const $ = id => document.getElementById(id);
-const views = { select: $("viewSelect"), draw: $("viewDraw") };
+const views = { select: $("viewSelect"), draw: $("viewDraw"), numer: $("viewNumer") };
 
 function show(name) {
     Object.entries(views).forEach(([k, el]) => el.hidden = (k !== name));
@@ -556,6 +635,20 @@ function buildSelect() {
     $("noticeList").innerHTML = NOTICES.map(t => "<li>" + t + "</li>").join("");
     const box = $("selectArea");
     box.innerHTML = "";
+
+    // 生命靈數（放在所有牌卡上方）
+    const nrow = document.createElement("div");
+    nrow.className = "deck-row";
+    nrow.innerHTML = '<div class="deck-name">生命靈數<small>九宮格・四個重點</small></div>';
+    const nbtns = document.createElement("div");
+    nbtns.className = "spread-btns";
+    const nb = document.createElement("button");
+    nb.className = "spread-btn";
+    nb.innerHTML = "希臘生命靈數<small>輸入生日</small>";
+    nb.onclick = () => { $("nMsg").textContent = ""; $("nResult").hidden = true; show("numer"); };
+    nbtns.appendChild(nb);
+    nrow.appendChild(nbtns);
+    box.appendChild(nrow);
     SECTIONS.forEach(sec => sec.decks.forEach(deck => {
         const row = document.createElement("div");
         row.className = "deck-row";
@@ -838,33 +931,294 @@ async function buildResultCanvas() {
     return cv;
 }
 
+/* ---- 共用：顯示結果圖片視窗（可分享／下載） ---- */
+async function showCanvasModal(cv, filename, shareTitle) {
+    const dataUrl = cv.toDataURL("image/png");
+    const blob = await new Promise(r => cv.toBlob(r, "image/png"));
+    const file = new File([blob], filename, { type: "image/png" });
+    const canShare = navigator.canShare && navigator.canShare({ files: [file] });
+    openModal(
+        '<img src="' + dataUrl + '" alt="結果圖片">' +
+        '<div class="tip">手機請長按圖片儲存，再到 LINE 或 IG 傳送。</div>' +
+        '<div class="btns">' + (canShare ? '<button class="btn" id="shareImgBtn">分享圖片</button>' : "") +
+        '<a class="btn ghost" href="' + dataUrl + '" download="' + filename + '">下載圖片</a></div>'
+    );
+    if (canShare) $("shareImgBtn").onclick = () => navigator.share({ files: [file], title: shareTitle }).catch(() => {});
+}
+
 $("imgBtn").onclick = async () => {
     const btn = $("imgBtn");
     btn.disabled = true; btn.textContent = "圖片產生中⋯";
-    try {
-        const cv = await buildResultCanvas();
-        const dataUrl = cv.toDataURL("image/png");
-        const blob = await new Promise(r => cv.toBlob(r, "image/png"));
-        const file = new File([blob], "jingjing-tarot.png", { type: "image/png" });
-        const canShare = navigator.canShare && navigator.canShare({ files: [file] });
-        openModal(
-            '<img src="' + dataUrl + '" alt="抽牌結果">' +
-            '<div class="tip">手機請長按圖片儲存，再到 LINE 或 IG 傳送。</div>' +
-            '<div class="btns">' + (canShare ? '<button class="btn" id="shareImgBtn">分享圖片</button>' : "") +
-            '<a class="btn ghost" href="' + dataUrl + '" download="jingjing-tarot.png">下載圖片</a></div>'
-        );
-        if (canShare) $("shareImgBtn").onclick = () => navigator.share({ files: [file], title: "靖靖塔羅 抽牌結果" }).catch(() => {});
-    } catch (e) {
-        alert("圖片產生失敗，請改用「複製文字」。");
+    try { await showCanvasModal(await buildResultCanvas(), "jingjing-tarot.png", "靖靖塔羅 抽牌結果"); }
+    catch (e) { alert("圖片產生失敗，請改用「複製文字」。"); }
+    btn.disabled = false; btn.textContent = "儲存／分享圖片";
+};
+
+
+/* =====================================================
+   六、生命靈數（希臘／畢達哥拉斯九宮格）
+   做法與 ifreesite 相同：數字在格子正中間，外面套同心圈，圈數＝出現次數
+   ・先天數（藍圈）：出生年月日的每個數字，0 不計入
+   ・天賦數（綠圈）：年月日全部相加的總和，兩位數時拆開（例如 31 → 3、1）
+   ・命數＝生命靈數（橘圈）：總和繼續相加到 1–9
+   ・星座數（紅圈）：牡羊／摩羯 1，金牛／水瓶 2，雙子／雙魚 3，巨蟹 4，獅子 5，處女 6，天秤 7，天蠍 8，射手 9
+   ・生日數：「日」的數字相加到單一數字（不畫在九宮格裡）
+   ・空缺數：九宮格裡一個圈都沒有的數字
+   ・連線：整條線（橫、直、斜）的三個數字都有，或 2-4、4-8、8-6、6-2 兩端都有，就用虛線連起來
+===================================================== */
+const GRID_ROWS = [[1, 4, 7], [2, 5, 8], [3, 6, 9]];                       // 九宮格排列（由上到下）
+const RING = { inborn: "#2b7bba", talent: "#2fa84f", life: "#f08c2e", zodiac: "#d93a3a" };   // 圈的顏色
+const LINE_TRIPLES = [[1,2,3],[4,5,6],[7,8,9],[1,4,7],[2,5,8],[3,6,9],[1,5,9],[3,5,7]];
+const LINE_PAIRS = [[2,4],[4,8],[8,6],[6,2]];
+
+function reduceDigit(n) { while (n > 9) n = String(n).split("").reduce((a, c) => a + Number(c), 0); return n; }
+
+function zodiacOf(m, d) {
+    const v = m * 100 + d;
+    if (v >= 321 && v <= 419) return ["牡羊座", 1];
+    if (v >= 420 && v <= 520) return ["金牛座", 2];
+    if (v >= 521 && v <= 621) return ["雙子座", 3];
+    if (v >= 622 && v <= 722) return ["巨蟹座", 4];
+    if (v >= 723 && v <= 822) return ["獅子座", 5];
+    if (v >= 823 && v <= 922) return ["處女座", 6];
+    if (v >= 923 && v <= 1022) return ["天秤座", 7];
+    if (v >= 1023 && v <= 1121) return ["天蠍座", 8];
+    if (v >= 1122 && v <= 1221) return ["射手座", 9];
+    if (v >= 1222 || v <= 119) return ["摩羯座", 1];
+    if (v >= 120 && v <= 218) return ["水瓶座", 2];
+    return ["雙魚座", 3];
+}
+
+function calcNumerology(y, m, d) {
+    const digits = (String(y) + String(m).padStart(2, "0") + String(d).padStart(2, "0")).split("").map(Number);
+    const inborn = digits.filter(x => x > 0);                        // 先天數
+    const total = digits.reduce((a, b) => a + b, 0);
+    const life = reduceDigit(total);                                  // 命數
+    const talentDigits = total > 9 ? String(total).split("").map(Number) : [];   // 天賦數（拆開）
+    const [zName, zNum] = zodiacOf(m, d);
+
+    // 每個數字的圈：由內而外依序是 先天（藍）→ 天賦（綠）→ 命數（橘）→ 星座（紅）
+    const rings = Array.from({ length: 10 }, () => []);
+    inborn.forEach(x => rings[x].push(RING.inborn));
+    talentDigits.forEach(x => { if (x > 0) rings[x].push(RING.talent); });
+    rings[life].push(RING.life);
+    rings[zNum].push(RING.zodiac);
+    // 顏色順序固定（避免因為抽取順序而亂掉）
+    const order = [RING.inborn, RING.talent, RING.life, RING.zodiac];
+    rings.forEach(r => r.sort((a, b) => order.indexOf(a) - order.indexOf(b)));
+    const counts = rings.map(r => r.length);
+
+    // 空缺數、連線
+    const has = k => counts[k] > 0;
+    const missing = [1,2,3,4,5,6,7,8,9].filter(k => !has(k));
+    const edges = [], names = [];
+    LINE_TRIPLES.forEach(t => { if (t.every(has)) { edges.push([t[0], t[1]], [t[1], t[2]]); names.push(t.join("-")); } });
+    LINE_PAIRS.forEach(pr => { if (pr.every(has)) { edges.push(pr); names.push(pr.join("-")); } });
+
+    return { y, m, d, total, life, talent: total > 9 ? total : null, talentDigits, birth: reduceDigit(d),
+             zName, zNum, inborn, rings, counts, missing, edges, lineNames: names };
+}
+
+let nState = null;
+const fmtBirth = n => n.y + " / " + String(n.m).padStart(2, "0") + " / " + String(n.d).padStart(2, "0");
+const talentText = n => n.talent === null ? "無" : n.talentDigits.join("、");
+
+function nFactsList(n) {
+    return [
+        ["生命靈數", String(n.life), "命數"],
+        ["生日數", String(n.birth), "出生日 " + n.d + " 號"],
+        ["天賦數", talentText(n), n.talent === null ? "年月日總和 " + n.total + "，只有一位數" : "年月日總和 " + n.total],
+        ["星座數", String(n.zNum), n.zName]
+    ];
+}
+function nExtraList(n) {
+    return [
+        ["先天數", n.inborn.join("、")],
+        ["空缺數", n.missing.length ? n.missing.join("、") : "無"],
+        ["連線", n.lineNames.length ? n.lineNames.join("、") : "無"]
+    ];
+}
+
+/* 九宮格的幾何位置（單位：整張圖 300×300，每格 100×100） */
+function ringGeometry(count) {
+    const base = 15, max = 45;
+    const step = count > 1 ? Math.min(7, (max - base) / (count - 1)) : 0;
+    return Array.from({ length: count }, (_, i) => base + i * step);
+}
+const cellCenter = num => {
+    for (let r = 0; r < 3; r++) { const c = GRID_ROWS[r].indexOf(num); if (c >= 0) return [c * 100 + 50, r * 100 + 50]; }
+};
+
+function nineSvg(n) {
+    let g = '<rect x="1" y="1" width="298" height="298" rx="10" fill="#fffdf9" stroke="#d9cfc3" stroke-width="2"/>' +
+            '<path d="M100 1V299M200 1V299M1 100H299M1 200H299" stroke="#e3dacf" stroke-width="1.5"/>';
+    n.edges.forEach(([a, b]) => {
+        const [x1, y1] = cellCenter(a), [x2, y2] = cellCenter(b);
+        g += '<line x1="' + x1 + '" y1="' + y1 + '" x2="' + x2 + '" y2="' + y2 + '" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="6 5"/>';
+    });
+    for (let num = 1; num <= 9; num++) {
+        const [cx, cy] = cellCenter(num), radii = ringGeometry(n.counts[num]);
+        radii.forEach((r, i) => { g += '<circle cx="' + cx + '" cy="' + cy + '" r="' + r.toFixed(1) + '" fill="none" stroke="' + n.rings[num][i] + '" stroke-width="2.6"/>'; });
+        g += '<text x="' + cx + '" y="' + (cy + 11) + '" text-anchor="middle" font-size="31" font-family="Georgia, \'Times New Roman\', serif" fill="#a8655a">' + num + "</text>";
     }
+    return '<svg viewBox="0 0 300 300" role="img" aria-label="生命靈數九宮格">' + g + "</svg>";
+}
+
+function renderNumerology(n) {
+    $("nine").innerHTML = nineSvg(n);
+    $("nLegend").innerHTML =
+        '<span><i style="color:' + RING.inborn + '"></i>先天數</span><span><i style="color:' + RING.talent + '"></i>天賦數</span>' +
+        '<span><i style="color:' + RING.life + '"></i>命數</span><span><i style="color:' + RING.zodiac + '"></i>星座數</span>';
+    $("nFacts").innerHTML = nFactsList(n).map(f =>
+        '<div class="nfact"><dt>' + f[0] + "</dt><dd>" + f[1] + (f[2] ? "<small>" + f[2] + "</small>" : "") + "</dd></div>").join("");
+    $("nExtra").innerHTML = nExtraList(n).map(f => "<div><dt>" + f[0] + "</dt><dd>" + f[1] + "</dd></div>").join("");
+    $("nResult").hidden = false;
+}
+
+$("nCalc").onclick = () => {
+    const v = $("nDate").value;
+    const msg = $("nMsg");
+    if (!v) { msg.textContent = "請先選擇出生日期。"; $("nResult").hidden = true; return; }
+    const [y, m, d] = v.split("-").map(Number);
+    const test = new Date(y, m - 1, d);
+    if (y < 1900 || test > new Date() || test.getMonth() !== m - 1 || test.getDate() !== d) {
+        msg.textContent = "日期看起來不太對，請再確認一次。"; $("nResult").hidden = true; return;
+    }
+    msg.textContent = "";
+    nState = calcNumerology(y, m, d);
+    renderNumerology(nState);
+    setTimeout(() => $("nine").scrollIntoView({ behavior: "smooth", block: "center" }), 100);
+};
+$("nDate").addEventListener("keydown", e => { if (e.key === "Enter") $("nCalc").click(); });
+$("nBack").onclick = () => show("select");
+
+function numerologyText(n) {
+    return [
+        "【靖靖塔羅 希臘生命靈數】",
+        "出生日期：" + fmtBirth(n),
+        "先天數：" + n.inborn.join("、"),
+        "生命靈數（命數）：" + n.life,
+        "生日數：" + n.birth,
+        "天賦數：" + talentText(n),
+        "星座數：" + n.zNum + "（" + n.zName + "）",
+        "空缺數：" + (n.missing.length ? n.missing.join("、") : "無"),
+        "連線：" + (n.lineNames.length ? n.lineNames.join("、") : "無")
+    ].join("\n");
+}
+
+$("nCopyBtn").onclick = async () => {
+    const text = numerologyText(nState);
+    if (await copyText(text)) {
+        $("nCopyBtn").textContent = "已複製 ✓";
+        setTimeout(() => $("nCopyBtn").textContent = "複製文字", 1800);
+    } else {
+        openModal('<div class="tip">此瀏覽器無法自動複製，請長按下方文字，選「全選」後再複製。</div><textarea id="manualText" readonly></textarea>');
+        const ta = $("manualText"); ta.value = text; ta.focus(); ta.select();
+    }
+};
+$("nLineBtn").onclick = () => window.open("https://line.me/R/msg/text/?" + encodeURIComponent(numerologyText(nState)), "_blank");
+
+/* ---- 結果圖片（與畫面同一個樣式） ---- */
+function wrapCenter(ctx, text, cx, y, maxW, lh) {
+    const chars = [...text]; let line = "", yy = y;
+    chars.forEach(ch => {
+        if (ctx.measureText(line + ch).width > maxW && line) { ctx.fillText(line, cx, yy); line = ch; yy += lh; } else line += ch;
+    });
+    ctx.fillText(line, cx, yy);
+    return yy;
+}
+
+function numerologyCanvas(n) {
+    const W = 1080, FONT = '"Noto Sans TC","Microsoft JhengHei",sans-serif', SERIF = 'Georgia,"Times New Roman",serif';
+    const GS = 720, GX = (W - GS) / 2, GY = 270, K = GS / 300;
+    const LY = GY + GS + 44;                         // 圖例
+    const FY = LY + 40, BW = 430, BH = 120;           // 四個重點
+    const EY = FY + BH * 2 + 18 + 56;                  // 先天數／空缺數／連線
+    const H = EY + 3 * 78 + 150;
+    const cv = document.createElement("canvas");
+    cv.width = W; cv.height = H;
+    const ctx = cv.getContext("2d");
+    ctx.fillStyle = "#f7f3ed"; ctx.fillRect(0, 0, W, H);
+    ctx.textAlign = "center";
+    ctx.fillStyle = "#625d57"; ctx.font = "500 50px " + FONT; ctx.fillText("靖靖塔羅", W / 2, 95);
+    ctx.fillStyle = "#9b938a"; ctx.font = "24px " + FONT; ctx.fillText("JingJing Tarot", W / 2, 135);
+    ctx.fillStyle = "#7d6c55"; ctx.font = "32px " + FONT; ctx.fillText("希臘生命靈數", W / 2, 195);
+    ctx.fillStyle = "#8d857d"; ctx.font = "26px " + FONT; ctx.fillText("出生日期　" + fmtBirth(n), W / 2, 238);
+
+    // 九宮格
+    ctx.fillStyle = "#fffdf9"; roundPath(ctx, GX, GY, GS, GS, 24); ctx.fill();
+    ctx.strokeStyle = "#e3dacf"; ctx.lineWidth = 3;
+    [1, 2].forEach(k => { ctx.beginPath(); ctx.moveTo(GX + k * GS / 3, GY); ctx.lineTo(GX + k * GS / 3, GY + GS); ctx.stroke();
+                           ctx.beginPath(); ctx.moveTo(GX, GY + k * GS / 3); ctx.lineTo(GX + GS, GY + k * GS / 3); ctx.stroke(); });
+    ctx.strokeStyle = "#d9cfc3"; ctx.lineWidth = 4; roundPath(ctx, GX, GY, GS, GS, 24); ctx.stroke();
+    ctx.setLineDash([14, 11]); ctx.strokeStyle = "#8d8d8d"; ctx.lineWidth = 4;
+    n.edges.forEach(([a, b]) => {
+        const [x1, y1] = cellCenter(a), [x2, y2] = cellCenter(b);
+        ctx.beginPath(); ctx.moveTo(GX + x1 * K, GY + y1 * K); ctx.lineTo(GX + x2 * K, GY + y2 * K); ctx.stroke();
+    });
+    ctx.setLineDash([]);
+    for (let num = 1; num <= 9; num++) {
+        const [cx, cy] = cellCenter(num);
+        ringGeometry(n.counts[num]).forEach((r, i) => {
+            ctx.beginPath(); ctx.arc(GX + cx * K, GY + cy * K, r * K, 0, Math.PI * 2);
+            ctx.strokeStyle = n.rings[num][i]; ctx.lineWidth = 6; ctx.stroke();
+        });
+        ctx.fillStyle = "#a8655a"; ctx.font = "74px " + SERIF; ctx.textBaseline = "middle";
+        ctx.fillText(String(num), GX + cx * K, GY + cy * K + 4); ctx.textBaseline = "alphabetic";
+    }
+
+    // 圖例
+    const legend = [["先天數", RING.inborn], ["天賦數", RING.talent], ["命數", RING.life], ["星座數", RING.zodiac]];
+    ctx.font = "24px " + FONT;
+    const lw = legend.map(l => 30 + ctx.measureText(l[0]).width), lgap = 36, lt = lw.reduce((a, b) => a + b, 0) + lgap * 3;
+    let lx = (W - lt) / 2;
+    ctx.textAlign = "left";
+    legend.forEach((l, i) => {
+        ctx.beginPath(); ctx.arc(lx + 10, LY + 4, 10, 0, Math.PI * 2); ctx.strokeStyle = l[1]; ctx.lineWidth = 5; ctx.stroke();
+        ctx.fillStyle = "#8d857d"; ctx.fillText(l[0], lx + 28, LY + 12); lx += lw[i] + lgap;
+    });
+    ctx.textAlign = "center";
+
+    // 四個重點
+    const bx = (W - (BW * 2 + 18)) / 2;
+    nFactsList(n).forEach((f, i) => {
+        const x = bx + (i % 2) * (BW + 18), y = FY + Math.floor(i / 2) * (BH + 18);
+        ctx.fillStyle = "#fffdf9"; roundPath(ctx, x, y, BW, BH, 18); ctx.fill();
+        ctx.strokeStyle = "#e7ded4"; ctx.lineWidth = 2; roundPath(ctx, x, y, BW, BH, 18); ctx.stroke();
+        ctx.fillStyle = "#a1824a"; ctx.font = "24px " + FONT; ctx.fillText(f[0], x + BW / 2, y + 38);
+        ctx.fillStyle = "#68615a"; ctx.font = "500 46px " + FONT; ctx.fillText(f[1], x + BW / 2, y + (i === 3 ? 82 : 92));
+        if (f[2] && i === 3) { ctx.fillStyle = "#a0988f"; ctx.font = "22px " + FONT; ctx.fillText(f[2], x + BW / 2, y + 110); }
+    });
+
+    // 先天數／空缺數／連線
+    let ey = EY;
+    nExtraList(n).forEach(e => {
+        ctx.fillStyle = "#a1824a"; ctx.font = "24px " + FONT; ctx.fillText(e[0], W / 2, ey);
+        ctx.fillStyle = "#68615a"; ctx.font = "28px " + FONT;
+        const last = wrapCenter(ctx, e[1], W / 2, ey + 36, W - 200, 34);
+        ey = last + 52;
+    });
+
+    ctx.fillStyle = "#9c948b"; ctx.font = "22px " + FONT;
+    ctx.fillText(new Date().toLocaleDateString("zh-TW") + "　｜　數字是陪你認識自己的另一個角度。", W / 2, H - 50);
+    return cv;
+}
+
+$("nImgBtn").onclick = async () => {
+    const btn = $("nImgBtn");
+    btn.disabled = true; btn.textContent = "圖片產生中⋯";
+    try { await showCanvasModal(numerologyCanvas(nState), "jingjing-numerology.png", "靖靖塔羅 希臘生命靈數"); }
+    catch (e) { alert("圖片產生失敗，請改用「複製文字」。"); }
     btn.disabled = false; btn.textContent = "儲存／分享圖片";
 };
 
 /* ---- 預約按鈕（LINE / IG） ---- */
 (function () {
-    const box = $("bookBtns");
-    if (LINE_URL) box.insertAdjacentHTML("beforeend", '<a class="btn" href="' + LINE_URL + '" target="_blank" rel="noopener noreferrer">LINE 預約解讀</a>');
-    if (IG_URL)   box.insertAdjacentHTML("beforeend", '<a class="btn" href="' + IG_URL + '" target="_blank" rel="noopener noreferrer">IG 私訊預約</a>');
+    ["bookBtns", "nBookBtns"].forEach(id => {
+        const box = $(id);
+        if (LINE_URL) box.insertAdjacentHTML("beforeend", '<a class="btn" href="' + LINE_URL + '" target="_blank" rel="noopener noreferrer">LINE 預約解讀</a>');
+        if (IG_URL)   box.insertAdjacentHTML("beforeend", '<a class="btn" href="' + IG_URL + '" target="_blank" rel="noopener noreferrer">IG 私訊預約</a>');
+    });
 })();
 
 buildSelect();
