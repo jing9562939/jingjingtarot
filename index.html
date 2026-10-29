@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
-    <title>靖靖塔羅 JingJing Tarot｜塔羅占卜・線上抽牌・身心靈產品</title>
-    <meta name="description" content="靖靖塔羅 JingJing Tarot｜塔羅占卜、線上抽牌、身心靈產品與課程資訊。找到答案，也找回自己的方向。">
+    <title>靖靖塔羅 JingJing Tarot｜塔羅占卜・線上抽牌・水晶飾品</title>
+    <meta name="description" content="靖靖塔羅 JingJing Tarot｜塔羅占卜、線上抽牌、水晶飾品與課程資訊。找到答案，也找回自己的方向。">
     <meta name="theme-color" content="#f7f3ed">
     <link rel="canonical" href="https://jing9562939.github.io/jingjingtarot/index.html">
 
     <meta property="og:type" content="website">
     <meta property="og:title" content="靖靖塔羅 JingJing Tarot">
-    <meta property="og:description" content="找到答案，也找回自己的方向。塔羅占卜、線上抽牌、身心靈產品與課程資訊。">
+    <meta property="og:description" content="找到答案，也找回自己的方向。塔羅占卜、線上抽牌、水晶飾品與課程資訊。">
     <meta property="og:url" content="https://jing9562939.github.io/jingjingtarot/index.html">
     <meta property="og:image" content="https://jing9562939.github.io/jingjingtarot/images/jingjing.jpg">
 
@@ -220,126 +220,170 @@ footer .copyright { font-size: 11px; color: #9c948b; }
 .tag.trip   { background: #f2dde0; color: #94505a; }   /* 員工旅遊 */
 
 </style>
+<style>
+/* =====================================================
+   首頁專用樣式（只使用 .home-* 專屬 class，不影響 Header 與其他頁面）
+   手機優先：先寫手機版，再用 min-width 擴充到平板與桌機
+===================================================== */
+.home {
+    --h-cream: #FAF7F2;      /* 奶油白 */
+    --h-sand: #EEE5DC;       /* 暖米色 */
+    --h-mauve: #A58A94;      /* 灰粉紫（裝飾用） */
+    --h-mauve-dark: #7A5F6D; /* 灰粉紫加深（文字連結用，對比度足夠） */
+    --h-brown: #51423B;      /* 深咖啡色 */
+    --h-soft: #7A6A62;       /* 次要文字 */
+    --h-line: #E6DBD0;
+    background: var(--h-cream);
+    color: var(--h-brown);
+}
+.home *, .home *::before, .home *::after { box-sizing: border-box; }
+.home-wrap { width: 100%; max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+.home h1, .home h2, .home h3 { margin: 0; font-weight: 500; color: var(--h-brown); }
+.home p { margin: 0; }
+.home-eyebrow { font-size: 13px; letter-spacing: 3px; color: var(--h-mauve-dark); }
 
-    <style>
-        /* ===== 首頁專用樣式（共用部分在 style.css） ===== */
+/* ---------- 按鈕 ---------- */
+.home-btns { display: flex; flex-wrap: wrap; gap: 12px; }
+.home-btn {
+    display: inline-flex; align-items: center; justify-content: center; min-height: 46px; padding: 11px 28px;
+    border-radius: 999px; font-size: 15px; letter-spacing: 1px; font-family: inherit; cursor: pointer;
+    border: 1px solid var(--h-brown); transition: transform 0.3s, background 0.3s, box-shadow 0.3s, color 0.3s;
+}
+.home-btn--main { background: var(--h-brown); color: #fff; }
+.home-btn--main:hover { background: #3d322c; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(81,66,59,0.22); }
+.home-btn--sub { background: rgba(255,255,255,0.6); color: var(--h-brown); border-color: var(--h-mauve); }
+.home-btn--sub:hover { background: #fff; border-color: var(--h-mauve-dark); transform: translateY(-2px); }
+.home a:focus-visible, .home summary:focus-visible { outline: 3px solid var(--h-mauve-dark); outline-offset: 3px; border-radius: 8px; }
 
-        /* 讓頁尾貼在畫面底部，內容少時也不會留白 */
-        body { min-height: 100vh; min-height: 100dvh; display: flex; flex-direction: column; }
-        main { flex: 1; display: flex; flex-direction: column; justify-content: center; }
-        footer { padding: 16px 20px; }
-        footer .brand { font-size: 16px; margin-bottom: 0; }
-        footer .social { margin: 4px 0; }
+/* ---------- 區塊標題 ---------- */
+.home-head { text-align: center; margin-bottom: 30px; }
+.home-head h2 { font-size: 26px; letter-spacing: 2px; line-height: 1.5; }
+.home-head p { margin-top: 8px; font-size: 14.5px; color: var(--h-soft); }
+.home-head .home-eyebrow { display: block; margin-bottom: 6px; }
 
-        /* ---------- 主視覺：文字＋形象照 ---------- */
-        .home-hero {
-            width: 100%; max-width: var(--max-width); margin: 0 auto;
-            padding: 20px 25px 12px;
-            display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 56px; align-items: center;
-        }
+/* ---------- 形象照框（Hero 與關於共用）---------- */
+.home-photo {
+    position: relative; width: min(100%, 300px); aspect-ratio: 4 / 5; margin: 0 auto;
+    border-radius: 999px 999px 28px 28px; background: linear-gradient(160deg, #f1e9df, #e2d4c8);
+    box-shadow: 0 20px 44px rgba(81,66,59,0.16);
+}
+.home-photo::after {
+    content: ""; position: absolute; inset: 12px -12px -12px 12px; z-index: -1;
+    border: 1px solid var(--h-mauve); border-radius: 999px 999px 28px 28px; opacity: 0.7;
+}
+.home-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; border-radius: inherit; }
+.home-photo .home-ph {
+    display: none; position: absolute; inset: 0; flex-direction: column; align-items: center; justify-content: center;
+    gap: 6px; text-align: center; font-size: 13px; letter-spacing: 1px; color: #9a8a82;
+}
+.home-photo .home-ph b { font-size: 32px; font-weight: 400; color: var(--h-mauve); }
+.home-photo.no-photo img { display: none; }
+.home-photo.no-photo .home-ph { display: flex; }
 
-        .hero-text .symbol { font-size: 26px; color: #b9a27c; line-height: 1; margin-bottom: 14px; }
-        .hero-text h1 { margin: 0; font-size: 46px; font-weight: 400; letter-spacing: 5px; color: var(--text-heading); line-height: 1.3; }
-        .hero-text .english { margin-top: 2px; font-size: 15px; letter-spacing: 4px; color: #9b938a; }
-        .hero-text .line { width: 56px; height: 1px; background: #bdb3a8; margin: 18px 0; }
-        .hero-text h2 { margin: 0 0 10px; font-size: 22px; font-weight: 400; color: #746d65; }
-        .hero-text p { margin: 0 0 22px; font-size: 15px; color: #918980; max-width: 460px; }
+/* ---------- 1. Hero ---------- */
+@keyframes home-rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+.home-hero { background: linear-gradient(160deg, var(--h-cream) 0%, var(--h-sand) 100%); padding: 40px 0 56px; overflow: hidden; }
+.home-hero .home-wrap { display: grid; gap: 40px; }
+.home-nb { display: inline-block; }
+.home-hero-text { animation: home-rise 0.8s ease both; }
+.home-hero h1 { font-size: 31px; line-height: 1.5; letter-spacing: 1px; margin: 10px 0 16px; }
+.home-hero-text > p { font-size: 15.5px; line-height: 2; color: var(--h-soft); max-width: 520px; margin-bottom: 26px; }
+.home-hero .home-photo { animation: home-rise 1s 0.15s ease both; }
 
-        .hero-buttons { display: flex; gap: 12px; flex-wrap: wrap; }
-        .btn-main, .btn-sub {
-            display: inline-block; padding: 11px 28px; border-radius: 30px; font-size: 14px;
-            transition: background 0.3s, transform 0.3s, border-color 0.3s;
-        }
-        .btn-main { background: var(--accent); color: #fff; border: 1px solid var(--accent); }
-        .btn-main:hover { background: var(--accent-dark); border-color: var(--accent-dark); transform: translateY(-2px); }
-        .btn-sub { border: 1px solid #aaa096; color: #6d665f; background: rgba(255,255,255,0.55); }
-        .btn-sub:hover { background: #e9e0d5; }
+/* ---------- 2. 服務分類 ---------- */
+.home-services { background: var(--h-cream); padding: 60px 0; }
+.home-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
+.home-card {
+    display: flex; flex-direction: column; gap: 10px; padding: 26px 22px; background: #fff;
+    border: 1px solid var(--h-line); border-radius: 20px; box-shadow: 0 6px 20px rgba(81,66,59,0.06);
+    transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+}
+.home-card:hover { transform: translateY(-6px); border-color: var(--h-mauve); box-shadow: 0 16px 34px rgba(81,66,59,0.12); }
+.home-card-icon {
+    width: 56px; height: 56px; border-radius: 50%; background: var(--h-sand);
+    display: flex; align-items: center; justify-content: center; font-size: 26px; line-height: 1;
+}
+.home-card h3 { font-size: 19px; letter-spacing: 1px; }
+.home-card p { font-size: 14.5px; line-height: 1.8; color: var(--h-soft); }
+.home-card-go { margin-top: auto; padding-top: 6px; font-size: 14px; color: var(--h-mauve-dark); }
 
-        /* ---------- 形象照 ---------- */
-        .portrait-wrap { display: flex; justify-content: center; }
-        .portrait {
-            position: relative; width: min(100%, 236px); aspect-ratio: 4 / 5;
-            border-radius: 999px 999px 26px 26px;           /* 拱門造型 */
-            background: linear-gradient(160deg, #efe6da, #e2d6c6);
-            box-shadow: 0 18px 40px rgba(100, 90, 80, 0.16);
-        }
-        .portrait::after {                                  /* 外框偏移裝飾線 */
-            content: ""; position: absolute; inset: 12px -12px -12px 12px; z-index: -1;
-            border: 1px solid #c9bba8; border-radius: 999px 999px 26px 26px;
-        }
-        .portrait img {
-            width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block;
-            border-radius: inherit;
-        }
-        .portrait .placeholder {                            /* 尚未放照片時的提示 */
-            display: none; position: absolute; inset: 0; flex-direction: column;
-            align-items: center; justify-content: center; gap: 6px; text-align: center;
-            color: #a39a90; font-size: 13px; letter-spacing: 1px;
-        }
-        .portrait .placeholder b { font-size: 34px; font-weight: 400; color: #bfae92; }
-        .portrait.no-photo img { display: none; }
-        .portrait.no-photo .placeholder { display: flex; }
+/* ---------- 3. 關於靖靖 ---------- */
+.home-about { background: var(--h-sand); padding: 64px 0; }
+.home-about .home-wrap { display: grid; gap: 40px; align-items: center; }
+.home-about h2 { font-size: 28px; line-height: 1.5; letter-spacing: 2px; margin: 8px 0 18px; }
+.home-about-text p { font-size: 15.5px; line-height: 2.05; color: #5e4f47; margin-bottom: 14px; }
+.home-quote {
+    margin: 22px 0 22px !important; padding: 16px 0 16px 20px; border-left: 3px solid var(--h-mauve);
+    font-size: 19px !important; letter-spacing: 1px; line-height: 1.8 !important; color: var(--h-brown) !important;
+}
+.home-link { display: inline-block; font-size: 15px; color: var(--h-mauve-dark); border-bottom: 1px solid var(--h-mauve); padding-bottom: 2px; transition: color 0.3s; }
+.home-link:hover { color: var(--h-brown); }
 
-        /* ---------- 快速入口 ---------- */
-        .quick {
-            width: 100%; max-width: var(--max-width); margin: 0 auto; padding: 10px 25px 6px;
-            display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
-        }
-        .q-card {
-            display: flex; align-items: center; gap: 14px; padding: 16px 18px;
-            background: var(--card); border: 1px solid var(--line); border-radius: 16px;
-            transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
-        }
-        .q-card:hover { transform: translateY(-4px); background: var(--bg-paper); box-shadow: var(--shadow-soft); }
-        .q-icon { font-size: 28px; line-height: 1; }
-        .q-card h3 { margin: 0; font-size: 16px; font-weight: 500; color: #68615a; line-height: 1.4; }
-        .q-card p { margin: 0; font-size: 12.5px; color: var(--text-muted); line-height: 1.5; }
+/* ---------- 4. 最新消息與近期活動 ---------- */
+.home-news { background: var(--h-cream); padding: 64px 0; }
+.home-events { display: grid; grid-template-columns: 1fr; gap: 16px; }
+.home-event {
+    display: flex; flex-direction: column; gap: 6px; padding: 24px 22px; background: #fff;
+    border: 1px solid var(--h-line); border-radius: 20px; box-shadow: 0 6px 20px rgba(81,66,59,0.06);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.home-event:hover { transform: translateY(-5px); box-shadow: 0 14px 30px rgba(81,66,59,0.12); }
+.home-event-date { font-size: 14px; letter-spacing: 1px; color: var(--h-mauve-dark); }
+.home-event h3 { font-size: 18px; line-height: 1.5; }
+.home-event p { font-size: 14px; color: var(--h-soft); }
+.home-event-go { margin-top: auto; padding-top: 8px; font-size: 14px; color: var(--h-mauve-dark); }
+.home-empty {
+    grid-column: 1 / -1; padding: 30px 22px; text-align: center; font-size: 15px; color: var(--h-soft);
+    background: #fff; border: 1px dashed var(--h-mauve); border-radius: 20px;
+}
+.home-news-more { text-align: center; margin-top: 26px; }
 
-        /* ---------- 最新公告（行程） ---------- */
-        .board { width: 100%; max-width: var(--max-width); margin: 0 auto; padding: 14px 25px 18px; }
-        .board-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px; }
-        .board-head h2 {
-            margin: 0; font-size: 17px; font-weight: 500; color: #7d6c55; letter-spacing: 2px;
-            border-left: 3px solid #c4a86b; padding-left: 10px;
-        }
-        .board-head a { font-size: 13px; color: #81766c; border-bottom: 1px solid #bdb1a5; padding-bottom: 1px; transition: color 0.3s; }
-        .board-head a:hover { color: #5f574f; }
-        .board-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
-        .ann {
-            display: flex; gap: 12px; align-items: center; padding: 10px 14px;
-            background: var(--card); border: 1px solid #e7ded4; border-radius: 14px;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        .ann:hover { transform: translateY(-3px); box-shadow: var(--shadow-soft); }
-        .ann-date { min-width: 52px; text-align: center; border-right: 1px solid #e3dacf; padding-right: 12px; }
-        .ann-date b { display: block; font-size: 22px; font-weight: 500; color: #7d6c55; line-height: 1.2; }
-        .ann-date small { font-size: 11px; color: #a39a90; white-space: nowrap; }
-        .ann-body { min-width: 0; }
-        .ann-body h3 { margin: 0; font-size: 14.5px; font-weight: 500; color: #68615a; display: flex; gap: 8px; align-items: center; min-width: 0; }
-        .ann-body h3 span:last-child { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-        .ann-body p { margin: 0; font-size: 12.5px; color: #938a81; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-        .board-empty {
-            grid-column: 1 / -1; text-align: center; padding: 14px; font-size: 13.5px; color: #938a81;
-            background: var(--card); border: 1px dashed #d9cfc3; border-radius: 14px;
-        }
+/* ---------- 5. 第一次預約 ---------- */
+.home-faq { background: var(--h-sand); padding: 64px 0; }
+.home-faq .home-wrap { display: grid; gap: 32px; }
+.home-faq h2 { font-size: 27px; line-height: 1.5; letter-spacing: 2px; margin: 8px 0 14px; }
+.home-faq-intro p { font-size: 15px; line-height: 2; color: #5e4f47; margin-bottom: 22px; max-width: 420px; }
+.home-faq-list { display: grid; gap: 10px; align-content: start; }
+.home-faq details { background: #fff; border: 1px solid var(--h-line); border-radius: 16px; overflow: hidden; }
+.home-faq summary {
+    list-style: none; cursor: pointer; padding: 16px 52px 16px 20px; position: relative;
+    font-size: 16px; letter-spacing: 1px; color: var(--h-brown);
+}
+.home-faq summary::-webkit-details-marker { display: none; }
+.home-faq summary::after {
+    content: "+"; position: absolute; right: 20px; top: 50%; transform: translateY(-50%);
+    font-size: 22px; line-height: 1; color: var(--h-mauve-dark); transition: transform 0.3s;
+}
+.home-faq details[open] summary::after { content: "−"; }
+.home-faq details > div { padding: 0 20px 18px; font-size: 14.5px; line-height: 1.95; color: var(--h-soft); }
+.home-faq details > div a { color: var(--h-mauve-dark); border-bottom: 1px solid var(--h-mauve); }
+.home-todo {
+    display: inline-block; margin-right: 6px; padding: 0 10px; border-radius: 999px; font-size: 12px;
+    background: #F3E3E6; color: #94505A; vertical-align: 1px;
+}
 
-        /* ---------- 手機版 ---------- */
-        @media (max-width: 800px) {
-            .home-hero { grid-template-columns: 1fr; gap: 26px; padding: 26px 20px 10px; text-align: center; }
-            .portrait-wrap { order: -1; }                    /* 手機版照片放在文字上方 */
-            .portrait { width: min(62%, 230px); }
-            .hero-text h1 { font-size: 34px; letter-spacing: 3px; }
-            .hero-text .english { font-size: 13px; }
-            .hero-text .line { margin: 18px auto; }
-            .hero-text h2 { font-size: 19px; }
-            .hero-text p { margin-left: auto; margin-right: auto; }
-            .hero-buttons { justify-content: center; }
-            .quick { grid-template-columns: repeat(2, 1fr); gap: 12px; padding: 18px 20px 6px; }
-            .q-card { flex-direction: column; text-align: center; gap: 6px; padding: 16px 10px; }
-            .board { padding: 14px 20px 22px; }
-            .board-list { grid-template-columns: 1fr; gap: 10px; }
-        }
-    </style>
+/* ---------- 平板 ---------- */
+@media (min-width: 560px) {
+    .home-grid { grid-template-columns: repeat(2, 1fr); }
+    .home-events { grid-template-columns: repeat(2, 1fr); }
+}
+/* ---------- 桌機 ---------- */
+@media (min-width: 900px) {
+    .home-wrap { padding: 0 25px; }
+    .home-hero { padding: 72px 0 84px; }
+    .home-hero .home-wrap { grid-template-columns: 1.1fr 0.9fr; gap: 64px; align-items: center; }
+    .home-hero h1 { font-size: 44px; }
+    .home-photo { width: min(100%, 340px); }
+    .home-services, .home-news { padding: 84px 0; }
+    .home-about, .home-faq { padding: 84px 0; }
+    .home-head { margin-bottom: 40px; }
+    .home-head h2 { font-size: 30px; }
+    .home-grid { grid-template-columns: repeat(4, 1fr); gap: 20px; }
+    .home-events { grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .home-about .home-wrap { grid-template-columns: 0.8fr 1.2fr; gap: 72px; }
+    .home-faq .home-wrap { grid-template-columns: 0.8fr 1.2fr; gap: 64px; }
+}
+</style>
 </head>
 
 <body>
@@ -355,69 +399,130 @@ footer .copyright { font-size: 11px; color: #9c948b; }
             <a href="service.html">服務項目</a>
             <a href="class.html">課程訊息</a>
             <a href="tarotcard.html">線上抽牌</a>
-            <a href="crystal.html">身心靈產品</a>
+            <a href="crystal.html">水晶飾品</a>
         </nav>
     </div>
 </header>
 
-<main id="main">
+<main id="main" class="home">
 
-    <!-- 主視覺：文字＋形象照 -->
-    <section class="home-hero">
+    <!-- 1. Hero 主視覺 -->
+    <section class="home-hero" aria-labelledby="hero-title">
+        <div class="home-wrap">
+            <div class="home-hero-text">
+                <span class="home-eyebrow">靖靖塔羅 JingJing Tarot</span>
+                <h1 id="hero-title"><span class="home-nb">找到答案，</span><span class="home-nb">也找回自己的方向。</span></h1>
+                <p>在迷惘的時刻，讓塔羅陪你停下腳步，整理心中的疑問。透過牌卡與對話，陪你看見不同的可能，找回屬於自己的節奏。</p>
+                <div class="home-btns">
+                    <a class="home-btn home-btn--main" href="https://cal.com/jing9562939/15min?user=jing9562939" target="_blank" rel="noopener noreferrer">預約塔羅占卜</a>
+                    <a class="home-btn home-btn--sub" href="tarotcard.html">開始線上抽牌</a>
+                </div>
+            </div>
 
-        <div class="hero-text">
-            <div class="symbol" aria-hidden="true">✦</div>
-            <h1>靖靖塔羅</h1>
-            <div class="english">JingJing Tarot</div>
-            <div class="line"></div>
-            <h2>找到答案，也找回自己的方向。</h2>
-            <p>在牌卡與心之間，留一點空間，陪你梳理當下，看見不同的可能。</p>
-
-            <div class="hero-buttons">
-                <a href="https://cal.com/jing9562939/15min?user=jing9562939" class="btn-main" target="_blank" rel="noopener noreferrer">線上預約</a>
-                <a href="service.html" class="btn-sub">探索塔羅服務</a>
+            <!-- 形象照：images/jingjing.jpg（沒有照片時會顯示提示框，不會出現破圖） -->
+            <div class="home-photo" id="heroPhoto">
+                <img src="images/jingjing.jpg" alt="靖靖塔羅 靖靖的形象照" width="800" height="1000" fetchpriority="high" decoding="async"
+                     onerror="this.closest('.home-photo').classList.add('no-photo')">
+                <div class="home-ph"><b aria-hidden="true">✦</b>形象照<br>images/jingjing.jpg</div>
             </div>
         </div>
+    </section>
 
-        <div class="portrait-wrap">
-            <!-- 形象照：請把照片放在 images/jingjing.jpg（建議 800×1000，直式 4:5） -->
-            <div class="portrait" id="portrait">
-                <img src="images/jingjing.jpg" alt="靖靖塔羅 靖靖的形象照" width="800" height="1000"
-                     fetchpriority="high" decoding="async"
-                     onerror="document.getElementById('portrait').classList.add('no-photo')">
-                <div class="placeholder"><b aria-hidden="true">✦</b>形象照<br>images/jingjing.jpg</div>
+    <!-- 2. 服務分類 -->
+    <section class="home-services" aria-labelledby="services-title">
+        <div class="home-wrap">
+            <div class="home-head">
+                <h2 id="services-title">找到適合你的探索方式</h2>
+            </div>
+            <div class="home-grid">
+                <a class="home-card" href="tarotcard.html">
+                    <span class="home-card-icon" aria-hidden="true">🃏</span>
+                    <h3>線上抽牌</h3>
+                    <p>選擇你的問題，親自抽出屬於你的牌卡。</p>
+                    <span class="home-card-go">開始抽牌 →</span>
+                </a>
+                <a class="home-card" href="service.html">
+                    <span class="home-card-icon" aria-hidden="true">🔮</span>
+                    <h3>塔羅占卜</h3>
+                    <p>陪你梳理內心，看見當下的方向與可能。</p>
+                    <span class="home-card-go">查看服務 →</span>
+                </a>
+                <a class="home-card" href="class.html">
+                    <span class="home-card-icon" aria-hidden="true">📅</span>
+                    <h3>課程與行程</h3>
+                    <p>查看塔羅課程、擺攤與活動日期。</p>
+                    <span class="home-card-go">查看行程 →</span>
+                </a>
+                <a class="home-card" href="crystal.html">
+                    <span class="home-card-icon" aria-hidden="true">💎</span>
+                    <h3>身心靈產品</h3>
+                    <p>為生活挑選一份屬於自己的溫柔陪伴。</p>
+                    <span class="home-card-go">了解更多 →</span>
+                </a>
             </div>
         </div>
-
     </section>
 
-    <!-- 快速入口 -->
-    <section class="quick" aria-label="快速入口">
-        <a href="tarotcard.html" class="q-card">
-            <span class="q-icon" aria-hidden="true">🃏</span>
-            <div><h3>線上抽牌</h3><p>親自抽出屬於你的牌</p></div>
-        </a>
-        <a href="service.html" class="q-card">
-            <span class="q-icon" aria-hidden="true">🔮</span>
-            <div><h3>塔羅占卜</h3><p>梳理內心，看見方向</p></div>
-        </a>
-        <a href="class.html" class="q-card">
-            <span class="q-icon" aria-hidden="true">📅</span>
-            <div><h3>課程・擺攤</h3><p>近期行程與預約</p></div>
-        </a>
-        <a href="crystal.html" class="q-card">
-            <span class="q-icon" aria-hidden="true">💎</span>
-            <div><h3>身心靈產品</h3><p>一份溫柔的日常陪伴</p></div>
-        </a>
-    </section>
-
-    <!-- 最新公告：自動讀取 events.js，顯示接下來最近的 3 筆行程 -->
-    <section class="board" aria-label="最新公告">
-        <div class="board-head">
-            <h2>最新公告</h2>
-            <a href="class.html">查看完整行事曆 →</a>
+    <!-- 3. 關於靖靖 -->
+    <section class="home-about" aria-labelledby="about-title">
+        <div class="home-wrap">
+            <div class="home-photo" id="aboutPhoto">
+                <img src="images/jingjing.jpg" alt="靖靖塔羅 靖靖" width="800" height="1000" loading="lazy" decoding="async"
+                     onerror="this.closest('.home-photo').classList.add('no-photo')">
+                <div class="home-ph"><b aria-hidden="true">✦</b>形象照<br>images/jingjing.jpg</div>
+            </div>
+            <div class="home-about-text">
+                <span class="home-eyebrow">About JingJing</span>
+                <h2 id="about-title">每個人都有自己的答案。</h2>
+                <p>有時候，我們需要的不是別人替自己決定，而是一個能靜下來、重新聽見內心聲音的空間。</p>
+                <p>我希望透過塔羅牌卡與溫柔的對話，陪伴你整理思緒、看見盲點，為眼前的困惑找到新的理解與方向。</p>
+                <p class="home-quote">牌卡不是替你決定，而是陪你看見。</p>
+                <a class="home-link" href="about.html">認識靖靖 →</a>
+            </div>
         </div>
-        <div class="board-list" id="boardList"></div>
+    </section>
+
+    <!-- 4. 最新消息與近期活動（資料來自 events.js，與課程訊息頁同一份） -->
+    <section class="home-news" aria-labelledby="news-title">
+        <div class="home-wrap">
+            <div class="home-head">
+                <h2 id="news-title">最新消息與近期活動</h2>
+            </div>
+            <div class="home-events" id="homeEvents" aria-live="polite"></div>
+            <div class="home-news-more">
+                <a class="home-link" href="class.html">查看完整行事曆 →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. 預約引導與常見問題 -->
+    <section class="home-faq" aria-labelledby="faq-title">
+        <div class="home-wrap">
+            <div class="home-faq-intro">
+                <span class="home-eyebrow">First Time</span>
+                <h2 id="faq-title">第一次預約嗎？</h2>
+                <p>先看看這些常見問題，了解預約流程與占卜前的準備，讓你安心地來。</p>
+                <a class="home-btn home-btn--main" href="https://cal.com/jing9562939/15min?user=jing9562939" target="_blank" rel="noopener noreferrer">立即預約</a>
+            </div>
+            <div class="home-faq-list">
+                <details>
+                    <summary>如何預約？</summary>
+                    <div>點選「立即預約」，到線上預約頁選擇合適的時段。也可以透過 <a href="https://liff.line.me/1645278921-kWRPP32q/?accountId=531eukcu" target="_blank" rel="noopener noreferrer">LINE</a> 或 <a href="https://www.instagram.com/jing9562939/" target="_blank" rel="noopener noreferrer">Instagram</a> 詢問。</div>
+                </details>
+                <details>
+                    <summary>占卜服務如何進行？</summary>
+                    <div><span class="home-todo">待補充</span>請補充：進行方式（線上或實體）、時間長度與費用。目前的服務內容可到 <a href="service.html">服務項目</a> 查看。</div>
+                </details>
+                <details>
+                    <summary>線上占卜需要準備什麼？</summary>
+                    <div>找一個安靜的地方，閉上雙眼、調整呼吸，並在心中想好一個問題。提問時請包含對象（人）、時間範圍與具體事件（狀況），例如：「我在未來三個月內，轉職的發展如何？」</div>
+                </details>
+                <details>
+                    <summary>如何查看服務內容與注意事項？</summary>
+                    <div>服務內容請到 <a href="service.html">服務項目</a> 頁查看。占卜三不占原則：不占生死健康、不占具體機率、不短時間重複占問同一件事（一事不二占）。占卜結果僅供指引與參考，無法取代醫療、法律或財務投資等專業領域之諮詢。</div>
+                </details>
+            </div>
+        </div>
     </section>
 
 </main>
@@ -425,8 +530,7 @@ footer .copyright { font-size: 11px; color: #9c948b; }
 <footer>
     <div class="brand">靖靖塔羅 JingJing Tarot</div>
     <div class="social">
-        <!-- 之後把 # 改成你的 LINE 網址 -->
-        <a href="#">LINE</a> |
+        <a href="https://liff.line.me/1645278921-kWRPP32q/?accountId=531eukcu" target="_blank" rel="noopener noreferrer">LINE</a> |
         <a href="https://www.instagram.com/jing9562939/" target="_blank" rel="noopener noreferrer">Instagram</a>
     </div>
     <div class="copyright">© 2026 JingJing Tarot. All Rights Reserved.</div>
@@ -434,30 +538,26 @@ footer .copyright { font-size: 11px; color: #9c948b; }
 
 <script src="events.js"></script>
 <script>
-/* 若 events.js 沒有上傳，在頁面上提示 */
-window.addEventListener("DOMContentLoaded", function () {
-    if (typeof EVENTS === "undefined") {
-        document.getElementById("boardList").innerHTML = '<div style="padding:16px;text-align:center;font-size:14px;color:#938a81;border:1px dashed #d9cfc3;border-radius:14px">找不到 events.js，請確認它已和網頁放在同一個資料夾並上傳。</div>';
-    }
-});
-</script>
-
-<script>
+/* 最新消息與近期活動：讀取 events.js 裡接下來最近的 3 筆行程 */
 (function () {
-    const list = upcomingEvents(3);
-    const box = document.getElementById("boardList");
-    if (!list.length) {
-        box.innerHTML = '<div class="board-empty">近期行程陸續更新中，其他時間歡迎<a href="https://cal.com/jing9562939/15min?user=jing9562939" target="_blank" rel="noopener noreferrer" style="border-bottom:1px solid #bdb1a5">線上預約</a>。</div>';
+    var box = document.getElementById("homeEvents");
+    var emptyMsg = '<div class="home-empty">近期行程陸續更新中，歡迎先到<a class="home-link" href="class.html">行事曆</a>看看，或直接線上預約。</div>';
+    if (typeof EVENTS === "undefined") {
+        box.innerHTML = '<div class="home-empty">找不到 events.js，請確認它已和網頁放在同一個資料夾並上傳。</div>';
         return;
     }
-    box.innerHTML = list.map(ev => {
-        const s = parseDate(ev.start), head = headline(ev);
-        const parts = [fmtRange(ev)];
-        if (ev.place && ev.place !== head) parts.push(ev.place);
-        return '<a class="ann" href="class.html#' + ev.start + '">' +
-            '<div class="ann-date"><b>' + s.getDate() + "</b><small>" + (s.getMonth() + 1) + " 月・" + WEEK[s.getDay()] + "</small></div>" +
-            '<div class="ann-body"><h3><span class="tag ' + ev.type + '">' + TYPE_NAME[ev.type] + "</span><span>" + esc(head) + "</span></h3>" +
-            "<p>" + esc(parts.join("・")) + "</p></div></a>";
+    var list = upcomingEvents(3);
+    if (!list.length) { box.innerHTML = emptyMsg; return; }
+    box.innerHTML = list.map(function (ev) {
+        var head = headline(ev), meta = [];
+        if (ev.place && ev.place !== head) meta.push(ev.place);
+        if (ev.time) meta.push(ev.time);
+        return '<a class="home-event" href="class.html#' + ev.start + '">' +
+            '<span class="tag ' + ev.type + '" style="align-self:flex-start">' + TYPE_NAME[ev.type] + '</span>' +
+            '<div class="home-event-date">' + fmtRange(ev) + '</div>' +
+            '<h3>' + esc(head) + '</h3>' +
+            (meta.length ? '<p>' + esc(meta.join("・")) + '</p>' : '') +
+            '<span class="home-event-go">查看詳情 →</span></a>';
     }).join("");
 })();
 </script>
