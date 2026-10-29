@@ -2,7 +2,7 @@
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>關於我｜靖靖塔羅 About JingJing Tarot</title>
     <meta name="description" content="認識靖靖塔羅，了解我與塔羅、生命靈數與身心靈探索的故事。">
     <meta name="theme-color" content="#f7f3ed">
@@ -218,48 +218,141 @@ footer .copyright { font-size: 11px; color: #9c948b; }
 .tag.trip   { background: #f2dde0; color: #94505a; }   /* 員工旅遊 */
 
 </style>
+<style>
+/* =====================================================
+   關於我 專屬樣式（全部使用 about- 前綴，不影響 Header 與其他頁面）
+   配色、圓角、按鈕、卡片與首頁相同；手機優先
+===================================================== */
+.about-page {
+    --a-cream: #FAF7F2;      /* 奶油白 */
+    --a-sand: #EEE5DC;       /* 暖米色 */
+    --a-mauve: #A58A94;      /* 灰粉紫（裝飾用） */
+    --a-mauve-soft: #F0E7EA; /* 淡灰粉紫（背景） */
+    --a-mauve-dark: #7A5F6D; /* 灰粉紫加深（文字連結，對比足夠） */
+    --a-brown: #51423B;      /* 深咖啡色 */
+    --a-soft: #7A6A62;       /* 次要文字 */
+    --a-line: #E6DBD0;
+    background: var(--a-cream);
+    color: var(--a-brown);
+}
+.about-page *, .about-page *::before, .about-page *::after { box-sizing: border-box; }
+.about-wrap { width: 100%; max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+.about-page h1, .about-page h2, .about-page h3 { margin: 0; font-weight: 500; color: var(--a-brown); }
+.about-page p { margin: 0; }
+.about-eyebrow { display: block; font-size: 13px; letter-spacing: 3px; color: var(--a-mauve-dark); }
+.about-page a:focus-visible { outline: 3px solid var(--a-mauve-dark); outline-offset: 3px; border-radius: 8px; }
 
-    <style>
-        /* ===== 關於我 頁面專用樣式 ===== */
-        .story-section  { background: var(--bg-paper); }
-        .tarot-section  { background: var(--bg-sand); }
-        .values-section { background: var(--bg); }
-        .service-section { background: var(--bg-sand-2); }
+.about-head { text-align: center; margin-bottom: 30px; }
+.about-head h2 { font-size: 26px; letter-spacing: 2px; line-height: 1.5; }
+.about-head p { margin-top: 6px; font-size: 14px; letter-spacing: 2px; color: var(--a-soft); }
 
-        .story, .tarot-content { max-width: 760px; margin: auto; }
-        .story h3 { margin: 0 0 28px; text-align: center; font-size: 25px; font-weight: 400; color: #70675f; letter-spacing: 2px; }
-        .story p { margin: 0 0 22px; font-size: 15px; color: var(--text-body); line-height: 2.1; }
+/* ---------- 形象照 ---------- */
+.about-photo {
+    position: relative; width: min(100%, 240px); aspect-ratio: 4 / 5; margin: 0 auto;
+    background: linear-gradient(160deg, #f1e9df, #e2d4c8); box-shadow: 0 18px 40px rgba(81,66,59,0.15);
+}
+.about-photo--arch { border-radius: 999px 999px 26px 26px; }
+.about-photo--arch::after {
+    content: ""; position: absolute; inset: 12px -12px -12px 12px; z-index: -1;
+    border: 1px solid var(--a-mauve); border-radius: 999px 999px 26px 26px; opacity: 0.7;
+}
+.about-photo--round { border-radius: 26px; }
+.about-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; border-radius: inherit; }
+.about-ph {
+    display: none; position: absolute; inset: 0; flex-direction: column; align-items: center; justify-content: center;
+    gap: 6px; text-align: center; font-size: 13px; letter-spacing: 1px; color: #9a8a82;
+}
+.about-ph b { font-size: 32px; font-weight: 400; color: var(--a-mauve); }
+.about-photo.no-photo img { display: none; }
+.about-photo.no-photo .about-ph { display: flex; }
 
-        .tarot-content { text-align: center; }
-        .tarot-content p { margin: 0 0 22px; font-size: 15px; color: var(--text-body); line-height: 2; }
-        .quote {
-            margin-top: 35px; padding: 25px 20px; font-size: 20px; letter-spacing: 2px; color: #756b62;
-            border-top: 1px solid var(--line-strong); border-bottom: 1px solid var(--line-strong);
-        }
+/* ---------- A. 主視覺（精簡高度） ---------- */
+@keyframes about-rise { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+.about-hero { background: linear-gradient(160deg, var(--a-cream) 0%, var(--a-sand) 100%); padding: 38px 0 48px; overflow: hidden; }
+.about-hero .about-wrap { display: grid; gap: 34px; }
+.about-hero-text { animation: about-rise 0.8s ease both; }
+.about-hero h1 { font-size: 25px; line-height: 1.6; letter-spacing: 0; margin: 10px 0 14px; }
+.about-nb { display: inline-block; }
+.about-hero-text p { font-size: 15.5px; line-height: 2; color: var(--a-soft); max-width: 520px; }
 
-        .values { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
-        .value-card {
-            background: var(--card); border: 1px solid var(--line); border-radius: 18px;
-            padding: 35px 25px; text-align: center; transition: transform 0.3s, box-shadow 0.3s;
-        }
-        .value-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-soft); }
-        .value-icon { font-size: 32px; margin-bottom: 12px; }
-        .value-card h3 { margin: 5px 0 12px; font-size: 19px; font-weight: 400; color: #68615a; }
-        .value-card p { margin: 0; font-size: 14px; color: var(--text-muted); }
+/* ---------- B. 我的故事 ---------- */
+.about-story { background: var(--a-cream); padding: 60px 0; }
+.about-story .about-wrap { display: grid; gap: 28px; }
+.about-story-photo { display: none; }
+.about-story h3 { font-size: 24px; letter-spacing: 2px; margin-bottom: 18px; }
+.about-story-text p { font-size: 16px; line-height: 2.1; color: #5e4f47; margin-bottom: 16px; }
+.about-story-text p:last-child { margin-bottom: 0; }
 
-        .service-content { max-width: 850px; margin: auto; }
-        .service-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
-        .service-item { background: rgba(255,253,249,0.9); border: 1px solid #e7ded4; border-radius: 16px; padding: 25px; }
-        .service-item h3 { margin: 0 0 8px; font-size: 18px; font-weight: 400; color: #68615a; }
-        .service-item p { margin: 0; font-size: 14px; color: #8d857d; }
+/* ---------- C. 我與塔羅 ---------- */
+.about-tarot { background: var(--a-mauve-soft); padding: 64px 0; }
+.about-tarot-body { max-width: 720px; margin: 0 auto; text-align: center; }
+.about-tarot-body p { font-size: 16px; line-height: 2.1; color: #5e4f47; margin-bottom: 14px; }
+.about-quote {
+    position: relative; margin: 34px auto 0; padding: 30px 22px; background: #fff; border-radius: 22px;
+    box-shadow: 0 10px 30px rgba(81,66,59,0.08); font-size: 21px; line-height: 1.8; letter-spacing: 2px; color: var(--a-brown);
+}
+.about-quote::before { content: "✦"; display: block; margin-bottom: 8px; font-size: 16px; color: var(--a-mauve); }
 
-        @media (max-width: 800px) {
-            .story p { font-size: 14px; line-height: 2; }
-            .values { grid-template-columns: 1fr; gap: 16px; }
-            .service-list { grid-template-columns: 1fr; gap: 15px; }
-            .quote { font-size: 17px; }
-        }
-    </style>
+/* ---------- D. 我的理念 ---------- */
+.about-beliefs { background: var(--a-cream); padding: 64px 0; }
+.about-beliefs-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
+.about-card {
+    display: flex; flex-direction: column; gap: 10px; padding: 28px 24px; background: #fff;
+    border: 1px solid var(--a-line); border-radius: 20px; box-shadow: 0 6px 20px rgba(81,66,59,0.06);
+    transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+}
+.about-card:hover { transform: translateY(-5px); border-color: var(--a-mauve); box-shadow: 0 14px 32px rgba(81,66,59,0.11); }
+.about-card-icon {
+    width: 56px; height: 56px; border-radius: 50%; background: var(--a-sand);
+    display: flex; align-items: center; justify-content: center; font-size: 26px; line-height: 1;
+}
+.about-card h3 { font-size: 19px; letter-spacing: 1px; }
+.about-card p { font-size: 14.5px; line-height: 1.9; color: var(--a-soft); }
+.about-card-go { margin-top: auto; padding-top: 6px; font-size: 14px; color: var(--a-mauve-dark); }
+
+/* ---------- E. 我能陪你做什麼 ---------- */
+.about-services { background: var(--a-sand); padding: 64px 0; }
+.about-services-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
+
+/* ---------- F. 預約引導（深咖啡色） ---------- */
+.about-cta { background: var(--a-brown); padding: 64px 20px; text-align: center; }
+.about-cta .about-mark { display: block; margin-bottom: 10px; font-size: 20px; color: var(--a-mauve); }
+.about-cta h2 { font-size: 26px; letter-spacing: 3px; color: var(--a-cream); }
+.about-cta p { margin: 12px auto 28px; max-width: 460px; font-size: 15px; line-height: 1.95; color: #E6DBD0; }
+.about-btn {
+    display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 12px 34px;
+    border-radius: 999px; font-size: 15px; letter-spacing: 1px; background: var(--a-cream); color: var(--a-brown);
+    border: 1px solid var(--a-cream); transition: transform 0.3s, background 0.3s, box-shadow 0.3s;
+}
+.about-btn:hover { background: #fff; transform: translateY(-2px); box-shadow: 0 10px 24px rgba(0,0,0,0.25); }
+.about-cta .about-btn:focus-visible { outline-color: #fff; }
+
+/* ---------- 平板 ---------- */
+@media (min-width: 560px) {
+    .about-services-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 720px) {
+    .about-beliefs-grid { grid-template-columns: repeat(3, 1fr); gap: 20px; }
+}
+/* ---------- 桌機 ---------- */
+@media (min-width: 900px) {
+    .about-wrap { padding: 0 25px; }
+    .about-hero { padding: 54px 0 62px; }
+    .about-hero .about-wrap { grid-template-columns: 1.15fr 0.85fr; gap: 64px; align-items: center; }
+    .about-hero h1 { font-size: 38px; letter-spacing: 1px; }
+    .about-photo { width: min(100%, 270px); }
+    .about-story, .about-tarot, .about-beliefs, .about-services { padding: 84px 0; }
+    .about-cta { padding: 84px 25px; }
+    .about-head { margin-bottom: 40px; }
+    .about-head h2 { font-size: 30px; }
+    .about-story .about-wrap { grid-template-columns: 0.75fr 1.25fr; gap: 72px; align-items: center; }
+    .about-story-photo { display: block; }
+    .about-story .about-photo { width: min(100%, 320px); }
+    .about-services-grid { grid-template-columns: repeat(4, 1fr); gap: 20px; }
+    .about-quote { font-size: 24px; padding: 36px 30px; }
+    .about-cta h2 { font-size: 30px; }
+}
+</style>
 </head>
 
 <body>
@@ -280,25 +373,40 @@ footer .copyright { font-size: 11px; color: #9c948b; }
     </div>
 </header>
 
-<section class="page-hero">
-    <div class="page-hero-content">
-        <div class="page-symbol" aria-hidden="true">🌿</div>
-        <h1>關於我</h1>
-        <div class="english">About Me</div>
-        <div class="page-line"></div>
-        <p>認識靖靖，也認識這段與自己重新相遇的旅程。</p>
-    </div>
-</section>
+<main id="main" class="about-page">
 
-<main id="main">
-
-    <section class="story-section">
-        <div class="section">
-            <div class="section-title">
-                <h2>我的故事</h2>
-                <p>My Story</p>
+    <!-- A. 主視覺 -->
+    <section class="about-hero" aria-labelledby="about-hero-title">
+        <div class="about-wrap">
+            <div class="about-hero-text">
+                <span class="about-eyebrow">關於我 About Me</span>
+                <h1 id="about-hero-title"><span class="about-nb">每一段迷惘，</span><span class="about-nb">都是重新認識自己的開始。</span></h1>
+                <p>認識靖靖，也認識這段與自己重新相遇的旅程。</p>
             </div>
-            <div class="story">
+            <!-- 形象照：images/jingjing.jpg（沒有照片時會顯示提示框，不會破圖） -->
+            <div class="about-photo about-photo--arch">
+                <img src="images/jingjing.jpg" alt="靖靖塔羅 靖靖的形象照" width="800" height="1000" fetchpriority="high" decoding="async"
+                     onerror="this.closest('.about-photo').classList.add('no-photo')">
+                <div class="about-ph"><b aria-hidden="true">✦</b>形象照<br>images/jingjing.jpg</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- B. 我的故事 -->
+    <section class="about-story" aria-labelledby="about-story-title">
+        <div class="about-wrap">
+            <div class="about-story-photo">
+                <div class="about-photo about-photo--round">
+                    <img src="images/jingjing.jpg" alt="靖靖塔羅 靖靖" width="800" height="1000" loading="lazy" decoding="async"
+                         onerror="this.closest('.about-photo').classList.add('no-photo')">
+                    <div class="about-ph"><b aria-hidden="true">✦</b>形象照<br>images/jingjing.jpg</div>
+                </div>
+            </div>
+            <div class="about-story-text">
+                <div class="about-head" style="text-align:left;margin-bottom:22px">
+                    <h2 id="about-story-title">我的故事</h2>
+                    <p>My Story</p>
+                </div>
                 <h3>嗨，我是靖靖</h3>
                 <p>曾經的我，也在生活裡忙碌著，努力完成每一件該做的事，卻漸漸忘了聽見自己的聲音。</p>
                 <p>一次人生的轉折，讓我開始接觸塔羅、生命靈數與身心靈療癒，也開始重新認識自己。</p>
@@ -308,40 +416,42 @@ footer .copyright { font-size: 11px; color: #9c948b; }
         </div>
     </section>
 
-    <section class="tarot-section">
-        <div class="section">
-            <div class="section-title">
-                <h2>我與塔羅</h2>
+    <!-- C. 我與塔羅 -->
+    <section class="about-tarot" aria-labelledby="about-tarot-title">
+        <div class="about-wrap">
+            <div class="about-head">
+                <h2 id="about-tarot-title">我與塔羅</h2>
                 <p>My Journey with Tarot</p>
             </div>
-            <div class="tarot-content">
+            <div class="about-tarot-body">
                 <p>對我來說，塔羅並不是預言未來的工具，而是一個可以讓我們停下來，好好看看自己的方式。</p>
                 <p>當生活裡有些事情讓人迷惘，我們有時候並不是沒有答案，而是被太多聲音包圍，暫時聽不見自己真正的想法。</p>
                 <p>透過牌卡與對話，我希望陪你整理現在的心情，看見不同的角度，也重新找回屬於自己的方向。</p>
-                <blockquote class="quote">「牌卡不是替你決定，而是陪你看見。」</blockquote>
+                <blockquote class="about-quote">「牌卡不是替你決定，而是陪你看見。」</blockquote>
             </div>
         </div>
     </section>
 
-    <section class="values-section">
-        <div class="section">
-            <div class="section-title">
-                <h2>我的理念</h2>
+    <!-- D. 我的理念 -->
+    <section class="about-beliefs" aria-labelledby="about-beliefs-title">
+        <div class="about-wrap">
+            <div class="about-head">
+                <h2 id="about-beliefs-title">我的理念</h2>
                 <p>What I Believe</p>
             </div>
-            <div class="values">
-                <div class="value-card">
-                    <div class="value-icon" aria-hidden="true">🌿</div>
+            <div class="about-beliefs-grid">
+                <div class="about-card">
+                    <span class="about-card-icon" aria-hidden="true">🌿</span>
                     <h3>陪伴</h3>
                     <p>不急著替你找到答案，而是陪你慢慢整理，聽見自己的聲音。</p>
                 </div>
-                <div class="value-card">
-                    <div class="value-icon" aria-hidden="true">✨</div>
+                <div class="about-card">
+                    <span class="about-card-icon" aria-hidden="true">✨</span>
                     <h3>覺察</h3>
                     <p>透過牌卡與對話，看見當下的自己，找到新的思考角度。</p>
                 </div>
-                <div class="value-card">
-                    <div class="value-icon" aria-hidden="true">🤍</div>
+                <div class="about-card">
+                    <span class="about-card-icon" aria-hidden="true">🤍</span>
                     <h3>尊重</h3>
                     <p>每個人的人生都有自己的步調，我尊重你的選擇，也相信你擁有自己的答案。</p>
                 </div>
@@ -349,39 +459,47 @@ footer .copyright { font-size: 11px; color: #9c948b; }
         </div>
     </section>
 
-    <section class="service-section">
-        <div class="section">
-            <div class="section-title">
-                <h2>我能陪你做什麼</h2>
+    <!-- E. 我能陪你做什麼 -->
+    <section class="about-services" aria-labelledby="about-services-title">
+        <div class="about-wrap">
+            <div class="about-head">
+                <h2 id="about-services-title">我能陪你做什麼</h2>
                 <p>How I Can Support You</p>
             </div>
-            <div class="service-content">
-                <div class="service-list">
-                    <div class="service-item">
-                        <h3><span aria-hidden="true">🔮</span> 塔羅占卜</h3>
-                        <p>當你對工作、感情、人際關係或生活方向感到迷惘時，透過牌卡整理當下的想法與可能性。</p>
-                    </div>
-                    <div class="service-item">
-                        <h3><span aria-hidden="true">✨</span> 生命靈數</h3>
-                        <p>從數字的角度認識自己，看見個人特質、生命課題與不同的可能。</p>
-                    </div>
-                    <div class="service-item">
-                        <h3><span aria-hidden="true">🌙</span> 身心靈探索</h3>
-                        <p>給自己一點時間與空間，在忙碌的生活裡重新整理內在的聲音。</p>
-                    </div>
-                    <div class="service-item">
-                        <h3><span aria-hidden="true">💎</span> 身心靈產品</h3>
-                        <p>挑選自己喜歡的身心靈產品與設計，讓一份小小的日常陪伴，成為生活中的溫柔提醒。</p>
-                    </div>
+            <div class="about-services-grid">
+                <a class="about-card" href="service.html">
+                    <span class="about-card-icon" aria-hidden="true">🔮</span>
+                    <h3>塔羅占卜</h3>
+                    <p>當你對工作、感情、人際關係或生活方向感到迷惘時，透過牌卡整理當下的想法與可能性。</p>
+                    <span class="about-card-go">了解更多 →</span>
+                </a>
+                <a class="about-card" href="tarotcard.html">
+                    <span class="about-card-icon" aria-hidden="true">✨</span>
+                    <h3>生命靈數</h3>
+                    <p>從數字的角度認識自己，看見個人特質、生命課題與不同的可能。</p>
+                    <span class="about-card-go">線上試算 →</span>
+                </a>
+                <div class="about-card">
+                    <span class="about-card-icon" aria-hidden="true">🌙</span>
+                    <h3>身心靈探索</h3>
+                    <p>給自己一點時間與空間，在忙碌的生活裡重新整理內在的聲音。</p>
                 </div>
+                <a class="about-card" href="crystal.html">
+                    <span class="about-card-icon" aria-hidden="true">💎</span>
+                    <h3>身心靈產品</h3>
+                    <p>挑選自己喜歡的身心靈產品與設計，讓一份小小的日常陪伴，成為生活中的溫柔提醒。</p>
+                    <span class="about-card-go">了解更多 →</span>
+                </a>
             </div>
         </div>
     </section>
 
-    <section class="cta">
-        <h2>想和自己聊聊嗎？</h2>
+    <!-- F. 預約引導 -->
+    <section class="about-cta" aria-labelledby="about-cta-title">
+        <span class="about-mark" aria-hidden="true">✦</span>
+        <h2 id="about-cta-title">想和自己聊聊嗎？</h2>
         <p>如果你正處在人生的一個轉折點，歡迎來找靖靖聊聊。</p>
-        <a href="https://cal.com/jing9562939/15min?user=jing9562939" class="cta-button" target="_blank" rel="noopener noreferrer">立即線上預約</a>
+        <a class="about-btn" href="https://cal.com/jing9562939/15min?user=jing9562939" target="_blank" rel="noopener noreferrer">立即線上預約</a>
     </section>
 
 </main>
@@ -389,8 +507,7 @@ footer .copyright { font-size: 11px; color: #9c948b; }
 <footer>
     <div class="brand">靖靖塔羅 JingJing Tarot</div>
     <div class="social">
-        <!-- 之後把 # 改成你的 LINE 網址 -->
-        <a href="#">LINE</a> |
+        <a href="https://liff.line.me/1645278921-kWRPP32q/?accountId=531eukcu" target="_blank" rel="noopener noreferrer">LINE</a> |
         <a href="https://www.instagram.com/jing9562939/" target="_blank" rel="noopener noreferrer">Instagram</a>
     </div>
     <div class="copyright">© 2026 JingJing Tarot. All Rights Reserved.</div>
