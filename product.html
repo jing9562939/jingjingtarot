@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>身心靈創作空間｜靖靖塔羅 JingJing Tarot</title>
+    <meta name="description" content="靖靖塔羅身心靈創作空間：水晶設計與客製、水晶 DIY 手作教室、生命靈數初階與進階教學。">
+    <meta name="theme-color" content="#f7f3ed">
+    <link rel="canonical" href="https://jing9562939.github.io/jingjingtarot/product.html">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="身心靈創作空間｜靖靖塔羅 JingJing Tarot">
+    <meta property="og:description" content="水晶設計、水晶 DIY 手作教室、生命靈數教學。">
+    <meta property="og:url" content="https://jing9562939.github.io/jingjingtarot/product.html">
+
+    <style>
+/* ===== 全站共用樣式（已內嵌在此頁，不需要另外上傳 style.css） ===== */
+/* =====================================================
+   靖靖塔羅 JingJing Tarot｜全站共用樣式
+===================================================== */
+
+/* ---------- 色彩與常用數值（改這裡，全站同步） ---------- */
+:root {
+    --bg:            #f7f3ed;
+    --bg-soft:       #f5f0e9;
+    --bg-sand:       #eee8df;
+    --bg-sand-2:     #f2ede6;
+    --bg-paper:      #fffdf9;
+    --card:          rgba(255, 253, 249, 0.85);
+    --line:          #e8e0d7;
+    --line-strong:   #d8cec2;
+
+    --text:          #5f5a55;
+    --text-heading:  #625d57;
+    --text-body:     #766f68;
+    --text-muted:    #938a81;
+    --text-faint:    #a0988f;
+
+    --accent:        #8c8379;
+    --accent-dark:   #6f675f;
+
+    --shadow-soft:   0 10px 30px rgba(100, 90, 80, 0.08);
+    --max-width:     1100px;
+    --font:          "Noto Sans TC", "Microsoft JhengHei", "PingFang TC", sans-serif;
+}
+
+
+/* ---------- 基本設定 ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+    margin: 0;
+    font-family: var(--font);
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.8;
+}
+
+a { text-decoration: none; color: inherit; }
+
+img { max-width: 100%; height: auto; }
+
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+/* 鍵盤使用者可略過導覽列 */
+.skip-link {
+    position: absolute; left: -9999px; top: 0;
+    background: var(--accent); color: #fff; padding: 8px 16px; z-index: 2000;
+}
+.skip-link:focus { left: 10px; top: 10px; }
+
+
+/* ---------- 導覽列 ---------- */
+header {
+    background: rgba(255, 253, 249, 0.96);
+    border-bottom: 1px solid #e8e0d6;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-container {
+    max-width: var(--max-width);
+    margin: auto;
+    padding: 16px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: 500;
+    color: #716c66;
+    letter-spacing: 1px;
+    white-space: nowrap;
+}
+.logo span {
+    display: block;
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: #a39a90;
+    margin-top: -4px;
+}
+
+nav { display: flex; gap: 5px; flex-wrap: wrap; justify-content: center; }
+nav a {
+    padding: 8px 12px;
+    font-size: 14px;
+    color: #77716a;
+    border-radius: 20px;
+    transition: background 0.3s, color 0.3s;
+}
+nav a:hover,
+nav a[aria-current="page"] { background: #eee6dc; color: #59534d; }
+
+
+/* ---------- 頁面主視覺（內頁） ---------- */
+.page-hero {
+    min-height: 360px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 70px 20px;
+    background: radial-gradient(circle at 50% 30%, #fffdf9 0%, #f8f3ec 55%, #eee7dd 100%);
+}
+.page-hero-content { max-width: 760px; }
+.page-symbol { font-size: 40px; margin-bottom: 12px; }
+.page-hero h1 {
+    margin: 0;
+    font-size: 42px;
+    font-weight: 400;
+    letter-spacing: 5px;
+    color: var(--text-heading);
+}
+.page-hero .english { margin-top: 5px; font-size: 15px; letter-spacing: 4px; color: #9b938a; }
+.page-line { width: 60px; height: 1px; background: #bdb3a8; margin: 25px auto; }
+.page-hero p { margin: 0; font-size: 15px; color: #918980; }
+
+
+/* ---------- 共用區塊 ---------- */
+.section { max-width: var(--max-width); margin: auto; padding: 85px 25px; }
+
+.section-title { text-align: center; margin-bottom: 50px; }
+.section-title h2 {
+    margin: 0;
+    font-size: 28px;
+    font-weight: 400;
+    letter-spacing: 3px;
+    color: #665f58;
+}
+.section-title p { margin: 8px 0 0; color: var(--text-faint); font-size: 14px; }
+
+
+/* ---------- 預約 CTA ---------- */
+.cta { text-align: center; background: var(--bg-soft); padding: 90px 20px; }
+.cta h2 { margin: 0 0 12px; font-size: 28px; font-weight: 400; letter-spacing: 3px; color: #655e57; }
+.cta p { color: #928980; font-size: 14px; margin: 0 0 25px; }
+
+.cta-button {
+    display: inline-block;
+    padding: 12px 32px;
+    border-radius: 30px;
+    background: var(--accent);
+    color: #fff;
+    font-size: 14px;
+    transition: background 0.3s, transform 0.3s;
+}
+.cta-button:hover { background: var(--accent-dark); transform: translateY(-2px); }
+
+
+/* ---------- Footer ---------- */
+footer {
+    background: #e4ddd4;
+    text-align: center;
+    padding: 35px 20px;
+    color: #817970;
+    font-size: 13px;
+}
+footer .brand { font-size: 18px; letter-spacing: 2px; margin-bottom: 8px; }
+footer .social { margin: 15px 0; }
+footer .social a { margin: 0 10px; }
+footer .social a:hover { color: #5f574f; }
+footer .copyright { font-size: 11px; color: #9c948b; }
+
+
+/* ---------- 手機版 ---------- */
+@media (max-width: 800px) {
+    .nav-container { flex-direction: column; padding: 15px 15px 10px; }
+    nav { gap: 2px; }
+    nav a { font-size: 13px; padding: 6px 8px; }
+
+    .page-hero { min-height: 320px; padding: 60px 20px; }
+    .page-hero h1 { font-size: 34px; letter-spacing: 3px; }
+    .page-hero .english { font-size: 13px; }
+
+    .section { padding: 65px 20px; }
+    .section-title { margin-bottom: 35px; }
+}
+
+
+/* ---------- 減少動態（系統設定為「減少動態效果」時） ---------- */
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { transition: none !important; animation: none !important; }
+}
+
+
+/* ---------- 行程類別標籤（首頁「最新公告」與課程訊息頁共用） ---------- */
+.tag { display: inline-block; padding: 1px 12px; border-radius: 20px; font-size: 12px; line-height: 1.7; white-space: nowrap; }
+.tag.market { background: #f0dccb; color: #8a5a3a; }   /* 擺攤 */
+.tag.study  { background: #dfe3f0; color: #56608a; }   /* 進修 */
+.tag.teach  { background: #dbe6d8; color: #4f6b4a; }   /* 教學 */
+.tag.trip   { background: #f2dde0; color: #94505a; }   /* 員工旅遊 */
+
+</style>
+<style>
+/* =====================================================
+   身心靈創作空間 專屬樣式（全部使用 cr- 前綴，不影響 Header 與其他頁面）
+   配色沿用首頁；三大區塊用鼠尾草綠、柔霧紫、暖米色做底色區隔
+===================================================== */
+.cr-page {
+    --c-cream: #FAF7F2; --c-sand: #EEE5DC; --c-mauve: #A58A94; --c-mauve-dark: #7A5F6D; --c-brown: #51423B;
+    --c-soft: #7A6A62; --c-line: #E6DBD0;
+    --c-sage: #D9D8CA; --c-sage-soft: #EEEDE5; --c-lilac: #DCD4DF; --c-lilac-soft: #F2EEF4;
+    background: var(--c-cream); color: var(--c-brown);
+}
+.cr-page *, .cr-page *::before, .cr-page *::after { box-sizing: border-box; }
+.cr-page h1, .cr-page h2, .cr-page h3, .cr-page h4 { margin: 0; font-weight: 500; color: var(--c-brown); }
+.cr-page p { margin: 0; }
+.cr-page ul, .cr-page ol { margin: 0; padding: 0; list-style: none; }
+.cr-page a:focus-visible, .cr-page button:focus-visible { outline: 3px solid var(--c-mauve-dark); outline-offset: 3px; border-radius: 8px; }
+.cr-wrap { width: 100%; max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+.cr-eyebrow { display: block; font-size: 13px; letter-spacing: 3px; color: var(--c-mauve-dark); }
+.cr-todo { display: inline-block; padding: 0 10px; border-radius: 999px; font-size: 12px; line-height: 1.8; background: #F3E3E6; color: #94505A; }
+
+/* ---------- 按鈕 ---------- */
+.cr-btns { display: flex; flex-wrap: wrap; gap: 12px; }
+.cr-btn {
+    display: inline-flex; align-items: center; justify-content: center; min-height: 46px; padding: 11px 26px; border-radius: 999px;
+    font-size: 15px; letter-spacing: 1px; font-family: inherit; cursor: pointer; border: 1px solid var(--c-brown);
+    transition: transform 0.3s, background 0.3s, box-shadow 0.3s, color 0.3s;
+}
+.cr-btn--main { background: var(--c-brown); color: #fff; }
+.cr-btn--main:hover { background: #3d322c; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(81,66,59,0.22); }
+.cr-btn--sub { background: rgba(255,255,255,0.65); color: var(--c-brown); border-color: var(--c-mauve); }
+.cr-btn--sub:hover { background: #fff; border-color: var(--c-mauve-dark); transform: translateY(-2px); }
+.cr-btn--block { width: 100%; }
+
+/* ---------- 圖片（統一比例，沒有圖片時顯示占位框） ---------- */
+.cr-img { position: relative; overflow: hidden; border-radius: 18px; background: linear-gradient(160deg, #f1e9df, #e4d8cc); }
+.cr-img--45 { aspect-ratio: 4 / 5; }
+.cr-img--43 { aspect-ratio: 4 / 3; }
+.cr-img--11 { aspect-ratio: 1 / 1; }
+.cr-img--54 { aspect-ratio: 5 / 4; }
+.cr-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.cr-img .cr-ph {
+    display: none; position: absolute; inset: 0; flex-direction: column; align-items: center; justify-content: center; gap: 4px;
+    text-align: center; font-size: 13px; letter-spacing: 1px; color: #9a8a82; padding: 8px;
+}
+.cr-img .cr-ph b { font-size: 28px; font-weight: 400; color: var(--c-mauve); }
+.cr-img.no-img img { display: none; }
+.cr-img.no-img .cr-ph { display: flex; }
+
+/* ---------- 區塊標題 ---------- */
+.cr-head { margin-bottom: 30px; }
+.cr-head--center { text-align: center; }
+.cr-no { display: block; font-size: 13px; letter-spacing: 3px; color: var(--c-mauve-dark); }
+.cr-head h2 { margin-top: 4px; font-size: 26px; letter-spacing: 2px; line-height: 1.5; }
+.cr-head .cr-en { display: block; margin-top: 2px; font-size: 13px; letter-spacing: 3px; color: var(--c-mauve-dark); text-transform: uppercase; }
+.cr-head p { margin-top: 12px; font-size: 15.5px; line-height: 2; color: var(--c-soft); max-width: 640px; }
+.cr-head--center p { margin-left: auto; margin-right: auto; }
+.cr-modes { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+.cr-head--center .cr-modes { justify-content: center; }
+.cr-mode { padding: 4px 14px; border-radius: 999px; font-size: 13px; letter-spacing: 1px; background: rgba(255,255,255,0.7); border: 1px solid var(--c-line); color: var(--c-mauve-dark); }
+.cr-sub { margin: 0 0 18px; padding-left: 12px; border-left: 3px solid var(--c-mauve); font-size: 20px; letter-spacing: 2px; line-height: 1.5; }
+
+/* ---------- 主視覺 ---------- */
+@keyframes cr-rise { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+.cr-hero { background: linear-gradient(160deg, var(--c-cream) 0%, var(--c-sand) 100%); padding: 38px 0 46px; overflow: hidden; }
+.cr-hero .cr-wrap { display: grid; gap: 30px; }
+.cr-hero-text { animation: cr-rise 0.8s ease both; }
+.cr-hero h1 { margin: 10px 0 14px; font-size: 28px; letter-spacing: 2px; line-height: 1.5; }
+.cr-hero-lead { font-size: 15.5px; line-height: 2; color: var(--c-soft); max-width: 540px; }
+.cr-hero-pos { margin-top: 10px; font-size: 14.5px; line-height: 1.9; color: var(--c-soft); max-width: 540px; }
+.cr-hero .cr-btns { margin-top: 22px; }
+.cr-jump { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+.cr-jump a { padding: 6px 16px; border-radius: 999px; font-size: 14px; letter-spacing: 1px; color: var(--c-brown); background: rgba(255,255,255,0.6); border: 1px solid var(--c-line); transition: background 0.3s, border-color 0.3s; }
+.cr-jump a:hover { background: #fff; border-color: var(--c-mauve); }
+.cr-hero-img { animation: cr-rise 1s 0.15s ease both; box-shadow: 0 20px 44px rgba(81,66,59,0.14); }
+
+/* ---------- 三大區塊底色 ---------- */
+.cr-zone { padding: 60px 0; }
+.cr-zone--design { background: var(--c-cream); }
+.cr-zone--diy { background: var(--c-sage-soft); }
+.cr-zone--num { background: var(--c-lilac-soft); }
+
+/* ---------- 一、水晶設計 ---------- */
+.cr-series { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 22px; }
+.cr-series button {
+    padding: 8px 18px; border-radius: 999px; font-size: 14px; letter-spacing: 1px; font-family: inherit; cursor: pointer;
+    background: rgba(255,255,255,0.7); color: var(--c-brown); border: 1px solid var(--c-line); transition: 0.25s;
+}
+.cr-series button:hover { border-color: var(--c-mauve); background: #fff; }
+.cr-series button[aria-pressed="true"] { background: var(--c-brown); border-color: var(--c-brown); color: #fff; }
+.cr-works { display: grid; grid-template-columns: 1fr; gap: 20px; }
+.cr-work { display: flex; flex-direction: column; background: #fff; border: 1px solid var(--c-line); border-radius: 20px; overflow: hidden; box-shadow: 0 6px 20px rgba(81,66,59,0.06); transition: transform 0.3s, box-shadow 0.3s; }
+.cr-work:hover { transform: translateY(-5px); box-shadow: 0 14px 30px rgba(81,66,59,0.12); }
+.cr-work .cr-img { border-radius: 0; }
+.cr-work-body { display: flex; flex-direction: column; gap: 6px; padding: 18px 18px 20px; flex: 1; }
+.cr-work-series { font-size: 12.5px; letter-spacing: 2px; color: var(--c-mauve-dark); }
+.cr-work h3 { font-size: 19px; line-height: 1.5; }
+.cr-work dl { margin: 4px 0 0; display: grid; gap: 4px; font-size: 14px; line-height: 1.7; color: var(--c-soft); }
+.cr-work dl div { display: flex; gap: 10px; }
+.cr-work dt { flex: none; width: 62px; color: var(--c-mauve-dark); }
+.cr-work dd { margin: 0; min-width: 0; }
+.cr-work-price { margin-top: auto; padding-top: 8px; font-size: 18px; letter-spacing: 0.5px; }
+.cr-work .cr-btn { margin-top: 10px; }
+.cr-empty { grid-column: 1 / -1; padding: 28px; text-align: center; font-size: 14.5px; color: var(--c-soft); background: #fff; border: 1px dashed var(--c-mauve); border-radius: 18px; }
+
+/* 客製化 */
+.cr-custom { margin-top: 56px; padding: 30px 22px; border-radius: 24px; background: var(--c-sand); display: grid; gap: 28px; }
+.cr-custom h3 { font-size: 24px; letter-spacing: 2px; line-height: 1.5; margin-top: 4px; }
+.cr-custom-text p { margin: 12px 0 22px; font-size: 15.5px; line-height: 2; color: #5e4f47; }
+.cr-steps { counter-reset: st; display: grid; gap: 0; }
+.cr-steps li { counter-increment: st; position: relative; padding: 0 0 22px 52px; font-size: 15.5px; line-height: 1.8; }
+.cr-steps li:last-child { padding-bottom: 0; }
+.cr-steps li::before {
+    content: counter(st); position: absolute; left: 0; top: 0; width: 34px; height: 34px; border-radius: 50%;
+    background: #fff; border: 1px solid var(--c-mauve); color: var(--c-mauve-dark); display: flex; align-items: center; justify-content: center; font-size: 14px;
+}
+.cr-steps li::after { content: ""; position: absolute; left: 17px; top: 38px; bottom: 4px; width: 1px; background: var(--c-mauve); opacity: 0.5; }
+.cr-steps li:last-child::after { display: none; }
+
+/* ---------- 二、DIY 手作教室 ---------- */
+.cr-courses { display: grid; gap: 22px; }
+.cr-course { display: grid; gap: 18px; padding: 18px; background: #fff; border: 1px solid var(--c-line); border-radius: 22px; box-shadow: 0 6px 20px rgba(81,66,59,0.06); }
+.cr-course-tag { display: inline-block; align-self: flex-start; padding: 2px 12px; border-radius: 999px; font-size: 12.5px; letter-spacing: 1px; background: var(--c-sage); color: #55574a; }
+.cr-course h3 { margin-top: 8px; font-size: 22px; letter-spacing: 1px; line-height: 1.5; }
+.cr-course-intro { margin-top: 8px; font-size: 15.5px; line-height: 1.95; color: var(--c-soft); }
+.cr-learn { margin-top: 14px; display: grid; gap: 6px; font-size: 15px; }
+.cr-learn li { position: relative; padding-left: 22px; }
+.cr-learn li::before { content: "✓"; position: absolute; left: 0; color: var(--c-mauve-dark); font-size: 13px; top: 1px; }
+.cr-info { margin: 16px 0 0; display: grid; grid-template-columns: 1fr 1fr; gap: 8px 16px; font-size: 14px; line-height: 1.7; }
+.cr-info div { display: flex; flex-direction: column; padding: 8px 12px; background: var(--c-cream); border-radius: 12px; }
+.cr-info dt { font-size: 12.5px; letter-spacing: 1px; color: var(--c-mauve-dark); }
+.cr-info dd { margin: 0; color: var(--c-brown); }
+.cr-course .cr-btns { margin-top: 18px; }
+
+.cr-students { margin-top: 56px; }
+.cr-student-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+.cr-student { margin: 0; }
+.cr-student figcaption { margin-top: 8px; font-size: 13.5px; line-height: 1.7; color: var(--c-soft); }
+.cr-student figcaption b { display: block; font-weight: 500; color: var(--c-brown); }
+.cr-diy-cta { margin-top: 36px; text-align: center; }
+.cr-diy-cta p { margin-bottom: 14px; font-size: 15px; color: var(--c-soft); }
+.cr-diy-cta .cr-btns { justify-content: center; }
+
+/* ---------- 三、生命靈數教學 ---------- */
+.cr-path { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; margin-bottom: 30px; font-size: 14.5px; }
+.cr-path span { padding: 6px 16px; border-radius: 999px; background: #fff; border: 1px solid var(--c-lilac); color: var(--c-brown); }
+.cr-path i { font-style: normal; color: var(--c-mauve-dark); }
+.cr-levels { display: grid; gap: 20px; }
+.cr-level { padding: 24px 22px; background: #fff; border: 1px solid var(--c-lilac); border-radius: 22px; display: flex; flex-direction: column; }
+.cr-level h3 { font-size: 22px; letter-spacing: 1px; line-height: 1.5; }
+.cr-target { margin-top: 10px; font-size: 14.5px; line-height: 1.9; color: var(--c-soft); }
+.cr-target b { font-weight: 500; color: var(--c-mauve-dark); }
+.cr-syl-title { margin: 18px 0 8px; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; font-size: 14px; letter-spacing: 2px; color: var(--c-mauve-dark); }
+.cr-syl { counter-reset: sy; display: grid; gap: 8px; font-size: 15px; line-height: 1.7; }
+.cr-syl li { counter-increment: sy; position: relative; padding-left: 30px; }
+.cr-syl li::before { content: counter(sy); position: absolute; left: 0; top: 2px; width: 20px; height: 20px; border-radius: 50%; background: var(--c-lilac-soft); color: var(--c-mauve-dark); font-size: 12px; display: flex; align-items: center; justify-content: center; }
+.cr-level .cr-info div, .cr-package .cr-info div { background: var(--c-lilac-soft); }
+.cr-level .cr-btn { margin-top: 20px; }
+.cr-package { margin-top: 20px; padding: 26px 22px; border-radius: 24px; background: linear-gradient(160deg, #fff 0%, var(--c-lilac) 220%); border: 1px solid var(--c-mauve); display: grid; gap: 22px; }
+.cr-package h3 { font-size: 24px; letter-spacing: 1px; line-height: 1.5; }
+.cr-package-intro { margin-top: 8px; font-size: 15.5px; line-height: 1.95; color: var(--c-soft); }
+.cr-includes { margin-top: 14px; display: grid; gap: 6px; font-size: 15px; }
+.cr-includes li { position: relative; padding-left: 22px; }
+.cr-includes li::before { content: "✦"; position: absolute; left: 0; color: var(--c-mauve); font-size: 12px; top: 3px; }
+.cr-signup-note { margin-top: 26px; text-align: center; font-size: 14px; color: var(--c-soft); }
+
+/* ---------- 品牌理念 ---------- */
+.cr-story { background: var(--c-sand); padding: 64px 0; }
+.cr-story .cr-wrap { display: grid; gap: 30px; align-items: center; }
+.cr-story h2 { margin: 6px 0 16px; font-size: 26px; letter-spacing: 2px; line-height: 1.5; }
+.cr-story p { font-size: 16px; line-height: 2.1; color: #5e4f47; }
+
+/* ---------- 聯絡 ---------- */
+.cr-contact { background: var(--c-brown); text-align: center; padding: 60px 20px; }
+.cr-contact h2 { font-size: 26px; letter-spacing: 3px; color: var(--c-cream); }
+.cr-contact p { margin: 12px auto 26px; max-width: 460px; font-size: 15px; line-height: 1.95; color: #E6DBD0; }
+.cr-contact .cr-btns { justify-content: center; }
+.cr-contact .cr-btn { background: var(--c-cream); color: var(--c-brown); border-color: var(--c-cream); }
+.cr-contact .cr-btn:hover { background: #fff; box-shadow: 0 10px 24px rgba(0,0,0,0.25); }
+.cr-contact .cr-btn--sub { background: transparent; color: var(--c-cream); border-color: var(--c-mauve); }
+.cr-contact .cr-btn--sub:hover { background: rgba(250,247,242,0.12); box-shadow: none; }
+.cr-contact a:focus-visible { outline-color: #fff; }
+
+/* ---------- 平板 ---------- */
+@media (min-width: 560px) {
+    .cr-works { grid-template-columns: repeat(2, 1fr); }
+    .cr-student-grid { grid-template-columns: repeat(4, 1fr); }
+    .cr-info { grid-template-columns: repeat(3, 1fr); }
+}
+@media (min-width: 720px) {
+    .cr-levels { grid-template-columns: repeat(2, 1fr); }
+}
+/* ---------- 桌機 ---------- */
+@media (min-width: 900px) {
+    .cr-wrap { padding: 0 25px; }
+    .cr-hero { padding: 54px 0 62px; }
+    .cr-hero .cr-wrap { grid-template-columns: 1.05fr 0.95fr; gap: 56px; align-items: center; }
+    .cr-hero h1 { font-size: 40px; }
+    .cr-zone { padding: 84px 0; }
+    .cr-head { margin-bottom: 40px; }
+    .cr-head h2, .cr-story h2, .cr-contact h2 { font-size: 30px; }
+    .cr-works { grid-template-columns: repeat(4, 1fr); gap: 20px; }
+    .cr-custom { grid-template-columns: 1fr 1fr; gap: 56px; padding: 44px 48px; align-items: center; }
+    .cr-course { grid-template-columns: 0.9fr 1.1fr; gap: 32px; padding: 24px; align-items: center; }
+    .cr-course:nth-child(even) .cr-course-media { order: 2; }
+    .cr-info { grid-template-columns: repeat(3, 1fr); }
+    .cr-package { grid-template-columns: 1.1fr 0.9fr; gap: 40px; padding: 36px 40px; align-items: start; }
+    .cr-story { padding: 84px 0; }
+    .cr-story .cr-wrap { grid-template-columns: 0.9fr 1.1fr; gap: 64px; }
+    .cr-contact { padding: 76px 25px; }
+}
+</style>
+</head>
+
+<body>
+
+<a class="skip-link" href="#main">跳到主要內容</a>
+
+<header>
+    <div class="nav-container">
+        <a href="index.html" class="logo">靖靖塔羅<span>JingJing Tarot</span></a>
+        <nav aria-label="主選單">
+            <a href="index.html">首頁</a>
+            <a href="about.html">關於我</a>
+            <a href="service.html">服務項目</a>
+            <a href="class.html">課程訊息</a>
+            <a href="tarotcard.html">線上抽牌</a>
+            <a href="crystal.html" aria-current="page">身心靈產品</a>
+        </nav>
+    </div>
+</header>
+
+<main id="main" class="cr-page">
+
+    <!-- 主視覺 -->
+    <section class="cr-hero" aria-labelledby="cr-title">
+        <div class="cr-wrap">
+            <div class="cr-hero-text">
+                <span class="cr-eyebrow">CRYSTAL · DIY · NUMEROLOGY</span>
+                <h1 id="cr-title">身心靈創作空間</h1>
+                <p class="cr-hero-lead">探索水晶的美好，享受手作的樂趣，透過生命靈數開啟自我認識的旅程。</p>
+                <p class="cr-hero-pos">結合水晶設計與販售、水晶 DIY 實體教學，以及生命靈數初階與進階教學的個人品牌平台。</p>
+                <div class="cr-jump" role="navigation" aria-label="頁面內導覽">
+                    <a href="#crystal-design">水晶設計</a>
+                    <a href="#crystal-diy">DIY 手作教室</a>
+                    <a href="#numerology">生命靈數教學</a>
+                </div>
+            </div>
+            <div class="cr-img cr-img--54 cr-hero-img" data-img="hero.jpg" data-alt="靖靖塔羅 身心靈創作空間主視覺">
+                <div class="cr-ph"><b aria-hidden="true">✦</b>主視覺照片待補充<br>images/crystal/hero.jpg</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 第一區：水晶設計 -->
+    <section class="cr-zone cr-zone--design" id="crystal-design" aria-labelledby="cr-design-title">
+        <div class="cr-wrap">
+            <div class="cr-head">
+                <span class="cr-no">01</span>
+                <h2 id="cr-design-title">水晶設計</h2>
+                <span class="cr-en">Crystal Design</span>
+                <p>現成作品販售，也接受客製化訂製。</p>
+            </div>
+
+            <h3 class="cr-sub">精選水晶作品</h3>
+            <div class="cr-series" id="crSeries" role="group" aria-label="商品系列"></div>
+            <div class="cr-works" id="crWorks" aria-live="polite"></div>
+
+            <div class="cr-custom" id="crystal-custom">
+                <div class="cr-custom-text">
+                    <span class="cr-no">Custom Design</span>
+                    <h3>打造專屬於你的水晶作品</h3>
+                    <p>每一份喜好都有不同的樣貌，透過水晶材質、色彩與設計搭配，為你創作專屬於自己的水晶飾品。</p>
+                    <a class="cr-btn cr-btn--main" href="#" data-line target="_blank" rel="noopener noreferrer">我要客製水晶</a>
+                </div>
+                <ol class="cr-steps">
+                    <li>LINE 提出需求。</li>
+                    <li>討論喜好、預算及設計。</li>
+                    <li>確認報價與製作時間。</li>
+                    <li>開始手工製作。</li>
+                    <li>完成作品並交件。</li>
+                </ol>
+            </div>
+        </div>
+    </section>
+
+    <!-- 第二區：水晶 DIY 手作教室 -->
+    <section class="cr-zone cr-zone--diy" id="crystal-diy" aria-labelledby="cr-diy-title">
+        <div class="cr-wrap">
+            <div class="cr-head">
+                <span class="cr-no">02</span>
+                <h2 id="cr-diy-title">水晶 DIY 手作教室</h2>
+                <span class="cr-en">Crystal DIY Workshop</span>
+                <p>不只是欣賞水晶，更親手創造屬於自己的美好。</p>
+                <div class="cr-modes"><span class="cr-mode">小班教學</span><span class="cr-mode">一對一預約教學</span><span class="cr-mode">團體包班</span></div>
+            </div>
+
+            <div class="cr-courses" id="crCourses"></div>
+
+            <div class="cr-students">
+                <h3 class="cr-sub">學員作品與心得</h3>
+                <div class="cr-student-grid" id="crStudents"></div>
+            </div>
+
+            <div class="cr-diy-cta">
+                <p>想了解課程或體驗看看？歡迎 LINE 私訊。</p>
+                <div class="cr-btns">
+                    <a class="cr-btn cr-btn--main" href="#" data-line target="_blank" rel="noopener noreferrer">詢問課程</a>
+                    <a class="cr-btn cr-btn--sub" href="#" data-line target="_blank" rel="noopener noreferrer">預約體驗</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 第三區：生命靈數教學 -->
+    <section class="cr-zone cr-zone--num" id="numerology" aria-labelledby="cr-num-title">
+        <div class="cr-wrap">
+            <div class="cr-head">
+                <span class="cr-no">03</span>
+                <h2 id="cr-num-title">生命靈數教學</h2>
+                <span class="cr-en">Numerology Academy</span>
+                <p>從數字開始，探索自己，認識生命的不同面向。</p>
+                <div class="cr-modes"><span class="cr-mode">初階課程</span><span class="cr-mode">進階課程</span><span class="cr-mode">初階＋進階完整套裝</span></div>
+            </div>
+
+            <div class="cr-path" aria-label="學習路徑"><span>初階班</span><i aria-hidden="true">→</i><span>進階班</span><i aria-hidden="true">→</i><span>完整學習</span></div>
+
+            <div class="cr-levels" id="crLevels"></div>
+            <div class="cr-package" id="crPackage"></div>
+
+            <p class="cr-signup-note">初階、進階可以分別報名，也可以選擇完整套裝，三個報名入口各自獨立。</p>
+        </div>
+    </section>
+
+    <!-- 品牌理念 -->
+    <section class="cr-story" aria-labelledby="cr-story-title">
+        <div class="cr-wrap">
+            <div class="cr-img cr-img--54" data-img="story.jpg" data-alt="水晶與手作的溫柔畫面">
+                <div class="cr-ph"><b aria-hidden="true">✦</b>水晶與手作的照片待補充<br>images/crystal/story.jpg</div>
+            </div>
+            <div>
+                <span class="cr-eyebrow">Philosophy</span>
+                <h2 id="cr-story-title">讓美好，從生活開始</h2>
+                <p>水晶的美，不只是外在的色彩與光澤，更是一份對生活的喜愛。透過親手設計、DIY 創作與生命靈數學習，希望陪伴每個人找到屬於自己的美好與探索方向。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 聯絡 -->
+    <section class="cr-contact" aria-labelledby="cr-contact-title">
+        <h2 id="cr-contact-title">想了解更多嗎？</h2>
+        <p>作品訂購、客製化、課程報名，都歡迎私訊靖靖。</p>
+        <div class="cr-btns">
+            <a class="cr-btn" href="#" data-line target="_blank" rel="noopener noreferrer">LINE 私訊</a>
+            <a class="cr-btn cr-btn--sub" href="#" data-ig target="_blank" rel="noopener noreferrer">Instagram</a>
+        </div>
+    </section>
+
+</main>
+
+<footer>
+    <div class="brand">靖靖塔羅 JingJing Tarot</div>
+    <div class="social">
+        <a href="https://liff.line.me/1645278921-kWRPP32q/?accountId=531eukcu" target="_blank" rel="noopener noreferrer">LINE</a> |
+        <a href="https://www.instagram.com/jing9562939/" target="_blank" rel="noopener noreferrer">Instagram</a>
+    </div>
+    <div class="copyright">© 2026 JingJing Tarot. All Rights Reserved.</div>
+</footer>
+
+<script src="product.js"></script>
+<script>
+/* 資料來自 crystal-data.js；沒有填的欄位會顯示「待補充」 */
+(function () {
+    var $ = function (id) { return document.getElementById(id); };
+    var esc = function (t) { return String(t == null ? "" : t).replace(/[&<>"']/g, function (c) { return ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]; }); };
+    var TODO = '<span class="cr-todo">待補充</span>';
+    var val = function (v) { return v ? esc(v) : TODO; };
+
+    if (typeof CR_LINE === "undefined") {
+        document.querySelector("main").insertAdjacentHTML("afterbegin", '<div style="padding:14px;text-align:center;font-size:14px;color:#94505A;background:#F3E3E6">找不到 product.js，請確認它已和網頁放在同一個資料夾並上傳。</div>');
+        return;
+    }
+
+    /* 連結：LINE、Instagram */
+    document.querySelectorAll("[data-line]").forEach(function (a) { a.href = CR_LINE; });
+    document.querySelectorAll("[data-ig]").forEach(function (a) { a.href = CR_IG; });
+
+    /* 圖片：有檔名就載入，失敗或沒填就顯示占位框 */
+    function imgBox(cls, file, alt, phText) {
+        var ph = '<div class="cr-ph"><b aria-hidden="true">✦</b>' + phText + '</div>';
+        if (!file) return '<div class="cr-img ' + cls + ' no-img">' + ph + '</div>';
+        return '<div class="cr-img ' + cls + '"><img src="' + CR_IMG + esc(file) + '" alt="' + esc(alt) + '" loading="lazy" decoding="async" onerror="this.parentNode.classList.add(\'no-img\')">' + ph + '</div>';
+    }
+    document.querySelectorAll("[data-img]").forEach(function (box) {
+        var f = box.getAttribute("data-img"), alt = box.getAttribute("data-alt") || "";
+        var img = new Image();
+        img.alt = alt; img.decoding = "async";
+        img.onload = function () { box.insertBefore(img, box.firstChild); };
+        img.onerror = function () { box.classList.add("no-img"); };
+        img.src = CR_IMG + f;
+        box.classList.add("no-img");
+        img.addEventListener("load", function () { box.classList.remove("no-img"); });
+    });
+
+    /* ---- 一、精選作品 ---- */
+    var works = CR_WORKS.length ? CR_WORKS : CR_SERIES.map(function (s) { return { series: s, pending: true }; });
+    var current = "全部";
+    function workCard(w) {
+        var name = w.name ? esc(w.name) : '商品名稱 ' + TODO;
+        return '<article class="cr-work" data-series="' + esc(w.series) + '">' +
+            imgBox("cr-img--45", w.image, w.name || (w.series + "商品"), "商品照片待補充") +
+            '<div class="cr-work-body"><span class="cr-work-series">' + esc(w.series) + '</span><h3>' + name + '</h3>' +
+            '<dl><div><dt>水晶材質</dt><dd>' + val(w.material) + '</dd></div>' +
+            '<div><dt>設計理念</dt><dd>' + val(w.concept) + '</dd></div>' +
+            '<div><dt>商品尺寸</dt><dd>' + val(w.size) + '</dd></div></dl>' +
+            '<div class="cr-work-price">' + (w.price ? esc(w.price) : '價格 ' + TODO) + '</div>' +
+            '<a class="cr-btn cr-btn--main cr-btn--block" href="' + esc(w.orderUrl || CR_LINE) + '" target="_blank" rel="noopener noreferrer" aria-label="LINE 私訊訂購：' + esc(w.name || w.series) + '">LINE 私訊訂購</a></div></article>';
+    }
+    function renderWorks() {
+        var list = works.filter(function (w) { return current === "全部" || w.series === current; });
+        $("crWorks").innerHTML = list.length ? list.map(workCard).join("") : '<div class="cr-empty">這個系列的作品陸續上架中，歡迎 LINE 私訊詢問。</div>';
+    }
+    function renderSeries() {
+        var names = ["全部"].concat(CR_SERIES);
+        $("crSeries").innerHTML = names.map(function (n) { return '<button type="button" aria-pressed="' + (n === current) + '" data-s="' + esc(n) + '">' + esc(n) + "</button>"; }).join("");
+        $("crSeries").querySelectorAll("button").forEach(function (b) {
+            b.onclick = function () { current = b.getAttribute("data-s"); renderSeries(); renderWorks(); };
+        });
+    }
+    renderSeries(); renderWorks();
+
+    /* ---- 二、DIY 課程 ---- */
+    $("crCourses").innerHTML = CR_COURSES.map(function (c) {
+        var info = [["課程時間", c.time], ["課程費用", c.price], ["材料是否包含", c.material], ["上課地點", c.place], ["人數限制", c.limit], ["報名及詢問方式", c.signup]]
+            .map(function (r) { return "<div><dt>" + r[0] + "</dt><dd>" + val(r[1]) + "</dd></div>"; }).join("");
+        return '<article class="cr-course"><div class="cr-course-media">' + imgBox("cr-img--43", c.image, c.name, "課程照片待補充") + '</div>' +
+            '<div><span class="cr-course-tag">' + esc(c.mode) + "</span><h3>" + esc(c.name) + '</h3><p class="cr-course-intro">' + esc(c.intro) + "</p>" +
+            '<ul class="cr-learn">' + c.learn.map(function (l) { return "<li>" + esc(l) + "</li>"; }).join("") + "</ul>" +
+            '<dl class="cr-info">' + info + "</dl>" +
+            '<div class="cr-btns"><a class="cr-btn cr-btn--main" href="' + esc(c.inquiryUrl || CR_LINE) + '" target="_blank" rel="noopener noreferrer">詢問課程</a>' +
+            '<a class="cr-btn cr-btn--sub" href="' + esc(c.bookUrl || CR_LINE) + '" target="_blank" rel="noopener noreferrer">預約體驗</a></div></div></article>';
+    }).join("");
+
+    var stu = CR_STUDENT_WORKS.length ? CR_STUDENT_WORKS : [{}, {}, {}, {}];
+    $("crStudents").innerHTML = stu.map(function (s) {
+        return '<figure class="cr-student">' + imgBox("cr-img--11", s.image, s.name ? s.name + "的作品" : "學員作品", "學員作品照片待補充") +
+            "<figcaption><b>" + (s.name ? esc(s.name) : "學員暱稱 " + TODO) + "</b>" + (s.note ? esc(s.note) : "學員心得 " + TODO) + "</figcaption></figure>";
+    }).join("");
+
+    /* ---- 三、生命靈數 ---- */
+    var N = CR_NUMEROLOGY;
+    var synTag = N.syllabusConfirmed ? "" : '<span class="cr-todo">課綱待確認</span>';
+    function infoRows(o) {
+        return [["課程時間", o.time], ["課程價格", o.price], ["課程總時數", o.hours], ["教材資訊", o.material]]
+            .map(function (r) { return "<div><dt>" + r[0] + "</dt><dd>" + val(r[1]) + "</dd></div>"; }).join("");
+    }
+    $("crLevels").innerHTML = N.levels.map(function (l) {
+        return '<article class="cr-level"><h3>' + esc(l.name) + '</h3><p class="cr-target"><b>適合對象</b>　' + esc(l.target) + "</p>" +
+            '<div class="cr-syl-title">建議課綱 ' + synTag + "</div>" +
+            '<ol class="cr-syl">' + l.syllabus.map(function (s) { return "<li>" + esc(s) + "</li>"; }).join("") + "</ol>" +
+            '<dl class="cr-info">' + infoRows(l) + "</dl>" +
+            '<a class="cr-btn cr-btn--main" href="' + esc(l.signupUrl || CR_LINE) + '" target="_blank" rel="noopener noreferrer">' + esc(l.signupLabel) + "</a></article>";
+    }).join("");
+    var P = N.package;
+    $("crPackage").innerHTML =
+        "<div><h3>" + esc(P.name) + '</h3><p class="cr-package-intro">' + esc(P.intro) + "</p>" +
+        '<ul class="cr-includes">' + P.includes.map(function (s) { return "<li>" + esc(s) + "</li>"; }).join("") + "</ul></div>" +
+        '<div><dl class="cr-info" style="margin-top:0">' + [["套裝價格", P.price], ["課程總時數", P.hours], ["課程時間", P.time], ["教材資訊", P.material]]
+            .map(function (r) { return "<div><dt>" + r[0] + "</dt><dd>" + val(r[1]) + "</dd></div>"; }).join("") + "</dl>" +
+        '<a class="cr-btn cr-btn--main cr-btn--block" style="margin-top:18px" href="' + esc(P.signupUrl || CR_LINE) + '" target="_blank" rel="noopener noreferrer">' + esc(P.signupLabel) + "</a></div>";
+})();
+</script>
+
+</body>
+</html>
