@@ -250,14 +250,15 @@ footer .social { margin: 4px 0; }
 .select-area { width: 100%; max-width: var(--max-width); margin: 0 auto; padding: 14px 25px 30px; }
 .deck-row { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; padding: 16px 0; border-top: 1px solid #E6DBD0; }
 .deck-name {
-    min-width: 150px; font-size: 17px; font-weight: 500; color: #51423B; letter-spacing: 2px;
+    width: 200px; flex: none; font-size: 17px; font-weight: 500; color: #51423B; letter-spacing: 2px;
     border-left: 3px solid #A58A94; padding-left: 10px; line-height: 1.5;
 }
 .deck-name small { display: block; font-size: 12px; font-weight: 400; color: #7A6A62; letter-spacing: 1px; }
 .spread-btns { display: flex; flex-wrap: wrap; gap: 12px; }
 .spread-btn {
-    padding: 10px 24px; border-radius: 12px; font-size: 14px; font-family: inherit;
-    border: 1px solid #E6DBD0; background: rgba(255,253,249,0.9); color: #51423B; cursor: pointer; transition: 0.25s;
+    width: 150px; min-height: 66px; padding: 10px 12px; display: flex; flex-direction: column; align-items: center; justify-content: center;
+    border-radius: 12px; font-size: 14px; font-family: inherit; line-height: 1.5;
+    border: 1px solid #E6DBD0; background: #ffffff; color: #51423B; cursor: pointer; transition: 0.25s;
 }
 .spread-btn:hover { background: #EEE5DC; border-color: #bda98a; transform: translateY(-2px); box-shadow: 0 6px 16px rgba(100,90,80,0.08); }
 .spread-btn small { display: block; font-size: 11px; color: #7A6A62; }
@@ -421,6 +422,12 @@ button.card-wrap.empty.next { border-color: #A58A94; background: rgba(196,168,10
 .hero-text h1 { font-weight: 500 !important; }
 .select-area { padding-top: 22px; }
 @media (max-width: 800px) { .pg-hero .home-hero { padding: 28px 20px 28px; } }
+
+/* ===== 全站統一字級（手機 → 桌機）：頁面大標 28→40、區塊標題 26→30、內文 15.5～16、卡片文字 14.5 ===== */
+.hero-text h1 { font-size: 40px; letter-spacing: 2px; }
+.hero-text > p { font-size: 15.5px; }
+.draw-title { font-size: 30px; letter-spacing: 2px; }
+@media (max-width: 800px) { .hero-text h1 { font-size: 28px; letter-spacing: 2px; } .draw-title { font-size: 26px; } }
 </style>
 </head>
 
@@ -603,15 +610,15 @@ const TAROT_DRAW_RANGES = [[0, 21], [78, 79]];
    reversible：是否有正逆位 */
 const SECTIONS = [
     { title: "偉特塔羅牌", decks: [{
-        id: "tarot", label: "", folder: "images/tarot/", ext: ".jpg", start: 0, pad: 2,
+        id: "tarot", label: "", en: "Waite Tarot", folder: "images/tarot/", ext: ".jpg", start: 0, pad: 2,
         count: 80, blankFrom: 78, ranges: TAROT_DRAW_RANGES, names: TAROT_NAMES, reversible: true,
         spreads: [SP.universal, SP.time, SP.choose2] }] },
     { title: "雷諾曼", decks: [{
-        id: "lenormand", label: "", folder: "images/lenormand/", ext: ".jpg", start: 1, pad: 2,
+        id: "lenormand", label: "", en: "Lenormand", folder: "images/lenormand/", ext: ".jpg", start: 1, pad: 2,
         count: 36, names: LENORMAND_NAMES, reversible: false,
         spreads: [SP.single, SP.three, SP.universal] }] },
     { title: "天使神諭卡", decks: [{
-        id: "archangel", label: "大天使神諭卡", folder: "images/archangel/", ext: ".jpg", start: 1, pad: 2,
+        id: "archangel", label: "大天使神諭卡", en: "Archangel Oracle Cards", folder: "images/archangel/", ext: ".jpg", start: 1, pad: 2,
         count: 45, names: ARCHANGEL_NAMES, fallbackName: "大天使", reversible: false,
         spreads: [SP.single] }] }
 ];
@@ -665,7 +672,7 @@ function buildSelect() {
     // 生命靈數（放在所有牌卡上方）
     const nrow = document.createElement("div");
     nrow.className = "deck-row";
-    nrow.innerHTML = '<div class="deck-name">生命靈數<small>九宮格・四個重點</small></div>';
+    nrow.innerHTML = '<div class="deck-name">生命靈數<small>Numerology</small></div>';
     const nbtns = document.createElement("div");
     nbtns.className = "spread-btns";
     const nb = document.createElement("button");
@@ -678,7 +685,7 @@ function buildSelect() {
     SECTIONS.forEach(sec => sec.decks.forEach(deck => {
         const row = document.createElement("div");
         row.className = "deck-row";
-        row.innerHTML = '<div class="deck-name">' + sec.title + (deck.label ? "<small>" + deck.label + "</small>" : "") + "</div>";
+        row.innerHTML = '<div class="deck-name">' + sec.title + (deck.en ? "<small>" + deck.en + "</small>" : "") + "</div>";
         const btns = document.createElement("div");
         btns.className = "spread-btns";
         deck.spreads.forEach(sp => {
