@@ -32,12 +32,26 @@ const EVENTS = [
         link: "https://cal.com/jing9562939/15min?user=jing9562939"
     },
     {
+        start: "2026-11-28", end: "2026-11-29", type: "study",
+        title: "進修",
+        time: "10:00–18:00", place: "文化大學推廣教育",
+        note: "歡迎線上預約。",
+        link: "https://cal.com/jing9562939/15min?user=jing9562939"
+    },
+    {
         start: "2026-12-19", end: "2026-12-20", type: "market",
         title: "擺攤",
         time: "12:00–18:00", place: "美麗島捷運站",
         note: "水晶DIY體驗 Part II。",
         link: "https://cal.com/jing9562939/15min?user=jing9562939"
     }
+    {
+        start: "2026-12-21", end: "2026-12-27", type: "trip",
+        title: "員工旅遊",
+        time: "08:00–00:00", place: "員工旅遊",
+        note: "歡迎線上預約。",
+        link: "https://cal.com/jing9562939/15min?user=jing9562939"
+    },
 ];
 
 
