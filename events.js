@@ -44,7 +44,7 @@ const EVENTS = [
         time: "12:00–18:00", place: "美麗島捷運站",
         note: "水晶DIY體驗 Part II。",
         link: "https://cal.com/jing9562939/15min?user=jing9562939"
-    }
+    },
     {
         start: "2026-12-21", end: "2026-12-27", type: "trip",
         title: "員工旅遊",
