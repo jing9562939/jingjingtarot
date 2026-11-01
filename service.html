@@ -217,6 +217,13 @@ footer .copyright { font-size: 11px; color: #9c948b; }
 .tag.teach  { background: #dbe6d8; color: #4f6b4a; }   /* 教學 */
 .tag.trip   { background: #f2dde0; color: #94505a; }   /* 員工旅遊 */
 
+
+/* ---------- 頁尾 LINE / Instagram 圖示（只影響頁尾） ---------- */
+footer .social { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 8px 26px; }
+footer .social a { margin: 0; display: inline-flex; align-items: center; gap: 8px; padding: 4px 2px; transition: color 0.3s; }
+footer .social a svg { width: 22px; height: 22px; flex: none; display: block; border-radius: 6px; transition: transform 0.3s; }
+footer .social a:hover svg { transform: translateY(-2px); }
+footer .social a:focus-visible { outline: 2px solid #7A5F6D; outline-offset: 3px; border-radius: 6px; }
 </style>
 <style>
 /* =====================================================
@@ -392,12 +399,12 @@ footer .copyright { font-size: 11px; color: #9c948b; }
             <ul class="svc-list">
                 <li class="svc-item">
                     <div class="svc-main">
-                        <h3>塔羅單題</h3>
+                        <h3>塔羅單題占卜</h3>
                         <p>針對單一問題進行探索</p>
                     </div>
                     <div class="svc-side">
                         <div class="svc-price"><span class="svc-amt">NT$200</span><span class="svc-unit">／題</span></div>
-                        <a class="svc-book" href="https://cal.com/jing9562939/15min?user=jing9562939" target="_blank" rel="noopener noreferrer" aria-label="立即預約：塔羅單題">立即預約 →</a>
+                        <a class="svc-book" href="https://cal.com/jing9562939/15min?user=jing9562939" target="_blank" rel="noopener noreferrer" aria-label="立即預約：塔羅單題占卜">立即預約 →</a>
                     </div>
                 </li>
                 <li class="svc-item">
@@ -475,7 +482,7 @@ footer .copyright { font-size: 11px; color: #9c948b; }
                 <li class="svc-item">
                     <div class="svc-main">
                         <h3>代觀元辰宮</h3>
-                        <p>透過元辰宮意象，探索內在狀態與生活能量，從不同角度認識自己</p>
+                        <p>探索象徵意象與內在課題</p>
                     </div>
                     <div class="svc-side">
                         <div class="svc-price"><span class="svc-amt">NT$1,200</span><span class="svc-unit">／次</span><span class="svc-tag">優惠價</span></div>
@@ -485,7 +492,7 @@ footer .copyright { font-size: 11px; color: #9c948b; }
                 <li class="svc-item">
                     <div class="svc-main">
                         <h3>光天使靈氣</h3>
-                        <p>透過光天使靈氣療癒，放鬆身心、安定內在，感受平靜與溫暖</p>
+                        <p>靜心、放鬆與自我照顧</p>
                     </div>
                     <div class="svc-side">
                         <div class="svc-price"><span class="svc-amt">NT$1,200</span><span class="svc-unit">／次</span><span class="svc-tag">優惠價</span></div>
@@ -513,8 +520,14 @@ footer .copyright { font-size: 11px; color: #9c948b; }
 <footer>
     <div class="brand">靖靖塔羅 JingJing Tarot</div>
     <div class="social">
-        <a href="https://liff.line.me/1645278921-kWRPP32q/?accountId=531eukcu" target="_blank" rel="noopener noreferrer">LINE</a> |
-        <a href="https://www.instagram.com/jing9562939/" target="_blank" rel="noopener noreferrer">Instagram</a>
+        <a href="https://liff.line.me/1645278921-kWRPP32q/?accountId=531eukcu" target="_blank" rel="noopener noreferrer" aria-label="LINE 聯絡靖靖塔羅">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect width="24" height="24" rx="6" fill="#06C755"/><ellipse cx="12" cy="10.8" rx="7.6" ry="6" fill="#fff"/><path d="M8.6 15.2 7.4 19l4.2-2.6z" fill="#fff"/><text x="12" y="12.2" text-anchor="middle" font-size="4.6" font-weight="700" font-family="Arial, Helvetica, sans-serif" fill="#06C755">LINE</text></svg>
+            <span>LINE</span>
+        </a>
+        <a href="https://www.instagram.com/jing9562939/" target="_blank" rel="noopener noreferrer" aria-label="Instagram 追蹤靖靖塔羅">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><defs><linearGradient id="ftIg" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#FEDA75"/><stop offset="0.3" stop-color="#FA7E1E"/><stop offset="0.55" stop-color="#D62976"/><stop offset="0.8" stop-color="#962FBF"/><stop offset="1" stop-color="#4F5BD5"/></linearGradient></defs><rect width="24" height="24" rx="6" fill="url(#ftIg)"/><rect x="5.3" y="5.3" width="13.4" height="13.4" rx="4" fill="none" stroke="#fff" stroke-width="1.7"/><circle cx="12" cy="12" r="3.1" fill="none" stroke="#fff" stroke-width="1.7"/><circle cx="16.1" cy="7.9" r="1" fill="#fff"/></svg>
+            <span>Instagram</span>
+        </a>
     </div>
     <div class="copyright">© 2026 JingJing Tarot. All Rights Reserved.</div>
 </footer>
