@@ -319,6 +319,25 @@ footer .copyright { font-size: 11px; color: #9c948b; }
     .svc-side { min-width: 104px; }
     .svc-amt { font-size: 17px; }
 }
+
+/* ===== 全站統一字級（手機 → 桌機）：頁面大標 28→40、區塊標題 26→30、內文 15.5～16、卡片文字 14.5 ===== */
+.svc-hero h1 { font-size: 28px; letter-spacing: 2px; }
+.svc-head h2 { font-size: 26px; letter-spacing: 2px; }
+@media (min-width: 900px) { .svc-hero h1 { font-size: 40px; } .svc-head h2 { font-size: 30px; } }
+
+/* ===== 三個分類頁籤（與身心靈創作空間相同樣式） ===== */
+.svc-tabs { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 22px; }
+.svc-tabs a {
+    padding: 7px 18px; border-radius: 999px; font-size: 14px; letter-spacing: 1px; line-height: 1.6; color: var(--s-brown);
+    background: rgba(255,255,255,0.65); border: 1px solid var(--s-line); transition: background 0.3s, border-color 0.3s;
+}
+.svc-tabs a:hover { background: #fff; border-color: var(--s-mauve); }
+.svc-section { scroll-margin-top: 90px; }
+/* ===== 字級對齊全站 ===== */
+.svc-head p { font-size: 15.5px; }
+.svc-en { font-size: 13px; }
+.svc-main h3 { font-size: 19px; }
+.svc-main p { font-size: 14.5px; }
 </style>
 </head>
 
@@ -350,6 +369,11 @@ footer .copyright { font-size: 11px; color: #9c948b; }
         <div class="svc-hero-line"></div>
         <p>在牌卡、數字與心的探索之間，陪你整理當下，看見自己的方向。</p>
         <p>每一項服務，都是一次與自己好好聊聊的時間。</p>
+        <div class="svc-tabs" role="navigation" aria-label="服務分類快速選擇">
+            <a href="#svc-tarot">塔羅占卜</a>
+            <a href="#svc-self">生命探索與自我覺察</a>
+            <a href="#svc-spirit">靈性探索與能量療癒</a>
+        </div>
     </section>
 
     <div class="svc-body">
