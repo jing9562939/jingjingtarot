@@ -290,7 +290,8 @@ footer .social { margin: 4px 0; }
 /* 牌位 */
 .spread { display: flex; flex-direction: column; align-items: center; gap: 24px; }
 .spread-row { display: flex; justify-content: center; align-items: flex-start; gap: 22px; }
-.slot { width: clamp(64px, 19vw, 150px); text-align: center; }
+.spread { --slot-w: clamp(64px, 19vw, 150px); }
+.slot { width: var(--slot-w); flex: none; text-align: center; }
 .slot-label { font-size: 14px; letter-spacing: 1px; color: #7A5F6D; margin-bottom: 8px; }
 .slot.main .slot-label { display: inline-block; padding: 0 14px; border: 1px solid #A58A94; border-radius: 6px; background: #F0E7EA; color: #7A5F6D; }
 .spread-row.has-main .slot:not(.main) { margin-top: 46px; }
@@ -302,7 +303,11 @@ button.card-wrap.empty {
     font-size: 13px; letter-spacing: 1px; color: #b3a590; cursor: pointer;
     border: 1.5px dashed #cfc3b3; border-radius: 10px; background: rgba(255,253,249,0.5); transition: 0.25s;
 }
-button.card-wrap.empty:hover { border-color: #A58A94; background: rgba(196,168,107,0.14); color: #7A5F6D; }
+button.card-wrap.empty.locked { cursor: not-allowed; opacity: 0.55; border-color: #E6DBD0; background: rgba(255,255,255,0.5); color: #9a8a82; }
+button.card-wrap.empty.locked:hover { border-color: #E6DBD0; background: rgba(255,255,255,0.5); color: #9a8a82; }
+@keyframes tc-nudge { 0%,100% { transform: translateX(0); } 25% { transform: translateX(-6px); } 75% { transform: translateX(6px); } }
+button.card-wrap.empty.nudge { animation: tc-nudge 0.4s 2; }
+button.card-wrap.empty:not(.locked):hover { border-color: #A58A94; background: rgba(196,168,107,0.14); color: #7A5F6D; }
 button.card-wrap.empty.next { border-color: #A58A94; background: rgba(196,168,107,0.10); color: #7A5F6D; }
 .card { position: relative; width: 100%; height: 100%; transform-style: preserve-3d; transition: transform 0.8s; }
 .card.flipped { transform: rotateY(180deg); }
@@ -810,9 +815,10 @@ function renderSlots(animateIdx) {
             } else {
                 // 空的牌框：點一下就抽牌
                 const btn = document.createElement("button");
-                btn.className = "card-wrap empty" + (i === next ? " next" : "");
-                btn.textContent = "點此抽牌";
-                btn.setAttribute("aria-label", "抽牌：" + sp.labels[i]);
+                btn.className = "card-wrap empty" + (i === next ? " next" : " locked");
+                btn.textContent = i === next ? "點此抽牌" : "依序抽牌";
+                btn.setAttribute("aria-label", (i === next ? "抽牌：" : "請先依序抽牌，目前無法抽：") + sp.labels[i]);
+                if (i !== next) btn.setAttribute("aria-disabled", "true");
                 btn.onclick = () => drawSlot(i);
                 slot.insertBefore(btn, nameEl);
             }
@@ -828,8 +834,19 @@ function updateProgress() {
     $("progress").innerHTML = "點選牌框抽牌　（<b>" + cur.drawn + " / " + n + "</b>）　下一張：<b>" + cur.sp.labels[next] + "</b>";
 }
 
+let hintTimer = null;
+function orderHint() {
+    const next = nextEmpty();
+    $("progress").innerHTML = "請依序抽牌，先抽出「<b>" + cur.sp.labels[next] + "</b>」";
+    const el = document.querySelector(".card-wrap.empty.next");
+    if (el) { el.classList.remove("nudge"); void el.offsetWidth; el.classList.add("nudge"); }
+    clearTimeout(hintTimer);
+    hintTimer = setTimeout(updateProgress, 2200);
+}
+
 function drawSlot(i) {
     if (cur.busy || cur.finished || cur.picks[i]) return;
+    if (i !== nextEmpty()) { orderHint(); return; }      // 不能跳著抽：必須從左到右一張一張來
     const { deck, sp } = cur;
     const index = cur.order[cur.drawn++];             // 從洗好的牌依序取一張
     const blank = isBlankCard(deck, index);
@@ -912,8 +929,10 @@ async function buildResultCanvas() {
     const rows = layoutRows();
     const imgs = await Promise.all(picks.map(c => c.blank ? null : loadImg(imgPath(deck, c.index))));
 
+    const maxLen = Math.max(...rows.map(r => r.length));
+    const UNIT = picks.length === 1 ? 300 : Math.min(220, (W - 2 * PAD - (maxLen - 1) * GAP) / maxLen);   // 每張牌同大小
     const plan = rows.map(row => {
-        const unit = Math.min(row.length === 1 ? 300 : 220, (W - 2 * PAD - (row.length - 1) * GAP) / row.length);
+        const unit = UNIT;
         return { row, unit, h: unit * 12 / 7, off: row.some(i => isMain(sp, i)) && row.length > 1 ? 50 : 0 };
     });
     const HEAD = 230, LABEL = 46, NAME = 100, ROWGAP = 20, FOOT = 110;
