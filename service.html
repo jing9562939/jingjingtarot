@@ -345,6 +345,27 @@ footer .social a:focus-visible { outline: 2px solid #7A5F6D; outline-offset: 3px
 .svc-en { font-size: 13px; }
 .svc-main h3 { font-size: 19px; }
 .svc-main p { font-size: 14.5px; }
+
+/* ===== 預約方式區分、服務資訊、預約前提醒、LINE 詢問入口 ===== */
+.svc-how {
+    display: inline-block; margin-top: 12px; padding: 3px 14px; border-radius: 999px; font-size: 13px; letter-spacing: 1px; line-height: 1.7;
+    background: #fff; border: 1px solid var(--s-line); color: var(--s-mauve-dark);
+}
+.svc-meta { margin: 8px 0 0; display: grid; gap: 2px; font-size: 13.5px; line-height: 1.7; color: var(--s-soft); }
+.svc-meta div { display: flex; gap: 10px; }
+.svc-meta dt { flex: none; width: 4.4em; color: var(--s-mauve-dark); letter-spacing: 1px; }
+.svc-meta dd { margin: 0; min-width: 0; }
+.svc-price-label { font-size: 12px; letter-spacing: 1px; color: var(--s-mauve-dark); line-height: 1.6; }
+.svc-side { display: flex; flex-direction: column; align-items: flex-end; }   /* 價格與預約連結由上而下排列，不並排擠壓左側文字 */
+.svc-book--alt { margin-top: 0; }
+.svc-note p + p { margin-top: 6px; }
+.svc-note-remind { color: var(--s-brown); }
+.svc-cta-actions { display: flex; flex-direction: column; align-items: center; gap: 14px; }
+.svc-cta-btn--line {
+    background: transparent; color: var(--s-cream); border-color: var(--s-mauve); max-width: 440px; text-align: center; line-height: 1.6; padding: 12px 24px;
+}
+.svc-cta-btn--line:hover { background: rgba(250,247,242,0.12); box-shadow: none; }
+@media (max-width: 719px) { .svc-price-label { text-align: right; } }
 </style>
 </head>
 
@@ -395,36 +416,52 @@ footer .social a:focus-visible { outline: 2px solid #7A5F6D; outline-offset: 3px
                 <h2 id="svc-tarot-title">塔羅占卜</h2>
                 <span class="svc-en">Tarot Reading</span>
                 <p>從牌卡的象徵中，整理當下的困惑，探索不同的觀點與可能。</p>
+                            <p class="svc-how">預約方式：Cal.com 線上預約</p>
             </div>
             <ul class="svc-list">
                 <li class="svc-item">
                     <div class="svc-main">
                         <h3>塔羅單題</h3>
-                        <p>針對一個想了解的問題進行牌卡解析，釐清現況、探索可能方向，為你帶來不同的思考與指引</p>
+                        <p>針對一個問題進行牌卡解析，釐清現況與可能方向。</p>
+                        <dl class="svc-meta">
+                            <div><dt>服務時間</dt><dd>依問題及預約安排確認</dd></div>
+                            <div><dt>服務方式</dt><dd>依實際提供方式與預約確認</dd></div>
+                        </dl>
                     </div>
                     <div class="svc-side">
+                        <div class="svc-price-label">服務費用</div>
                         <div class="svc-price"><span class="svc-amt">NT$200</span><span class="svc-unit">／題</span></div>
                         <a class="svc-book" href="https://cal.com/jing9562939/15min?user=jing9562939" target="_blank" rel="noopener noreferrer" aria-label="立即預約：塔羅單題">立即預約 →</a>
                     </div>
                 </li>
                 <li class="svc-item">
                     <div class="svc-main">
-                        <h3>深度諮詢 (30分鐘)</h3>
-                        <p>針對一個或多個議題，透過 2–3 個問題深入梳理，釐清現況，探索內在與未來方向</p>
+                        <h3>深度諮詢（30分鐘）</h3>
+                        <p>針對一個或多個議題，透過 2 至 3 個問題深入梳理，探索內在與未來方向。</p>
+                        <dl class="svc-meta">
+                            <div><dt>服務時間</dt><dd>30 分鐘</dd></div>
+                            <div><dt>服務方式</dt><dd>依實際提供方式與預約確認</dd></div>
+                        </dl>
                     </div>
                     <div class="svc-side">
+                        <div class="svc-price-label">服務費用</div>
                         <div class="svc-price"><span class="svc-amt">NT$500</span><span class="svc-unit">／30 分鐘</span></div>
-                        <a class="svc-book" href="https://cal.com/jing9562939/15min?user=jing9562939" target="_blank" rel="noopener noreferrer" aria-label="立即預約：塔羅占卜｜30 分鐘">立即預約 →</a>
+                        <a class="svc-book" href="https://cal.com/jing9562939/15min?user=jing9562939" target="_blank" rel="noopener noreferrer" aria-label="立即預約：深度諮詢（30分鐘）">立即預約 →</a>
                     </div>
                 </li>
                 <li class="svc-item">
                     <div class="svc-main">
-                        <h3>全方位諮詢 (60分鐘)</h3>
-                        <p>針對一個或多個議題，透過 4–6 個全面梳理現況、釐清困惑，陪伴你找到內在方向與可能的答案</p>
+                        <h3>全方位諮詢（60分鐘）</h3>
+                        <p>透過 4 至 6 個面向深入探索，梳理現況、釐清困惑，陪伴客人找到內在方向。</p>
+                        <dl class="svc-meta">
+                            <div><dt>服務時間</dt><dd>60 分鐘</dd></div>
+                            <div><dt>服務方式</dt><dd>依實際提供方式與預約確認</dd></div>
+                        </dl>
                     </div>
                     <div class="svc-side">
+                        <div class="svc-price-label">服務費用</div>
                         <div class="svc-price"><span class="svc-amt">NT$1,000</span><span class="svc-unit">／60 分鐘</span></div>
-                        <a class="svc-book" href="https://cal.com/jing9562939/15min?user=jing9562939" target="_blank" rel="noopener noreferrer" aria-label="立即預約：塔羅占卜｜60 分鐘">立即預約 →</a>
+                        <a class="svc-book" href="https://cal.com/jing9562939/15min?user=jing9562939" target="_blank" rel="noopener noreferrer" aria-label="立即預約：全方位諮詢（60分鐘）">立即預約 →</a>
                     </div>
                 </li>
             </ul>
@@ -436,36 +473,55 @@ footer .social a:focus-visible { outline: 2px solid #7A5F6D; outline-offset: 3px
                 <h2 id="svc-self-title">生命探索與自我覺察</h2>
                 <span class="svc-en">Self Discovery</span>
                 <p>透過不同的方式認識自己，探索內在感受與生命課題。</p>
+                            <p class="svc-how">預約方式：LINE 詢問、IG 私訊</p>
             </div>
             <ul class="svc-list">
                 <li class="svc-item">
                     <div class="svc-main">
                         <h3>生命靈數</h3>
-                        <p>透過西方數字學，以西元出生日期解析生命數字，探索個性特質、天賦潛能與人生方向</p>
+                        <p>個性特質、天賦潛能、生命課題與人生方向。</p>
+                        <dl class="svc-meta">
+                            <div><dt>服務時間</dt><dd>時間請洽詢</dd></div>
+                            <div><dt>服務方式</dt><dd>線上／實體，依實際提供方式與預約確認</dd></div>
+                        </dl>
                     </div>
                     <div class="svc-side">
+                        <div class="svc-price-label">服務費用</div>
                         <div class="svc-price"><span class="svc-amt">NT$500</span><span class="svc-unit">／次</span></div>
-                        <a class="svc-book" href="https://cal.com/jing9562939/15min?user=jing9562939" target="_blank" rel="noopener noreferrer" aria-label="立即預約：生命靈數">立即預約 →</a>
+                        <a class="svc-book" href="https://liff.line.me/1645278921-kWRPP32q/?accountId=531eukcu" target="_blank" rel="noopener noreferrer" aria-label="LINE 詢問：生命靈數">LINE 詢問 →</a>
+                        <a class="svc-book svc-book--alt" href="https://www.instagram.com/jing9562939/" target="_blank" rel="noopener noreferrer" aria-label="IG 私訊：生命靈數">IG 私訊 →</a>
                     </div>
                 </li>
                 <li class="svc-item">
                     <div class="svc-main">
                         <h3>解夢</h3>
-                        <p>透過夢境意象與象徵解析，探索內在情緒、潛在想法與自我訊息</p>
+                        <p>透過夢境意象與象徵解析，探索內在情緒、潛在想法與自我訊息。</p>
+                        <dl class="svc-meta">
+                            <div><dt>服務時間</dt><dd>時間請洽詢</dd></div>
+                            <div><dt>服務方式</dt><dd>線上／實體，依實際提供方式與預約確認</dd></div>
+                        </dl>
                     </div>
                     <div class="svc-side">
+                        <div class="svc-price-label">服務費用</div>
                         <div class="svc-price"><span class="svc-amt">NT$300</span><span class="svc-unit">／次</span></div>
-                        <a class="svc-book" href="https://cal.com/jing9562939/15min?user=jing9562939" target="_blank" rel="noopener noreferrer" aria-label="立即預約：解夢">立即預約 →</a>
+                        <a class="svc-book" href="https://liff.line.me/1645278921-kWRPP32q/?accountId=531eukcu" target="_blank" rel="noopener noreferrer" aria-label="LINE 詢問：解夢">LINE 詢問 →</a>
+                        <a class="svc-book svc-book--alt" href="https://www.instagram.com/jing9562939/" target="_blank" rel="noopener noreferrer" aria-label="IG 私訊：解夢">IG 私訊 →</a>
                     </div>
                 </li>
                 <li class="svc-item">
                     <div class="svc-main">
-                        <h3>OH卡</h3>
-                        <p>透過圖像與聯想探索內在情緒、潛在想法，開啟自我覺察與對話</p>
+                        <h3>OH 卡</h3>
+                        <p>透過圖像與聯想探索內在情緒、潛在想法，開啟自我覺察與對話。</p>
+                        <dl class="svc-meta">
+                            <div><dt>服務時間</dt><dd>時間請洽詢</dd></div>
+                            <div><dt>服務方式</dt><dd>線上／實體，依實際提供方式與預約確認</dd></div>
+                        </dl>
                     </div>
                     <div class="svc-side">
+                        <div class="svc-price-label">服務費用</div>
                         <div class="svc-price"><span class="svc-amt">NT$300</span><span class="svc-unit">／次</span></div>
-                        <a class="svc-book" href="https://cal.com/jing9562939/15min?user=jing9562939" target="_blank" rel="noopener noreferrer" aria-label="立即預約：OH 卡">立即預約 →</a>
+                        <a class="svc-book" href="https://liff.line.me/1645278921-kWRPP32q/?accountId=531eukcu" target="_blank" rel="noopener noreferrer" aria-label="LINE 詢問：OH 卡">LINE 詢問 →</a>
+                        <a class="svc-book svc-book--alt" href="https://www.instagram.com/jing9562939/" target="_blank" rel="noopener noreferrer" aria-label="IG 私訊：OH 卡">IG 私訊 →</a>
                     </div>
                 </li>
             </ul>
@@ -477,26 +533,39 @@ footer .social a:focus-visible { outline: 2px solid #7A5F6D; outline-offset: 3px
                 <h2 id="svc-spirit-title">靈性探索與能量療癒</h2>
                 <span class="svc-en">Spiritual Exploration & Healing</span>
                 <p>為自己留一段安靜的時間，探索內在與身心靈的連結。</p>
+                            <p class="svc-how">預約方式：LINE 詢問、IG 私訊</p>
             </div>
             <ul class="svc-list">
                 <li class="svc-item">
                     <div class="svc-main">
                         <h3>代觀元辰宮</h3>
-                        <p>透過元辰宮意象探索內在狀態，認識自己，整理心念與生活方向</p>
+                        <p>透過元辰宮意象探索內在狀態，認識自己，整理心念與生活方向。</p>
+                        <dl class="svc-meta">
+                            <div><dt>服務時間</dt><dd>時間請洽詢</dd></div>
+                            <div><dt>服務方式</dt><dd>依實際提供方式與預約確認</dd></div>
+                        </dl>
                     </div>
                     <div class="svc-side">
-                        <div class="svc-price"><span class="svc-amt">NT$1,600</span><span class="svc-unit">／次</span><span class="svc-tag">優惠價</span></div>
-                        <a class="svc-book" href="https://cal.com/jing9562939/15min?user=jing9562939" target="_blank" rel="noopener noreferrer" aria-label="立即預約：代觀元辰宮">立即預約 →</a>
+                        <div class="svc-price-label">服務費用</div>
+                        <div class="svc-price"><span class="svc-amt">NT$1,600</span><span class="svc-unit">／次</span></div>
+                        <a class="svc-book" href="https://liff.line.me/1645278921-kWRPP32q/?accountId=531eukcu" target="_blank" rel="noopener noreferrer" aria-label="LINE 詢問：代觀元辰宮">LINE 詢問 →</a>
+                        <a class="svc-book svc-book--alt" href="https://www.instagram.com/jing9562939/" target="_blank" rel="noopener noreferrer" aria-label="IG 私訊：代觀元辰宮">IG 私訊 →</a>
                     </div>
                 </li>
                 <li class="svc-item">
                     <div class="svc-main">
                         <h3>光天使靈氣</h3>
-                        <p>透過光天使靈氣傳遞溫暖與平靜，放鬆身心，找回內在平衡</p>
+                        <p>透過光天使靈氣傳遞溫暖與平靜，作為身心放鬆與自我照顧的體驗。</p>
+                        <dl class="svc-meta">
+                            <div><dt>服務時間</dt><dd>時間請洽詢</dd></div>
+                            <div><dt>服務方式</dt><dd>依實際提供方式與預約確認</dd></div>
+                        </dl>
                     </div>
                     <div class="svc-side">
-                        <div class="svc-price"><span class="svc-amt">NT$1,600</span><span class="svc-unit">／次</span><span class="svc-tag">優惠價</span></div>
-                        <a class="svc-book" href="https://cal.com/jing9562939/15min?user=jing9562939" target="_blank" rel="noopener noreferrer" aria-label="立即預約：光天使靈氣">立即預約 →</a>
+                        <div class="svc-price-label">服務費用</div>
+                        <div class="svc-price"><span class="svc-amt">NT$1,600</span><span class="svc-unit">／次</span></div>
+                        <a class="svc-book" href="https://liff.line.me/1645278921-kWRPP32q/?accountId=531eukcu" target="_blank" rel="noopener noreferrer" aria-label="LINE 詢問：光天使靈氣">LINE 詢問 →</a>
+                        <a class="svc-book svc-book--alt" href="https://www.instagram.com/jing9562939/" target="_blank" rel="noopener noreferrer" aria-label="IG 私訊：光天使靈氣">IG 私訊 →</a>
                     </div>
                 </li>
             </ul>
@@ -505,6 +574,7 @@ footer .social a:focus-visible { outline: 2px solid #7A5F6D; outline-offset: 3px
         <aside class="svc-note" aria-label="價格說明">
             <h3>價格說明</h3>
             <p>部分服務目前提供階段性優惠價格，未來將依服務內容與年度規劃進行價格調整。實際服務價格以預約時網站公告為準。</p>
+            <p class="svc-note-remind">預約前請先確認服務項目及時間。如需更改預約，請依照預約平台規則辦理。</p>
         </aside>
     </div>
 
@@ -512,7 +582,10 @@ footer .social a:focus-visible { outline: 2px solid #7A5F6D; outline-offset: 3px
     <section class="svc-cta" aria-labelledby="svc-cta-title">
         <h2 id="svc-cta-title">想和自己聊聊嗎？</h2>
         <p>選擇適合你的服務，為自己留一點時間。</p>
-        <a class="svc-cta-btn" href="https://cal.com/jing9562939/15min?user=jing9562939" target="_blank" rel="noopener noreferrer">立即線上預約</a>
+        <div class="svc-cta-actions">
+            <a class="svc-cta-btn" href="https://cal.com/jing9562939/15min?user=jing9562939" target="_blank" rel="noopener noreferrer">立即線上預約</a>
+            <a class="svc-cta-btn svc-cta-btn--line" href="https://liff.line.me/1645278921-kWRPP32q/?accountId=531eukcu" target="_blank" rel="noopener noreferrer">還不確定適合哪項服務？歡迎 LINE 詢問靖靖。</a>
+        </div>
     </section>
 
 </main>
