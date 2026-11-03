@@ -695,7 +695,7 @@ function buildSelect() {
     nbtns.className = "spread-btns";
     const nb = document.createElement("button");
     nb.className = "spread-btn";
-    nb.innerHTML = "希臘生命靈數<small>輸入生日</small>";
+    nb.innerHTML = "希臘生命靈數<small>輸入出生年月日(西元)</small>";
     nb.onclick = () => { $("nMsg").textContent = ""; $("nResult").hidden = true; show("numer"); };
     nbtns.appendChild(nb);
     nrow.appendChild(nbtns);
