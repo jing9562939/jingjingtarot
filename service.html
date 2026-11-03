@@ -366,6 +366,19 @@ footer .social a:focus-visible { outline: 2px solid #7A5F6D; outline-offset: 3px
 }
 .svc-cta-btn--line:hover { background: rgba(250,247,242,0.12); box-shadow: none; }
 @media (max-width: 719px) { .svc-price-label { text-align: right; } }
+
+/* ===== 預約／詢問按鈕（無箭頭）：立即預約＝深棕實心，LINE 詢問、IG 詢問＝灰粉紫外框 ===== */
+.svc-actions { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; margin-top: 8px; }
+.svc-actions .svc-book {
+    display: inline-flex; align-items: center; justify-content: center; min-width: 96px; min-height: 40px; margin: 0; padding: 7px 20px;
+    border-radius: 999px; font-size: 14px; letter-spacing: 1px; line-height: 1.4; white-space: nowrap; text-decoration: none;
+    border: 1px solid var(--s-brown); transition: transform 0.3s, background 0.3s, box-shadow 0.3s, border-color 0.3s, color 0.3s;
+}
+.svc-actions .svc-book--main { background: var(--s-brown); color: #fff; }
+.svc-actions .svc-book--main:hover { background: #3d322c; color: #fff; transform: translateY(-2px); box-shadow: 0 8px 18px rgba(81,66,59,0.22); text-decoration: none; }
+.svc-actions .svc-book--sub { background: rgba(255,255,255,0.7); color: var(--s-brown); border-color: var(--s-mauve); }
+.svc-actions .svc-book--sub:hover { background: #fff; border-color: var(--s-mauve-dark); color: var(--s-brown); transform: translateY(-2px); text-decoration: none; }
+@media (min-width: 720px) { .svc-actions { flex-direction: row; justify-content: flex-end; } }
 </style>
 </head>
 
@@ -431,7 +444,9 @@ footer .social a:focus-visible { outline: 2px solid #7A5F6D; outline-offset: 3px
                     <div class="svc-side">
                         <div class="svc-price-label">服務費用</div>
                         <div class="svc-price"><span class="svc-amt">NT$200</span><span class="svc-unit">／題</span></div>
-                        <a class="svc-book" href="https://cal.com/jing9562939/15min?user=jing9562939" target="_blank" rel="noopener noreferrer" aria-label="立即預約：塔羅單題">立即預約 →</a>
+                        <div class="svc-actions">
+                            <a class="svc-book svc-book--main" href="https://cal.com/jing9562939/15min?user=jing9562939" target="_blank" rel="noopener noreferrer" aria-label="立即預約：塔羅單題">立即預約</a>
+                        </div>
                     </div>
                 </li>
                 <li class="svc-item">
@@ -446,7 +461,9 @@ footer .social a:focus-visible { outline: 2px solid #7A5F6D; outline-offset: 3px
                     <div class="svc-side">
                         <div class="svc-price-label">服務費用</div>
                         <div class="svc-price"><span class="svc-amt">NT$500</span><span class="svc-unit">／30 分鐘</span></div>
-                        <a class="svc-book" href="https://cal.com/jing9562939/15min?user=jing9562939" target="_blank" rel="noopener noreferrer" aria-label="立即預約：深度諮詢（30分鐘）">立即預約 →</a>
+                        <div class="svc-actions">
+                            <a class="svc-book svc-book--main" href="https://cal.com/jing9562939/15min?user=jing9562939" target="_blank" rel="noopener noreferrer" aria-label="立即預約：深度諮詢（30分鐘）">立即預約</a>
+                        </div>
                     </div>
                 </li>
                 <li class="svc-item">
@@ -461,7 +478,9 @@ footer .social a:focus-visible { outline: 2px solid #7A5F6D; outline-offset: 3px
                     <div class="svc-side">
                         <div class="svc-price-label">服務費用</div>
                         <div class="svc-price"><span class="svc-amt">NT$1,000</span><span class="svc-unit">／60 分鐘</span></div>
-                        <a class="svc-book" href="https://cal.com/jing9562939/15min?user=jing9562939" target="_blank" rel="noopener noreferrer" aria-label="立即預約：全方位諮詢（60分鐘）">立即預約 →</a>
+                        <div class="svc-actions">
+                            <a class="svc-book svc-book--main" href="https://cal.com/jing9562939/15min?user=jing9562939" target="_blank" rel="noopener noreferrer" aria-label="立即預約：全方位諮詢（60分鐘）">立即預約</a>
+                        </div>
                     </div>
                 </li>
             </ul>
@@ -473,7 +492,7 @@ footer .social a:focus-visible { outline: 2px solid #7A5F6D; outline-offset: 3px
                 <h2 id="svc-self-title">生命探索與自我覺察</h2>
                 <span class="svc-en">Self Discovery</span>
                 <p>透過不同的方式認識自己，探索內在感受與生命課題。</p>
-                            <p class="svc-how">預約方式：LINE 詢問、IG 私訊</p>
+                            <p class="svc-how">預約方式：LINE 詢問、IG 詢問</p>
             </div>
             <ul class="svc-list">
                 <li class="svc-item">
@@ -488,8 +507,10 @@ footer .social a:focus-visible { outline: 2px solid #7A5F6D; outline-offset: 3px
                     <div class="svc-side">
                         <div class="svc-price-label">服務費用</div>
                         <div class="svc-price"><span class="svc-amt">NT$500</span><span class="svc-unit">／次</span></div>
-                        <a class="svc-book" href="https://liff.line.me/1645278921-kWRPP32q/?accountId=531eukcu" target="_blank" rel="noopener noreferrer" aria-label="LINE 詢問：生命靈數">LINE 詢問 →</a>
-                        <a class="svc-book svc-book--alt" href="https://www.instagram.com/jing9562939/" target="_blank" rel="noopener noreferrer" aria-label="IG 私訊：生命靈數">IG 私訊 →</a>
+                        <div class="svc-actions">
+                            <a class="svc-book svc-book--sub" href="https://liff.line.me/1645278921-kWRPP32q/?accountId=531eukcu" target="_blank" rel="noopener noreferrer" aria-label="LINE 詢問：生命靈數">LINE 詢問</a>
+                            <a class="svc-book svc-book--sub" href="https://www.instagram.com/jing9562939/" target="_blank" rel="noopener noreferrer" aria-label="IG 詢問：生命靈數">IG 詢問</a>
+                        </div>
                     </div>
                 </li>
                 <li class="svc-item">
@@ -504,8 +525,10 @@ footer .social a:focus-visible { outline: 2px solid #7A5F6D; outline-offset: 3px
                     <div class="svc-side">
                         <div class="svc-price-label">服務費用</div>
                         <div class="svc-price"><span class="svc-amt">NT$300</span><span class="svc-unit">／次</span></div>
-                        <a class="svc-book" href="https://liff.line.me/1645278921-kWRPP32q/?accountId=531eukcu" target="_blank" rel="noopener noreferrer" aria-label="LINE 詢問：解夢">LINE 詢問 →</a>
-                        <a class="svc-book svc-book--alt" href="https://www.instagram.com/jing9562939/" target="_blank" rel="noopener noreferrer" aria-label="IG 私訊：解夢">IG 私訊 →</a>
+                        <div class="svc-actions">
+                            <a class="svc-book svc-book--sub" href="https://liff.line.me/1645278921-kWRPP32q/?accountId=531eukcu" target="_blank" rel="noopener noreferrer" aria-label="LINE 詢問：解夢">LINE 詢問</a>
+                            <a class="svc-book svc-book--sub" href="https://www.instagram.com/jing9562939/" target="_blank" rel="noopener noreferrer" aria-label="IG 詢問：解夢">IG 詢問</a>
+                        </div>
                     </div>
                 </li>
                 <li class="svc-item">
@@ -520,8 +543,10 @@ footer .social a:focus-visible { outline: 2px solid #7A5F6D; outline-offset: 3px
                     <div class="svc-side">
                         <div class="svc-price-label">服務費用</div>
                         <div class="svc-price"><span class="svc-amt">NT$300</span><span class="svc-unit">／次</span></div>
-                        <a class="svc-book" href="https://liff.line.me/1645278921-kWRPP32q/?accountId=531eukcu" target="_blank" rel="noopener noreferrer" aria-label="LINE 詢問：OH 卡">LINE 詢問 →</a>
-                        <a class="svc-book svc-book--alt" href="https://www.instagram.com/jing9562939/" target="_blank" rel="noopener noreferrer" aria-label="IG 私訊：OH 卡">IG 私訊 →</a>
+                        <div class="svc-actions">
+                            <a class="svc-book svc-book--sub" href="https://liff.line.me/1645278921-kWRPP32q/?accountId=531eukcu" target="_blank" rel="noopener noreferrer" aria-label="LINE 詢問：OH 卡">LINE 詢問</a>
+                            <a class="svc-book svc-book--sub" href="https://www.instagram.com/jing9562939/" target="_blank" rel="noopener noreferrer" aria-label="IG 詢問：OH 卡">IG 詢問</a>
+                        </div>
                     </div>
                 </li>
             </ul>
@@ -533,7 +558,7 @@ footer .social a:focus-visible { outline: 2px solid #7A5F6D; outline-offset: 3px
                 <h2 id="svc-spirit-title">靈性探索與能量療癒</h2>
                 <span class="svc-en">Spiritual Exploration & Healing</span>
                 <p>為自己留一段安靜的時間，探索內在與身心靈的連結。</p>
-                            <p class="svc-how">預約方式：LINE 詢問、IG 私訊</p>
+                            <p class="svc-how">預約方式：LINE 詢問、IG 詢問</p>
             </div>
             <ul class="svc-list">
                 <li class="svc-item">
@@ -548,8 +573,10 @@ footer .social a:focus-visible { outline: 2px solid #7A5F6D; outline-offset: 3px
                     <div class="svc-side">
                         <div class="svc-price-label">服務費用</div>
                         <div class="svc-price"><span class="svc-amt">NT$1,600</span><span class="svc-unit">／次</span></div>
-                        <a class="svc-book" href="https://liff.line.me/1645278921-kWRPP32q/?accountId=531eukcu" target="_blank" rel="noopener noreferrer" aria-label="LINE 詢問：代觀元辰宮">LINE 詢問 →</a>
-                        <a class="svc-book svc-book--alt" href="https://www.instagram.com/jing9562939/" target="_blank" rel="noopener noreferrer" aria-label="IG 私訊：代觀元辰宮">IG 私訊 →</a>
+                        <div class="svc-actions">
+                            <a class="svc-book svc-book--sub" href="https://liff.line.me/1645278921-kWRPP32q/?accountId=531eukcu" target="_blank" rel="noopener noreferrer" aria-label="LINE 詢問：代觀元辰宮">LINE 詢問</a>
+                            <a class="svc-book svc-book--sub" href="https://www.instagram.com/jing9562939/" target="_blank" rel="noopener noreferrer" aria-label="IG 詢問：代觀元辰宮">IG 詢問</a>
+                        </div>
                     </div>
                 </li>
                 <li class="svc-item">
@@ -564,8 +591,10 @@ footer .social a:focus-visible { outline: 2px solid #7A5F6D; outline-offset: 3px
                     <div class="svc-side">
                         <div class="svc-price-label">服務費用</div>
                         <div class="svc-price"><span class="svc-amt">NT$1,600</span><span class="svc-unit">／次</span></div>
-                        <a class="svc-book" href="https://liff.line.me/1645278921-kWRPP32q/?accountId=531eukcu" target="_blank" rel="noopener noreferrer" aria-label="LINE 詢問：光天使靈氣">LINE 詢問 →</a>
-                        <a class="svc-book svc-book--alt" href="https://www.instagram.com/jing9562939/" target="_blank" rel="noopener noreferrer" aria-label="IG 私訊：光天使靈氣">IG 私訊 →</a>
+                        <div class="svc-actions">
+                            <a class="svc-book svc-book--sub" href="https://liff.line.me/1645278921-kWRPP32q/?accountId=531eukcu" target="_blank" rel="noopener noreferrer" aria-label="LINE 詢問：光天使靈氣">LINE 詢問</a>
+                            <a class="svc-book svc-book--sub" href="https://www.instagram.com/jing9562939/" target="_blank" rel="noopener noreferrer" aria-label="IG 詢問：光天使靈氣">IG 詢問</a>
+                        </div>
                     </div>
                 </li>
             </ul>
