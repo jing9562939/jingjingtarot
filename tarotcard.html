@@ -290,12 +290,11 @@ footer .social { margin: 4px 0; }
 /* 牌位 */
 .spread { display: flex; flex-direction: column; align-items: center; gap: 24px; }
 .spread-row { display: flex; justify-content: center; align-items: flex-start; gap: 22px; }
-.spread { --slot-w: clamp(64px, 19vw, 150px); }
+.spread { --slot-w: clamp(64px, 21vw, 150px); }
 .slot { width: var(--slot-w); flex: none; text-align: center; }
 .slot-label { font-size: 14px; letter-spacing: 1px; color: #7A5F6D; margin-bottom: 8px; }
 .slot.main .slot-label { display: inline-block; padding: 0 14px; border: 1px solid #A58A94; border-radius: 6px; background: #F0E7EA; color: #7A5F6D; }
 .spread-row.has-main .slot:not(.main) { margin-top: 46px; }
-.spread.one .slot { width: clamp(120px, 40vw, 210px); }
 
 .card-wrap { perspective: 900px; width: 100%; aspect-ratio: 7 / 12; }
 button.card-wrap.empty {
@@ -600,6 +599,7 @@ const SP = {
     universal: { name: "萬用牌陣", labels: ["主要牌","次要牌","次要牌","次要牌","心態牌"], perRow: 4, main: [0] },
     time:      { name: "時間之流", labels: ["過去","現在","未來"] },
     choose2:   { name: "二擇一牌陣", labels: ["現況","選擇 A 過程","選擇 A 結果","選擇 B 過程","選擇 B 結果"], layout: [[0],[1,2],[3,4]] },
+    daily:     { name: "每日塔羅", labels: ["今日指引"], main: [0] },       // 偉特塔羅的單張牌，每天抽一張
     single:    { name: "單張牌", labels: ["本次指引"], main: [0] },
     three:     { name: "三張牌陣", labels: ["現況","建議","結果"] }
 };
@@ -630,8 +630,8 @@ const SECTIONS = [
     { title: "偉特塔羅牌", decks: [{
         id: "tarot", label: "", en: "Waite Tarot", folder: "images/tarot/", ext: ".jpg", start: 0, pad: 2,
         count: 80, blankFrom: 78, ranges: TAROT_DRAW_RANGES, names: TAROT_NAMES, reversible: true,
-        spreads: [SP.universal, SP.time, SP.choose2] }] },
-    { title: "雷諾曼 (測試中)", decks: [{
+        spreads: [SP.daily, SP.universal, SP.time, SP.choose2] }] },
+    { title: "雷諾曼", decks: [{
         id: "lenormand", label: "", en: "Lenormand", folder: "images/lenormand/", ext: ".jpg", start: 1, pad: 2,
         count: 36, names: LENORMAND_NAMES, reversible: false,
         spreads: [SP.single, SP.three, SP.universal] }] },
@@ -930,7 +930,7 @@ async function buildResultCanvas() {
     const imgs = await Promise.all(picks.map(c => c.blank ? null : loadImg(imgPath(deck, c.index))));
 
     const maxLen = Math.max(...rows.map(r => r.length));
-    const UNIT = picks.length === 1 ? 300 : Math.min(220, (W - 2 * PAD - (maxLen - 1) * GAP) / maxLen);   // 每張牌同大小
+    const UNIT = Math.min(220, (W - 2 * PAD - (maxLen - 1) * GAP) / maxLen);   // 每張牌同大小
     const plan = rows.map(row => {
         const unit = UNIT;
         return { row, unit, h: unit * 12 / 7, off: row.some(i => isMain(sp, i)) && row.length > 1 ? 50 : 0 };
