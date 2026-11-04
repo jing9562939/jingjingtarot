@@ -379,6 +379,11 @@ footer .social a:focus-visible { outline: 2px solid #7A5F6D; outline-offset: 3px
 .svc-actions .svc-book--sub { background: rgba(255,255,255,0.7); color: var(--s-brown); border-color: var(--s-mauve); }
 .svc-actions .svc-book--sub:hover { background: #fff; border-color: var(--s-mauve-dark); color: var(--s-brown); transform: translateY(-2px); text-decoration: none; }
 @media (min-width: 720px) { .svc-actions { flex-direction: row; justify-content: flex-end; } }
+
+/* ===== 價格說明：三項條列 ===== */
+.svc-note-list { list-style: none; margin: 8px 0 0; padding: 0; display: grid; gap: 10px; }
+.svc-note-list li { font-size: 14px; line-height: 1.95; color: var(--s-soft); }
+.svc-note-list b { font-weight: 500; color: var(--s-brown); letter-spacing: 1px; }
 </style>
 </head>
 
@@ -435,10 +440,10 @@ footer .social a:focus-visible { outline: 2px solid #7A5F6D; outline-offset: 3px
                 <li class="svc-item">
                     <div class="svc-main">
                         <h3>塔羅單題</h3>
-                        <p>提供 1 題塔羅占卜針對一個問題進行牌卡解析，釐清現況與可能方向。</p>
+                        <p>針對一個問題進行牌卡解析，釐清現況與可能方向。</p>
                         <dl class="svc-meta">
                             <div><dt>服務時間</dt><dd>依問題及預約安排確認</dd></div>
-                            <div><dt>服務方式</dt><dd>線上/實體預約制</dd></div>
+                            <div><dt>服務方式</dt><dd>依實際提供方式與預約確認</dd></div>
                         </dl>
                     </div>
                     <div class="svc-side">
@@ -452,10 +457,10 @@ footer .social a:focus-visible { outline: 2px solid #7A5F6D; outline-offset: 3px
                 <li class="svc-item">
                     <div class="svc-main">
                         <h3>深度諮詢（30分鐘）</h3>
-                        <p>提供 2 至 3 題塔羅占卜解讀，探索議題現況與未來方向，帶來更多理解與參考。</p>
+                        <p>針對一個或多個議題，透過 2 至 3 個問題深入梳理，探索內在與未來方向。</p>
                         <dl class="svc-meta">
                             <div><dt>服務時間</dt><dd>30 分鐘</dd></div>
-                            <div><dt>服務方式</dt><dd>線上/實體預約制</dd></div>
+                            <div><dt>服務方式</dt><dd>依實際提供方式與預約確認</dd></div>
                         </dl>
                     </div>
                     <div class="svc-side">
@@ -469,10 +474,10 @@ footer .social a:focus-visible { outline: 2px solid #7A5F6D; outline-offset: 3px
                 <li class="svc-item">
                     <div class="svc-main">
                         <h3>全方位諮詢（60分鐘）</h3>
-                        <p>透過 4 至 6 題塔羅占卜解讀，梳理現況、釐清困惑，陪伴客人找到內在方向。</p>
+                        <p>透過 4 至 6 個面向深入探索，梳理現況、釐清困惑，陪伴客人找到內在方向。</p>
                         <dl class="svc-meta">
                             <div><dt>服務時間</dt><dd>60 分鐘</dd></div>
-                            <div><dt>服務方式</dt><dd>線上/實體預約制</dd></div>
+                            <div><dt>服務方式</dt><dd>依實際提供方式與預約確認</dd></div>
                         </dl>
                     </div>
                     <div class="svc-side">
@@ -501,7 +506,7 @@ footer .social a:focus-visible { outline: 2px solid #7A5F6D; outline-offset: 3px
                         <p>個性特質、天賦潛能、生命課題與人生方向。</p>
                         <dl class="svc-meta">
                             <div><dt>服務時間</dt><dd>時間請洽詢</dd></div>
-                            <div><dt>服務方式</dt><dd>線上/實體，線上/實體預約制</dd></div>
+                            <div><dt>服務方式</dt><dd>線上／實體，依實際提供方式與預約確認</dd></div>
                         </dl>
                     </div>
                     <div class="svc-side">
@@ -519,7 +524,7 @@ footer .social a:focus-visible { outline: 2px solid #7A5F6D; outline-offset: 3px
                         <p>透過夢境意象與象徵解析，探索內在情緒、潛在想法與自我訊息。</p>
                         <dl class="svc-meta">
                             <div><dt>服務時間</dt><dd>時間請洽詢</dd></div>
-                            <div><dt>服務方式</dt><dd>線上/實體，線上/實體預約制</dd></div>
+                            <div><dt>服務方式</dt><dd>線上／實體，依實際提供方式與預約確認</dd></div>
                         </dl>
                     </div>
                     <div class="svc-side">
@@ -537,7 +542,7 @@ footer .social a:focus-visible { outline: 2px solid #7A5F6D; outline-offset: 3px
                         <p>透過圖像與聯想探索內在情緒、潛在想法，開啟自我覺察與對話。</p>
                         <dl class="svc-meta">
                             <div><dt>服務時間</dt><dd>時間請洽詢</dd></div>
-                            <div><dt>服務方式</dt><dd>線上/實體，線上/實體預約制</dd></div>
+                            <div><dt>服務方式</dt><dd>線上／實體，依實際提供方式與預約確認</dd></div>
                         </dl>
                     </div>
                     <div class="svc-side">
@@ -567,12 +572,12 @@ footer .social a:focus-visible { outline: 2px solid #7A5F6D; outline-offset: 3px
                         <p>透過元辰宮意象探索內在狀態，認識自己，整理心念與生活方向。</p>
                         <dl class="svc-meta">
                             <div><dt>服務時間</dt><dd>時間請洽詢</dd></div>
-                            <div><dt>服務方式</dt><dd>線上/實體預約制</dd></div>
+                            <div><dt>服務方式</dt><dd>依實際提供方式與預約確認</dd></div>
                         </dl>
                     </div>
                     <div class="svc-side">
                         <div class="svc-price-label">服務費用</div>
-                        <div class="svc-price"><span class="svc-amt">NT$1,600 (原價5,800元)</span><span class="svc-unit">／次</span></div>
+                        <div class="svc-price"><span class="svc-amt">NT$1,600</span><span class="svc-unit">／次</span></div>
                         <div class="svc-actions">
                             <a class="svc-book svc-book--sub" href="https://liff.line.me/1645278921-kWRPP32q/?accountId=531eukcu" target="_blank" rel="noopener noreferrer" aria-label="LINE 詢問：代觀元辰宮">LINE 詢問</a>
                             <a class="svc-book svc-book--sub" href="https://www.instagram.com/jing9562939/" target="_blank" rel="noopener noreferrer" aria-label="IG 詢問：代觀元辰宮">IG 詢問</a>
@@ -585,12 +590,12 @@ footer .social a:focus-visible { outline: 2px solid #7A5F6D; outline-offset: 3px
                         <p>透過光天使靈氣傳遞溫暖與平靜，作為身心放鬆與自我照顧的體驗。</p>
                         <dl class="svc-meta">
                             <div><dt>服務時間</dt><dd>時間請洽詢</dd></div>
-                            <div><dt>服務方式</dt><dd>線上/實體預約制</dd></div>
+                            <div><dt>服務方式</dt><dd>依實際提供方式與預約確認</dd></div>
                         </dl>
                     </div>
                     <div class="svc-side">
                         <div class="svc-price-label">服務費用</div>
-                        <div class="svc-price"><span class="svc-amt">NT$1,600 (原價4,800元)</span><span class="svc-unit">／次</span></div>
+                        <div class="svc-price"><span class="svc-amt">NT$1,600</span><span class="svc-unit">／次</span></div>
                         <div class="svc-actions">
                             <a class="svc-book svc-book--sub" href="https://liff.line.me/1645278921-kWRPP32q/?accountId=531eukcu" target="_blank" rel="noopener noreferrer" aria-label="LINE 詢問：光天使靈氣">LINE 詢問</a>
                             <a class="svc-book svc-book--sub" href="https://www.instagram.com/jing9562939/" target="_blank" rel="noopener noreferrer" aria-label="IG 詢問：光天使靈氣">IG 詢問</a>
@@ -600,10 +605,13 @@ footer .social a:focus-visible { outline: 2px solid #7A5F6D; outline-offset: 3px
             </ul>
         </section>
 
-        <aside class="svc-note" aria-label="價格說明">
+        <aside class="svc-note" aria-label="價格與預約說明">
             <h3>價格說明</h3>
-            <p>部分服務目前提供階段性優惠價格，未來將依服務內容與年度規劃進行價格調整。實際服務價格以預約時網站公告為準。</p>
-            <p class="svc-note-remind">預約前請先確認服務項目及時間。如需更改預約，請依照預約平台規則辦理。</p>
+            <ul class="svc-note-list">
+                <li><b>服務價格：</b>部分服務提供期間限定優惠，服務價格可能依服務內容及營運規劃調整。實際收費以預約當下網站公告及確認之價格為準。</li>
+                <li><b>預約確認：</b>預約前請確認服務項目、內容、價格及預約時間。完成預約即視為同意本服務之相關規範。</li>
+                <li><b>預約異動：</b>如需更改或取消預約，請依預約平台公告之異動及取消規定辦理。相關期限、費用及退款方式，均以預約時所載明之規範為準。</li>
+            </ul>
         </aside>
     </div>
 
