@@ -440,7 +440,7 @@ button.card-wrap.empty.next { border-color: #A58A94; background: rgba(196,168,10
 .draw-title { font-size: 30px; letter-spacing: 2px; }
 @media (max-width: 800px) { .hero-text h1 { font-size: 28px; letter-spacing: 2px; } .draw-title { font-size: 26px; } }
 
-/* ===== 生命靈數流年（ln- 前綴，獨立於其他功能） ===== */
+/* ===== 生命靈數流年 (測試中) (測試中)（ln- 前綴，獨立於其他功能） ===== */
 .ln-result { max-width: 760px; margin: 26px auto 0; }
 .ln-summary {
     display: grid; gap: 14px; justify-items: center; text-align: center; padding: 30px 22px 28px;
@@ -592,10 +592,10 @@ button.card-wrap.empty.next { border-color: #A58A94; background: rgba(196,168,10
         </div>
     </div>
 
-    <!-- ④ 生命靈數流年（獨立功能） -->
+    <!-- ④ 生命靈數流年 (測試中)（獨立功能） -->
     <div id="viewYear" class="draw-wrap" hidden>
         <div class="crumb">生命靈數</div>
-        <h2 class="draw-title">生命靈數流年</h2>
+        <h2 class="draw-title">生命靈數流年 (測試中)</h2>
         <div class="top-controls">
             <button class="btn ghost" id="lnBack">← 返回線上抽牌</button>
         </div>
@@ -1380,7 +1380,7 @@ show("select");
 
 <script>
 /* =====================================================
-   生命靈數流年（獨立功能，包在自己的函式裡，不會和抽牌／希臘生命靈數衝突）
+   生命靈數流年 (測試中)（獨立功能，包在自己的函式裡，不會和抽牌／希臘生命靈數衝突）
    規則：生日切換制。今年生日還沒到 → 用前一年；生日當天（含）之後 → 用當年。
    計算：計算年份、出生月份、出生日期的所有數字相加，持續加總到 1～9。
    資料與說明文字在 liunian-data.js。
@@ -1430,7 +1430,7 @@ show("select");
                 var box = rows[i].querySelector(".spread-btns");
                 var b = document.createElement("button");
                 b.className = "spread-btn";
-                b.innerHTML = '<span><span aria-hidden="true"></span> 生命靈數流年</span><small>輸入生日</small>';
+                b.innerHTML = '<span><span aria-hidden="true"></span> 生命靈數流年 (測試中)</span><small>輸入生日</small>';
                 b.onclick = openYear;
                 box.appendChild(b);
                 return;
@@ -1493,7 +1493,7 @@ show("select");
     }
     function resultText(r) {
         var i = info(r.num), lines = [
-            "【靖靖塔羅 生命靈數流年】",
+            "【靖靖塔羅 生命靈數流年 (測試中)】",
             "出生日期：" + r.birthY + " / " + pad(r.birthM) + " / " + pad(r.birthD),
             "流年計算年份：" + r.calcYear + " 年",
             "個人流年數字：" + r.num,
@@ -1527,7 +1527,7 @@ show("select");
         ctx.textAlign = "center";
         ctx.fillStyle = "#51423B"; ctx.font = "500 50px " + FONT; ctx.fillText("靖靖塔羅", W / 2, 95);
         ctx.fillStyle = "#7A5F6D"; ctx.font = "24px " + FONT; ctx.fillText("JingJing Tarot", W / 2, 135);
-        ctx.fillStyle = "#51423B"; ctx.font = "32px " + FONT; ctx.fillText("生命靈數流年", W / 2, 195);
+        ctx.fillStyle = "#51423B"; ctx.font = "32px " + FONT; ctx.fillText("生命靈數流年 (測試中)", W / 2, 195);
         ctx.fillStyle = "#7A6A62"; ctx.font = "26px " + FONT;
         ctx.fillText("出生日期　" + r.birthY + " / " + pad(r.birthM) + " / " + pad(r.birthD), W / 2, 245);
         ctx.fillText("流年計算年份　" + r.calcYear + " 年", W / 2, 285);
@@ -1570,7 +1570,7 @@ show("select");
         g("lnLine").onclick = function () { window.open("https://line.me/R/msg/text/?" + encodeURIComponent(resultText(st)), "_blank"); };
         g("lnImg").onclick = function () {
             var btn = g("lnImg"); btn.disabled = true; btn.textContent = "圖片產生中⋯";
-            Promise.resolve().then(function () { return showCanvasModal(buildCanvas(st), "jingjing-liunian.png", "靖靖塔羅 生命靈數流年"); })
+            Promise.resolve().then(function () { return showCanvasModal(buildCanvas(st), "jingjing-liunian.png", "靖靖塔羅 生命靈數流年 (測試中)"); })
                 .catch(function () { alert("圖片產生失敗，請改用「複製文字」。"); })
                 .then(function () { btn.disabled = false; btn.textContent = "儲存／分享圖片"; });
         };
