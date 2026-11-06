@@ -439,6 +439,48 @@ button.card-wrap.empty.next { border-color: #A58A94; background: rgba(196,168,10
 .hero-text > p { font-size: 15.5px; }
 .draw-title { font-size: 30px; letter-spacing: 2px; }
 @media (max-width: 800px) { .hero-text h1 { font-size: 28px; letter-spacing: 2px; } .draw-title { font-size: 26px; } }
+
+/* ===== 生命靈數流年（ln- 前綴，獨立於其他功能） ===== */
+.ln-result { max-width: 760px; margin: 26px auto 0; }
+.ln-summary {
+    display: grid; gap: 14px; justify-items: center; text-align: center; padding: 30px 22px 28px;
+    background: #fff; border: 1px solid #E6DBD0; border-radius: 22px; box-shadow: 0 10px 30px rgba(81,66,59,0.08);
+}
+.ln-facts { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 30px; font-size: 14.5px; color: #7A6A62; }
+.ln-facts b { font-weight: 500; color: #51423B; letter-spacing: 1px; margin-left: 4px; }
+.ln-num {
+    width: 132px; height: 132px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 6px 0 2px;
+    font-family: Georgia, "Times New Roman", serif; font-size: 70px; line-height: 1; color: #51423B; background: #fff;
+    border: 2px solid #A58A94; box-shadow: 0 0 0 8px rgba(165,138,148,0.14), inset 0 0 0 6px #fff, inset 0 0 0 7px rgba(165,138,148,0.55);
+}
+.ln-label { font-size: 13px; letter-spacing: 3px; color: #7A5F6D; }
+.ln-name { margin: 0; font-size: 26px; font-weight: 500; letter-spacing: 3px; line-height: 1.5; color: #51423B; }
+.ln-theme { margin: 0; font-size: 16px; letter-spacing: 1px; color: #7A6A62; }
+.ln-todo { display: inline-block; padding: 0 12px; border-radius: 999px; font-size: 13px; line-height: 1.9; background: #F3E3E6; color: #94505A; letter-spacing: 1px; }
+.ln-reading {
+    margin-top: 16px; padding: 26px 24px; background: #fffdf9; border: 1px solid #E6DBD0; border-radius: 18px;
+    font-size: 15.5px; line-height: 2.05; color: #5e4f47;
+}
+.ln-reading h4 { margin: 0 0 10px; font-size: 14px; font-weight: 500; letter-spacing: 3px; color: #7A5F6D; }
+.ln-reading p { margin: 0 0 12px; }
+.ln-reading p:last-child { margin-bottom: 0; }
+.ln-notes { margin-top: 16px; background: #fff; border: 1px solid #E6DBD0; border-radius: 16px; overflow: hidden; }
+.ln-notes summary { list-style: none; cursor: pointer; padding: 16px 52px 16px 20px; position: relative; font-size: 16px; letter-spacing: 1px; color: #51423B; }
+.ln-notes summary::-webkit-details-marker { display: none; }
+.ln-notes summary::after { content: "+"; position: absolute; right: 20px; top: 50%; transform: translateY(-50%); font-size: 22px; color: #7A5F6D; }
+.ln-notes[open] summary::after { content: "−"; }
+.ln-notes summary:focus-visible { outline: 3px solid #7A5F6D; outline-offset: -3px; }
+.ln-notes-body { padding: 0 20px 20px; display: grid; gap: 16px; }
+.ln-note h4 { margin: 0 0 4px; font-size: 14px; font-weight: 500; letter-spacing: 2px; color: #7A5F6D; }
+.ln-note p { margin: 0 0 8px; font-size: 14.5px; line-height: 1.95; color: #7A6A62; }
+.ln-note p:last-child { margin-bottom: 0; }
+.ln-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 22px; }
+@media (max-width: 800px) {
+    .ln-num { width: 112px; height: 112px; font-size: 58px; }
+    .ln-name { font-size: 24px; }
+    .ln-summary { padding: 26px 16px 24px; }
+    .ln-reading { padding: 22px 18px; }
+}
 </style>
 </head>
 
@@ -550,6 +592,50 @@ button.card-wrap.empty.next { border-color: #A58A94; background: rgba(196,168,10
         </div>
     </div>
 
+    <!-- ④ 生命靈數流年（獨立功能） -->
+    <div id="viewYear" class="draw-wrap" hidden>
+        <div class="crumb">生命靈數</div>
+        <h2 class="draw-title">生命靈數流年</h2>
+        <div class="top-controls">
+            <button class="btn ghost" id="lnBack">← 返回線上抽牌</button>
+        </div>
+        <p class="n-hint">請輸入出生年月日（西元）。資料只會在你的瀏覽器裡計算，不會上傳。</p>
+
+        <div class="n-form">
+            <label for="lnDate">出生年月日</label>
+            <input type="date" id="lnDate" min="1900-01-01">
+            <button class="btn" id="lnCalc">開始計算</button>
+        </div>
+        <div class="n-msg" id="lnMsg" aria-live="polite"></div>
+
+        <div id="lnResult" class="ln-result" hidden>
+            <div class="ln-summary">
+                <div class="ln-facts">
+                    <span>出生日期<b id="lnBirth"></b></span>
+                    <span>流年計算年份<b id="lnYear"></b></span>
+                </div>
+                <div class="ln-label">個人流年數字</div>
+                <div class="ln-num" id="lnNum" aria-label="個人流年數字"></div>
+                <div class="ln-label" id="lnSeries"></div>
+                <h3 class="ln-name" id="lnName"></h3>
+                <p class="ln-theme" id="lnTheme"></p>
+            </div>
+            <div class="ln-reading" id="lnReading"></div>
+
+            <div class="ln-actions">
+                <button class="btn ghost" id="lnAgain">重新計算</button>
+                <button class="btn ghost" id="lnCopy">複製文字</button>
+                <button class="btn ghost" id="lnLine">傳送到 LINE</button>
+                <button class="btn ghost" id="lnImg">儲存／分享圖片</button>
+            </div>
+
+            <details class="ln-notes" id="lnNotes" hidden>
+                <summary>流年計算邏輯與說明</summary>
+                <div class="ln-notes-body" id="lnNotesBody"></div>
+            </details>
+        </div>
+    </div>
+
 </main>
 
 <div class="modal" id="modal" hidden>
@@ -575,6 +661,7 @@ button.card-wrap.empty.next { border-color: #A58A94; background: rgba(196,168,10
 </footer>
 
 
+<script src="liunian-data.js"></script>
 <script>
 /* =====================================================
    一、可自行修改的設定
@@ -631,7 +718,7 @@ const SECTIONS = [
         id: "tarot", label: "", en: "Waite Tarot", folder: "images/tarot/", ext: ".jpg", start: 0, pad: 2,
         count: 80, blankFrom: 78, ranges: TAROT_DRAW_RANGES, names: TAROT_NAMES, reversible: true,
         spreads: [SP.daily, SP.universal, SP.time, SP.choose2] }] },
-    { title: "雷諾曼 (待驗證)", decks: [{
+    { title: "雷諾曼", decks: [{
         id: "lenormand", label: "", en: "Lenormand", folder: "images/lenormand/", ext: ".jpg", start: 1, pad: 2,
         count: 36, names: LENORMAND_NAMES, reversible: false,
         spreads: [SP.single, SP.three, SP.universal] }] },
@@ -695,7 +782,7 @@ function buildSelect() {
     nbtns.className = "spread-btns";
     const nb = document.createElement("button");
     nb.className = "spread-btn";
-    nb.innerHTML = "希臘生命靈數<small>輸入出生年月日(西元)</small>";
+    nb.innerHTML = "希臘生命靈數<small>輸入生日</small>";
     nb.onclick = () => { $("nMsg").textContent = ""; $("nResult").hidden = true; show("numer"); };
     nbtns.appendChild(nb);
     nrow.appendChild(nbtns);
@@ -1288,6 +1375,208 @@ $("nImgBtn").onclick = async () => {
 
 buildSelect();
 show("select");
+</script>
+
+
+<script>
+/* =====================================================
+   生命靈數流年（獨立功能，包在自己的函式裡，不會和抽牌／希臘生命靈數衝突）
+   規則：生日切換制。今年生日還沒到 → 用前一年；生日當天（含）之後 → 用當年。
+   計算：計算年份、出生月份、出生日期的所有數字相加，持續加總到 1～9。
+   資料與說明文字在 liunian-data.js。
+===================================================== */
+(function () {
+    var g = function (id) { return document.getElementById(id); };
+    var esc = function (t) { return String(t == null ? "" : t).replace(/[&<>"']/g, function (c) { return ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]; }); };
+    var pad = function (n) { return String(n).padStart(2, "0"); };
+    var dataOk = typeof LN_DATA !== "undefined" && typeof LN_NOTES !== "undefined";
+    var SET = (typeof LN_SETTINGS !== "undefined") ? LN_SETTINGS : { leapBirthday: "0301", showEmptyNotesBlock: false };
+
+    /* ---------- 計算 ---------- */
+    function isLeap(y) { return (y % 4 === 0 && y % 100 !== 0) || y % 400 === 0; }
+    // 某一年的「生日」那一天（2/29 出生的人在平年，依設定算在 2/28 或 3/1）
+    function birthdayIn(year, m, d) {
+        if (m === 2 && d === 29 && !isLeap(year)) return SET.leapBirthday === "0228" ? new Date(year, 1, 28) : new Date(year, 2, 1);
+        return new Date(year, m - 1, d);
+    }
+    function digitSum(n) { return String(n).split("").reduce(function (a, c) { return a + Number(c); }, 0); }
+    function reduce19(n) { while (n > 9) n = digitSum(n); return n; }
+
+    function calcLiunian(y, m, d, today) {
+        var t = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+        var calcYear = t >= birthdayIn(t.getFullYear(), m, d) ? t.getFullYear() : t.getFullYear() - 1;
+        var total = digitSum(calcYear) + digitSum(m) + digitSum(d);        // 計算年份＋月＋日的所有數字相加
+        return { birthY: y, birthM: m, birthD: d, calcYear: calcYear, total: total, num: reduce19(total) };
+    }
+    window.LiuNian = { calc: calcLiunian };      // 只開放計算函式，方便檢查正確性
+
+    /* ---------- 文字資料 ---------- */
+    function info(n) {
+        var row = (dataOk && LN_DATA[n]) || {};
+        var ph = (typeof LN_PLACEHOLDER !== "undefined") ? LN_PLACEHOLDER : {};
+        return { name: row.name || "", theme: row.theme || "", reading: row.reading || "",
+                 phName: ph.name || "名稱待填寫", phTheme: ph.theme || "主題待填寫", phReading: ph.reading || "解讀內容待填寫" };
+    }
+    function titleLine(n) { var i = info(n); return "流年" + n + (i.name ? "｜" + i.name : "") + (i.theme ? "｜" + i.theme : ""); }
+    function paragraphs(text) { return String(text).split(/\n+/).map(function (x) { return x.trim(); }).filter(Boolean); }
+
+    /* ---------- 入口：在「希臘生命靈數」旁新增按鈕 ---------- */
+    var st = null;     // 目前的計算結果
+    function addEntry() {
+        var rows = document.querySelectorAll(".deck-row");
+        for (var i = 0; i < rows.length; i++) {
+            var nm = rows[i].querySelector(".deck-name");
+            if (nm && nm.textContent.indexOf("生命靈數") === 0) {
+                var box = rows[i].querySelector(".spread-btns");
+                var b = document.createElement("button");
+                b.className = "spread-btn";
+                b.innerHTML = '<span><span aria-hidden="true">✦</span> 生命靈數流年</span><small>輸入生日</small>';
+                b.onclick = openYear;
+                box.appendChild(b);
+                return;
+            }
+        }
+    }
+    function openYear() {
+        views.year = g("viewYear");
+        g("lnMsg").textContent = dataOk ? "" : "找不到 liunian-data.js，請確認它已和網頁放在同一個資料夾並上傳。";
+        g("lnResult").hidden = true;
+        g("lnDate").max = new Date().getFullYear() + "-" + pad(new Date().getMonth() + 1) + "-" + pad(new Date().getDate());
+        show("year");
+    }
+
+    /* ---------- 計算並顯示 ---------- */
+    function onCalc() {
+        var msg = g("lnMsg"), v = g("lnDate").value;
+        if (!dataOk) { msg.textContent = "找不到 liunian-data.js，請確認它已和網頁放在同一個資料夾並上傳。"; return; }
+        if (!v) { msg.textContent = "請先輸入出生年月日（西元）。"; g("lnResult").hidden = true; return; }
+        var a = v.split("-").map(Number), y = a[0], m = a[1], d = a[2];
+        var chk = new Date(y, m - 1, d), now = new Date();
+        if (y < 1900 || chk > now || chk.getMonth() !== m - 1 || chk.getDate() !== d) {
+            msg.textContent = "日期看起來不太對，請再確認一次。"; g("lnResult").hidden = true; return;
+        }
+        msg.textContent = "";
+        st = calcLiunian(y, m, d, now);
+        render(st);
+        setTimeout(function () { g("lnNum").scrollIntoView({ behavior: "smooth", block: "center" }); }, 100);
+    }
+
+    function render(r) {
+        var i = info(r.num);
+        g("lnBirth").textContent = r.birthY + " / " + pad(r.birthM) + " / " + pad(r.birthD);
+        g("lnYear").textContent = r.calcYear + " 年";
+        g("lnNum").textContent = r.num;
+        g("lnSeries").textContent = "流年 " + r.num;
+        g("lnName").innerHTML = i.name ? esc(i.name) : '<span class="ln-todo">' + esc(i.phName) + "</span>";
+        g("lnTheme").innerHTML = i.theme ? esc(i.theme) : '<span class="ln-todo">' + esc(i.phTheme) + "</span>";
+        var ps = paragraphs(i.reading);
+        g("lnReading").innerHTML = "<h4>流年解讀</h4>" + (ps.length ? ps.map(function (p) { return "<p>" + esc(p) + "</p>"; }).join("") : '<p><span class="ln-todo">' + esc(i.phReading) + "</span></p>");
+        renderNotes();
+        g("lnResult").hidden = false;
+    }
+
+    /* ---------- 流年計算邏輯與說明（內容全部來自 LN_NOTES，沒填的項目自動隱藏） ---------- */
+    function renderNotes() {
+        var items = LN_NOTES.filter(function (n) { return n && String(n.content || "").trim(); });
+        var box = g("lnNotes");
+        if (!items.length && !SET.showEmptyNotesBlock) { box.hidden = true; return; }
+        g("lnNotesBody").innerHTML = items.length ? items.map(function (n) {
+            return '<section class="ln-note"><h4>' + esc(n.title) + "</h4>" + paragraphs(n.content).map(function (p) { return "<p>" + esc(p) + "</p>"; }).join("") + "</section>";
+        }).join("") : '<p class="ln-note"><span class="ln-todo">說明內容待填寫</span></p>';
+        box.hidden = false;
+    }
+
+    /* ---------- 重新計算、複製、LINE、圖片 ---------- */
+    function onAgain() {
+        g("lnDate").value = ""; g("lnResult").hidden = true; g("lnMsg").textContent = ""; st = null;
+        window.scrollTo({ top: 0, behavior: "smooth" }); g("lnDate").focus();
+    }
+    function resultText(r) {
+        var i = info(r.num), lines = [
+            "【靖靖塔羅 生命靈數流年】",
+            "出生日期：" + r.birthY + " / " + pad(r.birthM) + " / " + pad(r.birthD),
+            "流年計算年份：" + r.calcYear + " 年",
+            "個人流年數字：" + r.num,
+            "流年：" + titleLine(r.num)
+        ];
+        if (i.reading.trim()) lines.push("", "流年解讀：", paragraphs(i.reading).join("\n"));
+        return lines.join("\n");
+    }
+    function wrapLines(ctx, text, maxW) {
+        var out = [];
+        paragraphs(text).forEach(function (p) {
+            var line = "";
+            p.split("").forEach(function (ch) {
+                if (ctx.measureText(line + ch).width > maxW && line) { out.push(line); line = ch; } else line += ch;
+            });
+            out.push(line); out.push("");
+        });
+        if (out.length) out.pop();
+        return out;
+    }
+    function buildCanvas(r) {
+        var W = 1080, PAD = 90, FONT = '"Noto Sans TC","Microsoft JhengHei",sans-serif', SERIF = 'Georgia,"Times New Roman",serif';
+        var i = info(r.num), measure = document.createElement("canvas").getContext("2d");
+        measure.font = "28px " + FONT;
+        var lines = i.reading.trim() ? wrapLines(measure, i.reading, W - PAD * 2 - 80) : [];
+        var LH = 48, readH = lines.length ? lines.length * LH + 110 : 0;
+        var H = 660 + readH + 130;
+        var cv = document.createElement("canvas"); cv.width = W; cv.height = H;
+        var ctx = cv.getContext("2d");
+        ctx.fillStyle = "#FAF7F2"; ctx.fillRect(0, 0, W, H);
+        ctx.textAlign = "center";
+        ctx.fillStyle = "#51423B"; ctx.font = "500 50px " + FONT; ctx.fillText("靖靖塔羅", W / 2, 95);
+        ctx.fillStyle = "#7A5F6D"; ctx.font = "24px " + FONT; ctx.fillText("JingJing Tarot", W / 2, 135);
+        ctx.fillStyle = "#51423B"; ctx.font = "32px " + FONT; ctx.fillText("生命靈數流年", W / 2, 195);
+        ctx.fillStyle = "#7A6A62"; ctx.font = "26px " + FONT;
+        ctx.fillText("出生日期　" + r.birthY + " / " + pad(r.birthM) + " / " + pad(r.birthD), W / 2, 245);
+        ctx.fillText("流年計算年份　" + r.calcYear + " 年", W / 2, 285);
+        // 流年數字（同心圈）
+        var cx = W / 2, cy = 430;
+        [86, 76, 70].forEach(function (rad, k) {
+            ctx.beginPath(); ctx.arc(cx, cy, rad, 0, Math.PI * 2);
+            ctx.strokeStyle = k === 0 ? "rgba(165,138,148,0.28)" : (k === 1 ? "#A58A94" : "rgba(165,138,148,0.55)");
+            ctx.lineWidth = k === 0 ? 10 : (k === 1 ? 4 : 2); ctx.stroke();
+        });
+        ctx.fillStyle = "#51423B"; ctx.font = "96px " + SERIF; ctx.textBaseline = "middle"; ctx.fillText(String(r.num), cx, cy + 6); ctx.textBaseline = "alphabetic";
+        ctx.fillStyle = "#7A5F6D"; ctx.font = "26px " + FONT; ctx.fillText("流年 " + r.num, cx, 560);
+        ctx.fillStyle = "#51423B"; ctx.font = "500 46px " + FONT; ctx.fillText(i.name || i.phName, cx, 620);
+        ctx.fillStyle = "#7A6A62"; ctx.font = "30px " + FONT; ctx.fillText(i.theme || i.phTheme, cx, 672);
+        var y = 720;
+        if (lines.length) {
+            ctx.fillStyle = "#fffdf9"; roundPath(ctx, PAD - 20, y, W - (PAD - 20) * 2, readH - 30, 24); ctx.fill();
+            ctx.strokeStyle = "#E6DBD0"; ctx.lineWidth = 2; roundPath(ctx, PAD - 20, y, W - (PAD - 20) * 2, readH - 30, 24); ctx.stroke();
+            ctx.textAlign = "left"; ctx.fillStyle = "#5e4f47"; ctx.font = "28px " + FONT;
+            lines.forEach(function (ln, k) { ctx.fillText(ln, PAD + 20, y + 62 + k * LH); });
+            ctx.textAlign = "center"; y += readH;
+        }
+        ctx.fillStyle = "#7A6A62"; ctx.font = "22px " + FONT;
+        ctx.fillText(new Date().toLocaleDateString("zh-TW") + "　｜　數字是陪你認識自己的另一個角度。", W / 2, H - 50);
+        return cv;
+    }
+
+    function bind() {
+        g("lnBack").onclick = function () { show("select"); };
+        g("lnCalc").onclick = onCalc;
+        g("lnDate").addEventListener("keydown", function (e) { if (e.key === "Enter") onCalc(); });
+        g("lnAgain").onclick = onAgain;
+        g("lnCopy").onclick = function () {
+            var text = resultText(st);
+            copyText(text).then(function (ok) {
+                if (ok) { g("lnCopy").textContent = "已複製 ✓"; setTimeout(function () { g("lnCopy").textContent = "複製文字"; }, 1800); }
+                else { openModal('<div class="tip">此瀏覽器無法自動複製，請長按下方文字，選「全選」後再複製。</div><textarea id="manualText" readonly></textarea>'); var ta = g("manualText"); ta.value = text; ta.focus(); ta.select(); }
+            });
+        };
+        g("lnLine").onclick = function () { window.open("https://line.me/R/msg/text/?" + encodeURIComponent(resultText(st)), "_blank"); };
+        g("lnImg").onclick = function () {
+            var btn = g("lnImg"); btn.disabled = true; btn.textContent = "圖片產生中⋯";
+            Promise.resolve().then(function () { return showCanvasModal(buildCanvas(st), "jingjing-liunian.png", "靖靖塔羅 生命靈數流年"); })
+                .catch(function () { alert("圖片產生失敗，請改用「複製文字」。"); })
+                .then(function () { btn.disabled = false; btn.textContent = "儲存／分享圖片"; });
+        };
+    }
+    addEntry(); bind();
+})();
 </script>
 
 </body>
