@@ -686,7 +686,7 @@ const SP = {
     universal: { name: "萬用牌陣", labels: ["主要牌","次要牌","次要牌","次要牌","心態牌"], perRow: 4, main: [0] },
     time:      { name: "時間之流", labels: ["過去","現在","未來"] },
     choose2:   { name: "二擇一牌陣", labels: ["現況","選擇 A 過程","選擇 A 結果","選擇 B 過程","選擇 B 結果"], layout: [[0],[1,2],[3,4]] },
-    daily:     { name: "每日塔羅", labels: ["今日指引"], main: [0] },       // 偉特塔羅的單張牌，每天抽一張
+    daily:     { name: "每日塔羅", labels: ["抽一張牌，探索今日指引"], main: [0] },       // 偉特塔羅的單張牌，每天抽一張
     single:    { name: "單張牌", labels: ["本次指引"], main: [0] },
     three:     { name: "三張牌陣", labels: ["現況","建議","結果"] }
 };
@@ -782,7 +782,7 @@ function buildSelect() {
     nbtns.className = "spread-btns";
     const nb = document.createElement("button");
     nb.className = "spread-btn";
-    nb.innerHTML = "希臘生命靈數<small>輸入生日</small>";
+    nb.innerHTML = "希臘生命靈數<small>輸入西元年月日</small>";
     nb.onclick = () => { $("nMsg").textContent = ""; $("nResult").hidden = true; show("numer"); };
     nbtns.appendChild(nb);
     nrow.appendChild(nbtns);
@@ -1430,7 +1430,7 @@ show("select");
                 var box = rows[i].querySelector(".spread-btns");
                 var b = document.createElement("button");
                 b.className = "spread-btn";
-                b.innerHTML = '<span><span aria-hidden="true">✦</span> 生命靈數流年</span><small>輸入生日</small>';
+                b.innerHTML = '<span><span aria-hidden="true"></span> 生命靈數流年</span><small>輸入生日</small>';
                 b.onclick = openYear;
                 box.appendChild(b);
                 return;
