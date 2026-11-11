@@ -410,6 +410,28 @@ body.pd-lock { overflow: hidden; }
     .pd-courses { padding: 84px 0; }
     .pd-brand { padding: 76px 25px; }
 }
+
+/* ===== 商品狀態標籤與購買須知 ===== */
+.pd-badge { position: absolute; top: 10px; left: 10px; z-index: 1; padding: 2px 12px; border-radius: 999px; font-size: 12.5px; letter-spacing: 1px; line-height: 1.7; background: #fff; color: var(--d-brown); box-shadow: 0 2px 8px rgba(81,66,59,0.14); }
+.pd-badge--stock { background: #E3EBDC; color: #46613F; }
+.pd-badge--pre { background: #F0E7EA; color: #7A5F6D; }
+.pd-badge--sold { background: #E8E4DF; color: #6b5f58; }
+.pd-item.is-sold .pd-img img { filter: grayscale(0.55); opacity: 0.72; }
+.pd-item.is-sold .pd-item-price { color: var(--d-soft); text-decoration: line-through; text-decoration-color: rgba(122,106,98,0.5); }
+.pd-m-img { position: relative; }
+.pd-m-more { margin-top: 12px; display: block; text-align: center; font-family: inherit; font-size: 14px; color: var(--d-mauve-dark); background: none; border: 0; border-bottom: 1px solid var(--d-mauve); padding: 2px 0; cursor: pointer; width: fit-content; margin-left: auto; margin-right: auto; }
+.pd-m-more:hover { color: var(--d-brown); }
+.pd-notice { margin-top: 28px; background: #fff; border: 1px solid var(--d-line); border-radius: 16px; overflow: hidden; scroll-margin-top: 90px; }
+.pd-notice summary { list-style: none; cursor: pointer; padding: 16px 52px 16px 20px; position: relative; font-size: 16px; letter-spacing: 1px; color: var(--d-brown); }
+.pd-notice summary::-webkit-details-marker { display: none; }
+.pd-notice summary::after { content: "+"; position: absolute; right: 20px; top: 50%; transform: translateY(-50%); font-size: 22px; line-height: 1; color: var(--d-mauve-dark); }
+.pd-notice[open] summary::after { content: "−"; }
+.pd-notice summary:focus-visible { outline: 3px solid var(--d-mauve-dark); outline-offset: -3px; }
+.pd-notice-body { padding: 0 20px 20px; display: grid; gap: 14px; }
+.pd-notice-item h4 { font-size: 14px; letter-spacing: 2px; color: var(--d-mauve-dark); margin-bottom: 4px; }
+.pd-notice-item p { font-size: 14.5px; line-height: 1.95; color: var(--d-soft); margin-bottom: 6px; }
+.pd-notice-item p:last-child { margin-bottom: 0; }
+.pd-notice + .pd-shop-more { margin-top: 24px; }
 </style>
 </head>
 
@@ -482,9 +504,14 @@ body.pd-lock { overflow: hidden; }
             <div class="pd-filter">
                 <div class="pd-filter-row" id="pdCats" role="group" aria-label="商品分類"><span class="pd-filter-label">分類</span></div>
                 <div class="pd-filter-row" id="pdColors" role="group" aria-label="顏色分類"><span class="pd-filter-label">顏色</span></div>
+                <div class="pd-filter-row" id="pdStatus" role="group" aria-label="商品狀態"><span class="pd-filter-label">狀態</span></div>
             </div>
             <p class="pd-count" id="pdCount" aria-live="polite"></p>
             <div class="pd-grid" id="pdGrid"></div>
+            <details class="pd-notice" id="pdNotice">
+                <summary>購買須知</summary>
+                <div class="pd-notice-body" id="pdNoticeBody"></div>
+            </details>
             <p class="pd-shop-more">想要專屬設計？<a href="#" data-line target="_blank" rel="noopener noreferrer">LINE 詢問客製</a></p>
         </div>
     </section>
@@ -609,15 +636,25 @@ body.pd-lock { overflow: hidden; }
     document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !modal.hidden) closeModal(); });
 
     /* ---------- 水晶商品：分類＋顏色篩選 ---------- */
-    var works = CR_WORKS.length ? CR_WORKS : CR_CATEGORIES.map(function (c) { return { category: c, colors: [], pending: true }; });
-    var fCat = "全部", fColor = "全部";
+    var STATUS_CLASS = { "現貨": "stock", "預購": "pre", "已售出": "sold" };
+    var raw = CR_WORKS.length ? CR_WORKS : CR_CATEGORIES.map(function (c) { return { category: c, colors: [], pending: true }; });
+    var statusOf = function (w) { return (typeof CR_STATUS !== "undefined" && CR_STATUS.indexOf(w.status) >= 0) ? w.status : ""; };
+    // 已售出的作品自動排到最後面（相同狀態維持原本順序）
+    var works = raw.map(function (w, i) { return { w: w, i: i }; })
+        .sort(function (a, b) { var sa = statusOf(a.w) === "已售出" ? 1 : 0, sb = statusOf(b.w) === "已售出" ? 1 : 0; return sa - sb || a.i - b.i; })
+        .map(function (x) { return x.w; });
+    function badge(w) { var st = statusOf(w); return st ? '<span class="pd-badge pd-badge--' + STATUS_CLASS[st] + '">' + esc(st) + "</span>" : ""; }
+    function orderLabel(w) { var st = statusOf(w); return st === "已售出" ? "詢問類似款式" : (st === "預購" ? "LINE 私訊預購" : "LINE 私訊訂購"); }
+    var fCat = "全部", fColor = "全部", fStatus = "全部";
+    var STATUS_FILTERS = ["全部"].concat((typeof CR_STATUS !== "undefined" ? CR_STATUS : []).filter(function (x) { return x !== "已售出"; }));   // 全部、現貨、預購
     var colorHex = {}; CR_COLORS.forEach(function (c) { colorHex[c[0]] = c[1]; });
     function dots(colors) {
         return colors && colors.length ? '<div class="pd-dots" aria-hidden="true">' + colors.map(function (c) { return '<span class="pd-sw" style="background:' + (colorHex[c] || "#ddd") + '"></span>'; }).join("") + "</div>" : "";
     }
     function tile(w, i) {
-        return '<button type="button" class="pd-item" data-i="' + i + '" aria-label="查看詳情：' + esc(w.name || w.category) + '">' +
-            imgBox("pd-img--45", w.image, w.name || w.category, "商品照片待補充") +
+        var sold = statusOf(w) === "已售出";
+        return '<button type="button" class="pd-item' + (sold ? " is-sold" : "") + '" data-i="' + i + '" aria-label="查看詳情：' + esc(w.name || w.category) + (statusOf(w) ? "（" + statusOf(w) + "）" : "") + '">' +
+            imgBox("pd-img--45", w.image, w.name || w.category, "商品照片待補充").replace(/<\/div>$/, badge(w) + "</div>") +
             '<span class="pd-item-name">' + (w.name ? esc(w.name) : "商品名稱 " + TODO) + "</span>" +
             '<span class="pd-item-price">' + (w.price ? esc(w.price) : "價格 " + TODO) + "</span>" +
             '<span class="pd-item-info">' + (w.info ? esc(w.info) : esc(w.category)) + "</span>" + dots(w.colors) + "</button>";
@@ -627,6 +664,7 @@ body.pd-lock { overflow: hidden; }
         works.forEach(function (w, i) {
             if (fCat !== "全部" && w.category !== fCat) return;
             if (fColor !== "全部" && (!w.colors || w.colors.indexOf(fColor) < 0)) return;
+            if (fStatus !== "全部" && statusOf(w) !== fStatus) return;
             list.push([w, i]);
         });
         $("pdGrid").innerHTML = list.length ? list.map(function (x) { return tile(x[0], x[1]); }).join("") :
@@ -644,19 +682,34 @@ body.pd-lock { overflow: hidden; }
         $("pdColors").innerHTML = '<span class="pd-filter-label">顏色</span>' + cols.map(function (c) {
             return chip(c[0], c[0] === fColor, c[1] ? '<span class="pd-sw" style="background:' + c[1] + '"></span>' : "");
         }).join("");
+        $("pdStatus").innerHTML = '<span class="pd-filter-label">狀態</span>' + STATUS_FILTERS.map(function (c) { return chip(c, c === fStatus); }).join("");
+        $("pdStatus").querySelectorAll(".pd-chip").forEach(function (b) { b.onclick = function () { fStatus = b.getAttribute("data-v"); renderChips(); renderGrid(); }; });
         $("pdCats").querySelectorAll(".pd-chip").forEach(function (b) { b.onclick = function () { fCat = b.getAttribute("data-v"); renderChips(); renderGrid(); }; });
         $("pdColors").querySelectorAll(".pd-chip").forEach(function (b) { b.onclick = function () { fColor = b.getAttribute("data-v"); renderChips(); renderGrid(); }; });
     }
     function productModal(w) {
         var colors = (w.colors && w.colors.length) ? w.colors.map(esc).join("、") : TODO;
-        openModal('<div class="pd-m-grid">' + imgBox("pd-img--45", w.image, w.name || w.category, "商品照片待補充") +
+        var st = statusOf(w);
+        openModal('<div class="pd-m-grid"><div class="pd-m-img">' + imgBox("pd-img--45", w.image, w.name || w.category, "商品照片待補充").replace(/<\/div>$/, badge(w) + "</div>") + "</div>" +
             '<div><span class="pd-m-tag">' + esc(w.category) + '</span><h3 id="pdModalTitle">' + (w.name ? esc(w.name) : "商品名稱 " + TODO) + "</h3>" +
             '<div class="pd-m-price">' + (w.price ? esc(w.price) : "價格 " + TODO) + "</div>" +
             (w.info ? '<p class="pd-m-info">' + esc(w.info) + "</p>" : "") +
             '<dl class="pd-m-dl"><div><dt>水晶材質</dt><dd>' + val(w.material) + "</dd></div><div><dt>設計理念</dt><dd>" + val(w.concept) + "</dd></div>" +
             "<div><dt>商品尺寸</dt><dd>" + val(w.size) + "</dd></div><div><dt>顏色</dt><dd>" + colors + "</dd></div></dl>" +
-            '<div class="pd-m-actions"><a class="pd-btn pd-btn--main pd-btn--block" href="' + esc(w.orderUrl || CR_LINE) + '" target="_blank" rel="noopener noreferrer">LINE 私訊訂購</a></div></div></div>');
+            '<div class="pd-m-actions"><a class="pd-btn pd-btn--main pd-btn--block" href="' + esc(w.orderUrl || CR_LINE) + '" target="_blank" rel="noopener noreferrer">' + orderLabel(w) + "</a>" +
+            '<button type="button" class="pd-m-more" id="pdModalNotice">查看購買須知</button></div></div></div>');
+        $("pdModalNotice").onclick = function () { closeModal(); var n = $("pdNotice"); n.open = true; n.scrollIntoView({ behavior: "smooth", block: "center" }); };
     }
+    /* ---- 購買須知（內容來自 product.js 的 CR_NOTICE，沒填的顯示「待補充」） ---- */
+    (function () {
+        var list = (typeof CR_NOTICE !== "undefined" ? CR_NOTICE : []);
+        $("pdNoticeBody").innerHTML = list.map(function (n) {
+            var paras = String(n.content || "").split(/\n+/).map(function (x) { return x.trim(); }).filter(Boolean);
+            return '<section class="pd-notice-item"><h4>' + esc(n.title) + "</h4>" + (paras.length ? paras.map(function (x) { return "<p>" + esc(x) + "</p>"; }).join("") : "<p>" + TODO + "</p>") + "</section>";
+        }).join("");
+        if (!list.length) $("pdNotice").hidden = true;
+    })();
+
     renderChips(); renderGrid();
 
     /* ---------- DIY 手作教室 ---------- */
