@@ -361,6 +361,21 @@ footer .social a:focus-visible { outline: 2px solid #7A5F6D; outline-offset: 3px
 .hero-text h1 { font-size: 40px; letter-spacing: 2px; }
 .hero-text > p { font-size: 15.5px; }
 @media (max-width: 800px) { .hero-text h1 { font-size: 28px; letter-spacing: 2px; } }
+
+/* ===== 全站統一：頁面標題區（與首頁、關於我相同）=====
+   小標 13px／字距 3px／#7A5F6D　大標 手機 28px → 桌機 40px／#51423B　副標 15.5px／#7A6A62 */
+.pg-hero .hero-text .pg-eyebrow { display: block; font-size: 13px; letter-spacing: 3px; color: #7A5F6D; }
+.pg-hero .hero-text h1 { margin: 10px 0 14px; font-size: 28px; font-weight: 500; letter-spacing: 0; line-height: 1.6; color: #51423B; }
+.pg-hero .hero-text p { margin: 0; text-wrap: pretty; font-size: 15.5px; line-height: 2; color: #7A6A62; max-width: 520px; }
+.pg-hero .hero-text .hero-buttons { margin-top: 26px; }
+.pg-hero .hero-text { text-align: left; }
+.pg-hero .hero-text .hero-buttons { justify-content: flex-start; }
+.pg-hero .home-hero { padding: 44px 20px 52px; gap: 34px; }
+@media (min-width: 900px) {
+    .pg-hero .hero-text h1 { font-size: 40px; letter-spacing: 2px; }
+    .pg-hero .home-hero { padding: 64px 25px 72px; gap: 56px; grid-template-columns: 1.15fr 0.85fr; }
+}
+
 </style>
 </head>
 
@@ -387,11 +402,8 @@ footer .social a:focus-visible { outline: 2px solid #7A5F6D; outline-offset: 3px
     <section class="pg-hero">
     <div class="home-hero">
         <div class="hero-text">
-            <div class="symbol" aria-hidden="true">✦</div>
-            <h1>課程訊息</h1>
-            <div class="english">Schedule</div>
-            <div class="line"></div>
-            <h2>近期行程公告</h2>
+            <span class="pg-eyebrow">課程訊息 Schedule</span>
+            <h1>近期行程公告</h1>
             <p>擺攤、進修、教學、員工旅遊的日期都在這裡。沒有安排的日子，歡迎線上預約。</p>
             <div class="hero-buttons">
                 <a href="https://cal.com/jing9562939/15min?user=jing9562939" class="btn-main" target="_blank" rel="noopener noreferrer">線上預約</a>

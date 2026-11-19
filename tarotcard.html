@@ -484,6 +484,21 @@ button.card-wrap.empty.next { border-color: #A58A94; background: rgba(196,168,10
     .ln-summary { padding: 26px 16px 24px; }
     .ln-reading { padding: 22px 18px; }
 }
+
+/* ===== 全站統一：頁面標題區（與首頁、關於我相同）=====
+   小標 13px／字距 3px／#7A5F6D　大標 手機 28px → 桌機 40px／#51423B　副標 15.5px／#7A6A62 */
+.pg-hero .hero-text .pg-eyebrow { display: block; font-size: 13px; letter-spacing: 3px; color: #7A5F6D; }
+.pg-hero .hero-text h1 { margin: 10px 0 14px; font-size: 28px; font-weight: 500; letter-spacing: 0; line-height: 1.6; color: #51423B; }
+.pg-hero .hero-text p { margin: 0; text-wrap: pretty; font-size: 15.5px; line-height: 2; color: #7A6A62; max-width: 520px; }
+.pg-hero .hero-text .hero-buttons { margin-top: 26px; }
+.pg-hero .hero-text { text-align: left; }
+.pg-hero .hero-text .hero-buttons { justify-content: flex-start; }
+.pg-hero .home-hero { padding: 44px 20px 52px; gap: 34px; }
+@media (min-width: 900px) {
+    .pg-hero .hero-text h1 { font-size: 40px; letter-spacing: 2px; }
+    .pg-hero .home-hero { padding: 64px 25px 72px; gap: 56px; grid-template-columns: 1.15fr 0.85fr; }
+}
+
 </style>
 </head>
 
@@ -511,11 +526,8 @@ button.card-wrap.empty.next { border-color: #A58A94; background: rgba(196,168,10
     <div id="viewSelect">
         <div class="pg-hero"><section class="home-hero">
             <div class="hero-text">
-                <div class="symbol" aria-hidden="true">✦</div>
-                <h1>線上抽牌</h1>
-                <div class="english">Online Card Reading</div>
-                <div class="line"></div>
-                <h2>靜下心，抽一張屬於你的牌</h2>
+                <span class="pg-eyebrow">線上抽牌 Online Card Reading</span>
+                <h1>靜下心，抽一張屬於你的牌</h1>
                 <p>選擇牌卡或生命靈數，點選就能開始。</p>
             </div>
             <div class="board">

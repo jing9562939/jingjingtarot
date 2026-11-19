@@ -386,6 +386,23 @@ footer .social a:focus-visible { outline: 2px solid #7A5F6D; outline-offset: 3px
 .svc-note-list { list-style: none; margin: 8px 0 0; padding: 0; display: grid; gap: 10px; }
 .svc-note-list li { font-size: 14px; line-height: 1.95; color: var(--s-soft); }
 .svc-note-list b { font-weight: 500; color: var(--s-brown); letter-spacing: 1px; }
+
+/* ===== 全站統一：頁面標題區（與首頁、關於我相同：靠左、小標＋大標＋副標）===== */
+.svc-hero { text-align: left; padding: 44px 0 52px; }
+.svc-hero-in { width: 100%; max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+.svc-hero .svc-eyebrow { display: block; font-size: 13px; letter-spacing: 3px; color: #7A5F6D; }
+.svc-hero h1 { margin: 10px 0 14px; font-size: 28px; font-weight: 500; letter-spacing: 0; line-height: 1.6; color: #51423B; }
+.svc-hero p { margin: 0; text-wrap: pretty; max-width: 520px; font-size: 15.5px; line-height: 2; color: #7A6A62; }
+.svc-hero .svc-tabs { justify-content: flex-start; margin-top: 26px; }
+.svc-lead h2 { font-size: 26px; }
+.svc-lead p { font-size: 14.5px; }
+@media (min-width: 900px) {
+    .svc-hero { padding: 64px 0 72px; }
+    .svc-hero-in { padding: 0 25px; }
+    .svc-hero h1 { font-size: 40px; letter-spacing: 2px; }
+    .svc-lead h2 { font-size: 30px; }
+}
+
 </style>
 </head>
 
@@ -411,16 +428,15 @@ footer .social a:focus-visible { outline: 2px solid #7A5F6D; outline-offset: 3px
 
     <!-- 頁面標題 -->
     <section class="svc-hero" aria-labelledby="svc-title">
-        <span class="svc-mark" aria-hidden="true">✦</span>
-        <h1 id="svc-title">服務項目</h1>
-        <div class="svc-en-title">SERVICES</div>
-        <div class="svc-hero-line"></div>
-        <p>在牌卡、數字與心的探索之間，陪你整理當下，看見自己的方向。</p>
-        <p>每一項服務，都是一次與自己好好聊聊的時間。</p>
-        <div class="svc-tabs" role="navigation" aria-label="服務分類快速選擇">
-            <a href="#svc-tarot">塔羅占卜</a>
-            <a href="#svc-self">生命探索與自我覺察</a>
-            <a href="#svc-spirit">靈性探索與能量療癒</a>
+        <div class="svc-hero-in">
+            <span class="svc-eyebrow">服務項目 Services</span>
+            <h1 id="svc-title">陪你整理當下，看見自己的方向。</h1>
+            <p>在牌卡、數字與心的探索之間，每一項服務，都是一次與自己好好聊聊的時間。</p>
+            <div class="svc-tabs" role="navigation" aria-label="服務分類快速選擇">
+                <a href="#svc-tarot">塔羅占卜</a>
+                <a href="#svc-self">生命探索與自我覺察</a>
+                <a href="#svc-spirit">靈性探索與能量療癒</a>
+            </div>
         </div>
     </section>
 
