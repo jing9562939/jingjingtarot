@@ -334,8 +334,8 @@ footer .social a:focus-visible { outline: 2px solid #7A5F6D; outline-offset: 3px
 .pd-diy-text h2 { font-size: 26px; letter-spacing: 2px; line-height: 1.5; }
 .pd-diy-text .pd-en { display: block; margin-top: 2px; font-size: 13px; letter-spacing: 3px; color: var(--d-mauve-dark); text-transform: uppercase; }
 .pd-diy-text p { margin-top: 10px; font-size: 15.5px; line-height: 1.9; color: var(--d-soft); }
-.pd-link { margin-top: 16px; display: inline-block; font-size: 14.5px; color: var(--d-mauve-dark); border: 0; border-bottom: 1px solid var(--d-mauve); background: none; font-family: inherit; padding: 2px 0; cursor: pointer; }
-.pd-link:hover { color: var(--d-brown); }
+.pd-link { margin-top: 16px; display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 10px 28px; font-size: 14.5px; letter-spacing: 1px; font-family: inherit; color: var(--d-mauve-dark); border: 1px solid var(--d-mauve-dark); border-radius: 999px; background: transparent; cursor: pointer; transition: background 0.3s, color 0.3s; }
+.pd-link:hover { background: var(--d-mauve-dark); color: #fff; }
 .pd-students { margin-top: 40px; }
 .pd-students h3 { margin-bottom: 14px; font-size: 19px; letter-spacing: 2px; text-align: center; }
 .pd-student-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
@@ -532,7 +532,7 @@ body.pd-lock { overflow: hidden; }
                         <a class="pd-btn pd-btn--main" id="pdDiyInquiry" href="#" target="_blank" rel="noopener noreferrer">課程詢問</a>
                         <a class="pd-btn pd-btn--sub" id="pdDiyBook" href="#" target="_blank" rel="noopener noreferrer">預約體驗</a>
                     </div>
-                    <button type="button" class="pd-link" id="pdDiyMore">查看課程詳情 →</button>
+                    <button type="button" class="pd-link" id="pdDiyMore">查看課程詳情</button>
                 </div>
             </div>
             <div class="pd-students">

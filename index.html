@@ -270,22 +270,18 @@ footer .social a:focus-visible { outline: 2px solid #7A5F6D; outline-offset: 3px
 .home-head p { margin-top: 8px; font-size: 14.5px; color: var(--h-soft); }
 .home-head .home-eyebrow { display: block; margin-bottom: 6px; }
 
-/* ---------- 形象照框（Hero 與關於共用）---------- */
+/* ---------- 形象照框（Hero 與關於共用）：圓形大頭照，白色粗框＋細外圈 ---------- */
 .home-photo {
-    position: relative; width: min(100%, 300px); aspect-ratio: 4 / 5; margin: 0 auto;
-    border-radius: 999px 999px 28px 28px; background: linear-gradient(160deg, #f1e9df, #e2d4c8);
-    box-shadow: 0 20px 44px rgba(81,66,59,0.16);
+    position: relative; width: min(100%, 280px); aspect-ratio: 1 / 1; margin: 0 auto; border-radius: 50%;
+    background: linear-gradient(160deg, #f1e9df, #e2d4c8);
+    border: 7px solid #fff; box-shadow: 0 0 0 1px #d9cdc1, 0 18px 40px rgba(81,66,59,0.15);
 }
-.home-photo::after {
-    content: ""; position: absolute; inset: 12px -12px -12px 12px; z-index: -1;
-    border: 1px solid var(--h-mauve); border-radius: 999px 999px 28px 28px; opacity: 0.7;
-}
-.home-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; border-radius: inherit; }
+.home-photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 18%; display: block; border-radius: 50%; }
 .home-photo .home-ph {
     display: none; position: absolute; inset: 0; flex-direction: column; align-items: center; justify-content: center;
-    gap: 6px; text-align: center; font-size: 13px; letter-spacing: 1px; color: #9a8a82;
+    border-radius: 50%; overflow: hidden;
 }
-.home-photo .home-ph b { font-size: 32px; font-weight: 400; color: var(--h-mauve); }
+.home-photo .home-ph svg { width: 64%; height: auto; display: block; margin-bottom: -2px; }
 .home-photo.no-photo img { display: none; }
 .home-photo.no-photo .home-ph { display: flex; }
 
@@ -314,7 +310,12 @@ footer .social a:focus-visible { outline: 2px solid #7A5F6D; outline-offset: 3px
 }
 .home-card h3 { font-size: 19px; letter-spacing: 1px; }
 .home-card p { font-size: 14.5px; line-height: 1.8; color: var(--h-soft); }
-.home-card-go { margin-top: auto; padding-top: 6px; font-size: 14px; color: var(--h-mauve-dark); }
+.home-card-go, .home-event-go {
+    align-self: flex-start; margin-top: auto; display: inline-flex; align-items: center; justify-content: center;
+    min-height: 40px; padding: 8px 22px; border: 1px solid var(--h-mauve-dark); border-radius: 999px;
+    font-size: 14px; letter-spacing: 1px; color: var(--h-mauve-dark); background: transparent; transition: background 0.3s, color 0.3s;
+}
+a:hover > .home-card-go, a:hover > .home-event-go { background: var(--h-mauve-dark); color: #fff; }
 
 /* ---------- 3. 關於靖靖 ---------- */
 .home-about { background: var(--h-sand); padding: 64px 0; }
@@ -327,6 +328,8 @@ footer .social a:focus-visible { outline: 2px solid #7A5F6D; outline-offset: 3px
 }
 .home-link { display: inline-block; font-size: 15px; color: var(--h-mauve-dark); border-bottom: 1px solid var(--h-mauve); padding-bottom: 2px; transition: color 0.3s; }
 .home-link:hover { color: var(--h-brown); }
+.home-link--btn { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 10px 28px; border: 1px solid var(--h-mauve-dark); border-radius: 999px; font-size: 15px; letter-spacing: 1px; transition: background 0.3s, color 0.3s; }
+.home-link--btn:hover { background: var(--h-mauve-dark); color: #fff; }
 
 /* ---------- 4. 最新消息與近期活動 ---------- */
 .home-news { background: var(--h-cream); padding: 64px 0; }
@@ -340,7 +343,7 @@ footer .social a:focus-visible { outline: 2px solid #7A5F6D; outline-offset: 3px
 .home-event-date { font-size: 14px; letter-spacing: 1px; color: var(--h-mauve-dark); }
 .home-event h3 { font-size: 18px; line-height: 1.5; }
 .home-event p { font-size: 14px; color: var(--h-soft); }
-.home-event-go { margin-top: auto; padding-top: 8px; font-size: 14px; color: var(--h-mauve-dark); }
+.home-event-go { margin-top: 8px; }
 .home-empty {
     grid-column: 1 / -1; padding: 30px 22px; text-align: center; font-size: 15px; color: var(--h-soft);
     background: #fff; border: 1px dashed var(--h-mauve); border-radius: 20px;
@@ -382,7 +385,7 @@ footer .social a:focus-visible { outline: 2px solid #7A5F6D; outline-offset: 3px
     .home-hero { padding: 72px 0 84px; }
     .home-hero .home-wrap { grid-template-columns: 1.1fr 0.9fr; gap: 64px; align-items: center; }
     .home-hero h1 { font-size: 44px; }
-    .home-photo { width: min(100%, 340px); }
+    .home-photo { width: min(100%, 320px); }
     .home-services, .home-news { padding: 84px 0; }
     .home-about, .home-faq { padding: 84px 0; }
     .home-head { margin-bottom: 40px; }
@@ -436,9 +439,9 @@ footer .social a:focus-visible { outline: 2px solid #7A5F6D; outline-offset: 3px
 
             <!-- 形象照：images/jingjing.jpg（沒有照片時會顯示提示框，不會出現破圖） -->
             <div class="home-photo" id="heroPhoto">
-                <img src="images/jingjing.jpg" alt="靖靖塔羅 靖靖的形象照" width="800" height="1000" fetchpriority="high" decoding="async"
+                <img src="images/jingjing.jpg" alt="靖靖塔羅 靖靖的形象照" width="600" height="600" fetchpriority="high" decoding="async"
                      onerror="this.closest('.home-photo').classList.add('no-photo')">
-                <div class="home-ph"><b aria-hidden="true">✦</b>形象照<br>images/jingjing.jpg</div>
+                <div class="home-ph"><svg viewBox="0 0 100 100" aria-hidden="true" focusable="false"><circle cx="50" cy="38" r="17" fill="#d6c6b9"/><path d="M14 100c0-22 16-36 36-36s36 14 36 36z" fill="#d6c6b9"/></svg></div>
             </div>
         </div>
     </section>
@@ -454,25 +457,25 @@ footer .social a:focus-visible { outline: 2px solid #7A5F6D; outline-offset: 3px
                     <span class="home-card-icon" aria-hidden="true">🃏</span>
                     <h3>線上抽牌</h3>
                     <p>選擇你的問題，親自抽出屬於你的牌卡。</p>
-                    <span class="home-card-go">開始抽牌 →</span>
+                    <span class="home-card-go">開始抽牌</span>
                 </a>
                 <a class="home-card" href="service.html">
                     <span class="home-card-icon" aria-hidden="true">🔮</span>
                     <h3>塔羅占卜</h3>
                     <p>陪你梳理內心，看見當下的方向與可能。</p>
-                    <span class="home-card-go">查看服務 →</span>
+                    <span class="home-card-go">查看服務</span>
                 </a>
                 <a class="home-card" href="class.html">
                     <span class="home-card-icon" aria-hidden="true">📅</span>
                     <h3>課程與行程</h3>
                     <p>查看塔羅課程、擺攤與活動日期。</p>
-                    <span class="home-card-go">查看行程 →</span>
+                    <span class="home-card-go">查看行程</span>
                 </a>
                 <a class="home-card" href="crystal.html">
                     <span class="home-card-icon" aria-hidden="true">💎</span>
                     <h3>身心靈產品</h3>
                     <p>為生活挑選一份屬於自己的溫柔陪伴。</p>
-                    <span class="home-card-go">了解更多 →</span>
+                    <span class="home-card-go">了解更多</span>
                 </a>
             </div>
         </div>
@@ -482,9 +485,9 @@ footer .social a:focus-visible { outline: 2px solid #7A5F6D; outline-offset: 3px
     <section class="home-about" aria-labelledby="about-title">
         <div class="home-wrap">
             <div class="home-photo" id="aboutPhoto">
-                <img src="images/jingjing.jpg" alt="靖靖塔羅 靖靖" width="800" height="1000" loading="lazy" decoding="async"
+                <img src="images/jingjing.jpg" alt="靖靖塔羅 靖靖" width="600" height="600" loading="lazy" decoding="async"
                      onerror="this.closest('.home-photo').classList.add('no-photo')">
-                <div class="home-ph"><b aria-hidden="true">✦</b>形象照<br>images/jingjing.jpg</div>
+                <div class="home-ph"><svg viewBox="0 0 100 100" aria-hidden="true" focusable="false"><circle cx="50" cy="38" r="17" fill="#d6c6b9"/><path d="M14 100c0-22 16-36 36-36s36 14 36 36z" fill="#d6c6b9"/></svg></div>
             </div>
             <div class="home-about-text">
                 <span class="home-eyebrow">About JingJing</span>
@@ -492,7 +495,7 @@ footer .social a:focus-visible { outline: 2px solid #7A5F6D; outline-offset: 3px
                 <p>有時候，我們需要的不是別人替自己決定，而是一個能靜下來、重新聽見內心聲音的空間。</p>
                 <p>我希望透過塔羅牌卡與溫柔的對話，陪伴你整理思緒、看見盲點，為眼前的困惑找到新的理解與方向。</p>
                 <p class="home-quote">牌卡不是替你決定，而是陪你看見。</p>
-                <a class="home-link" href="about.html">認識靖靖 →</a>
+                <a class="home-link home-link--btn" href="about.html">認識靖靖</a>
             </div>
         </div>
     </section>
@@ -505,7 +508,7 @@ footer .social a:focus-visible { outline: 2px solid #7A5F6D; outline-offset: 3px
             </div>
             <div class="home-events" id="homeEvents" aria-live="polite"></div>
             <div class="home-news-more">
-                <a class="home-link" href="class.html">查看完整行事曆 →</a>
+                <a class="home-link home-link--btn" href="class.html">查看完整行事曆</a>
             </div>
         </div>
     </section>
@@ -578,7 +581,7 @@ footer .social a:focus-visible { outline: 2px solid #7A5F6D; outline-offset: 3px
             '<div class="home-event-date">' + fmtRange(ev) + '</div>' +
             '<h3>' + esc(head) + '</h3>' +
             (meta.length ? '<p>' + esc(meta.join("・")) + '</p>' : '') +
-            '<span class="home-event-go">查看詳情 →</span></a>';
+            '<span class="home-event-go">查看詳情</span></a>';
     }).join("");
 })();
 </script>
