@@ -268,6 +268,7 @@ footer .social { margin: 4px 0; }
     border: 1px solid #E6DBD0; background: #ffffff; color: #51423B; cursor: pointer; transition: 0.25s;
 }
 .spread-btn:hover { background: #EEE5DC; border-color: #bda98a; transform: translateY(-2px); box-shadow: 0 6px 16px rgba(100,90,80,0.08); }
+.beta-tag { display: inline-block; margin-left: 8px; padding: 0 10px; border: 1px solid #A58A94; border-radius: 999px; background: #F0E7EA; color: #7A5F6D; font-size: 12px; line-height: 1.7; letter-spacing: 1px; vertical-align: middle; }
 .spread-btn small { display: block; font-size: 11px; color: #7A6A62; }
 
 /* ---------- 第二頁：抽牌 ---------- */
@@ -529,7 +530,7 @@ button.card-wrap.empty.next { border-color: #A58A94; background: rgba(196,168,10
         <div class="crumb" id="crumb"></div>
         <h2 class="draw-title" id="drawTitle"></h2>
         <div class="top-controls">
-            <button class="btn ghost" id="drawBack">← 返回線上抽牌</button>
+            <button class="btn ghost" id="drawBack">返回線上抽牌</button>
             <button class="btn ghost" id="redrawBtn">重新抽牌</button>
         </div>
         <div class="progress" id="progress"></div>
@@ -556,7 +557,7 @@ button.card-wrap.empty.next { border-color: #A58A94; background: rgba(196,168,10
         <div class="crumb">生命靈數</div>
         <h2 class="draw-title">希臘生命靈數</h2>
         <div class="top-controls">
-            <button class="btn ghost" id="nBack">← 返回線上抽牌</button>
+            <button class="btn ghost" id="nBack">返回線上抽牌</button>
         </div>
         <p class="n-hint">輸入出生年月日（西元），就能看到你的九宮格與四個重點數字。資料只會在你的瀏覽器裡計算，不會上傳。</p>
 
@@ -597,7 +598,7 @@ button.card-wrap.empty.next { border-color: #A58A94; background: rgba(196,168,10
         <div class="crumb">生命靈數</div>
         <h2 class="draw-title">生命靈數流年</h2>
         <div class="top-controls">
-            <button class="btn ghost" id="lnBack">← 返回線上抽牌</button>
+            <button class="btn ghost" id="lnBack">返回線上抽牌</button>
         </div>
         <p class="n-hint">請輸入出生年月日（西元）。資料只會在你的瀏覽器裡計算，不會上傳。</p>
 
@@ -684,7 +685,7 @@ const IG_URL   = "https://www.instagram.com/jing9562939/";
    perRow：每列幾張（預設 4）　layout：自訂每列的牌位編號 */
 const SP = {
     universal: { name: "萬用牌陣", labels: ["主要牌","次要牌","次要牌","次要牌","心態牌"], perRow: 4, main: [0] },
-    time:      { name: "時間之流", labels: ["過去","現在","未來"] },
+    time:      { name: "時間之流", labels: ["心態牌","過去","現在","未來"], perRow: 4, main: [0] },   // 抽牌順序：心態牌 → 過去 → 現在 → 未來（心態牌比照萬用牌陣的主要牌樣式）
     choose2:   { name: "二擇一牌陣", labels: ["現況","選擇 A 過程","選擇 A 結果","選擇 B 過程","選擇 B 結果"], layout: [[0],[1,2],[3,4]] },
     daily:     { name: "每日塔羅", labels: ["今日指引"], main: [0] },       // 偉特塔羅的單張牌，每天抽一張
     single:    { name: "單張牌", labels: ["本次指引"], main: [0] },
@@ -701,7 +702,9 @@ const TAROT_NAMES = (() => {
     return all;
 })();
 const LENORMAND_NAMES = ["騎士","幸運草","船","房子","樹","烏雲","蛇","棺材","花束","鐮刀","鞭子","鳥","小孩","狐狸","熊","星星","鸛鳥","狗","塔","花園","山","岔路","老鼠","心","戒指","書","信","男人","女人","百合","太陽","月亮","鑰匙","魚","錨","十字架"];
-/* 大天使神諭卡牌名：依圖檔順序填入即可；留空則顯示「大天使 1、大天使 2…」 */
+/* 大天使神諭卡牌名：依圖片編號順序填入，第 1 個名字對應 01.jpg、第 2 個對應 02.jpg……
+   範例：const ARCHANGEL_NAMES = ["大天使麥可", "大天使拉斐爾", "大天使加百列"];
+   沒填到的牌，會顯示「大天使 4、大天使 5…」 */
 const ARCHANGEL_NAMES = [];
 
 /* --- 偉特塔羅「要抽哪些牌」 ---
@@ -720,7 +723,7 @@ const SECTIONS = [
         count: 80, blankFrom: 78, ranges: TAROT_DRAW_RANGES, names: TAROT_NAMES, reversible: true,
         spreads: [SP.daily, SP.universal, SP.time, SP.choose2] }] },
     { title: "雷諾曼", decks: [{
-        id: "lenormand", label: "", en: "Lenormand", folder: "images/lenormand/", ext: ".jpg", start: 1, pad: 2,
+        id: "lenormand", label: "", en: "Lenormand", beta: true, folder: "images/lenormand/", ext: ".jpg", start: 1, pad: 2,
         count: 36, names: LENORMAND_NAMES, reversible: false,
         spreads: [SP.single, SP.three, SP.universal] }] },
     { title: "天使神諭卡", decks: [{
@@ -763,6 +766,17 @@ function cardName(deck, i) {
     return (deck.names && deck.names[i]) || (deck.fallbackName ? deck.fallbackName + " " + (i + 1) : "第 " + (i + 1) + " 號");
 }
 function imgPath(deck, i) { return deck.folder + String(deck.start + i).padStart(deck.pad, "0") + deck.ext; }
+/* 圖片檔名容錯：先試設定的副檔名，找不到再依序試 .jpeg、.png、.webp、大寫副檔名，以及不補 0 的檔名（1.jpg）。
+   這樣上傳時副檔名或編號格式略有不同，也能自動找到圖片。 */
+function imgCandidates(deck, i) {
+    const n = deck.start + i, exts = [deck.ext, ".jpg", ".jpeg", ".png", ".webp", ".JPG", ".JPEG", ".PNG", ".WEBP"];
+    const out = [];
+    [String(n).padStart(deck.pad, "0"), String(n)].forEach(num => exts.forEach(e => {
+        const u = deck.folder + num + e;
+        if (!out.includes(u)) out.push(u);
+    }));
+    return out;
+}
 const slotCount = sp => sp.labels.length;
 const isMain = (sp, i) => !!(sp.main && sp.main.includes(i));
 
@@ -791,7 +805,7 @@ function buildSelect() {
     SECTIONS.forEach(sec => sec.decks.forEach(deck => {
         const row = document.createElement("div");
         row.className = "deck-row";
-        row.innerHTML = '<div class="deck-name">' + sec.title + (deck.en ? "<small>" + deck.en + "</small>" : "") + "</div>";
+        row.innerHTML = '<div class="deck-name">' + sec.title + (deck.beta ? '<span class="beta-tag">測試中</span>' : "") + (deck.en ? "<small>" + deck.en + "</small>" : "") + "</div>";
         const btns = document.createElement("div");
         btns.className = "spread-btns";
         deck.spreads.forEach(sp => {
@@ -823,7 +837,7 @@ function startDraw() {
     cur.picks = new Array(slotCount(sp)).fill(null);  // 依牌位存放
     cur.drawn = 0; cur.finished = false; cur.busy = true;
 
-    $("crumb").textContent = sec.title + (deck.label ? "・" + deck.label : "");
+    $("crumb").textContent = sec.title + (deck.label ? "・" + deck.label : "") + (deck.beta ? "（測試中）" : "");
     $("drawTitle").textContent = sp.name;
     $("summary").hidden = true;
 
@@ -855,9 +869,14 @@ function buildFront(deck, card) {
     if (card.blank) { front.className = "face front blank"; return front; }   // 空白牌：純白牌面
     front.className = "face front" + (card.reversed ? " reversed" : "");
     const img = new Image();
-    img.src = imgPath(deck, card.index);
+    const cands = imgCandidates(deck, card.index); let ci = 0;
     img.alt = card.name;
-    img.onerror = () => { front.innerHTML = '<div class="fallback">' + card.name + "</div>"; };
+    img.onerror = () => {
+        ci++;
+        if (ci < cands.length) img.src = cands[ci];
+        else front.innerHTML = '<div class="fallback">' + card.name + "</div>";
+    };
+    img.src = cands[0];
     front.appendChild(img);
     return front;
 }
@@ -1004,6 +1023,7 @@ $("copyBtn").onclick = async () => {
 $("lineShareBtn").onclick = () => window.open("https://line.me/R/msg/text/?" + encodeURIComponent(resultText()), "_blank");
 
 /* ---- 產生結果圖片 ---- */
+async function loadImgAny(list) { for (const u of list) { const im = await loadImg(u); if (im) return im; } return null; }
 function loadImg(src) { return new Promise(res => { const im = new Image(); im.onload = () => res(im); im.onerror = () => res(null); im.src = src; }); }
 function roundPath(ctx, x, y, w, h, r) {
     ctx.beginPath(); ctx.moveTo(x + r, y);
@@ -1015,7 +1035,7 @@ async function buildResultCanvas() {
     const { deck, sp, picks, sec } = cur;
     const W = 1080, PAD = 60, GAP = 30, FONT = '"Noto Sans TC","Microsoft JhengHei",sans-serif';
     const rows = layoutRows();
-    const imgs = await Promise.all(picks.map(c => c.blank ? null : loadImg(imgPath(deck, c.index))));
+    const imgs = await Promise.all(picks.map(c => c.blank ? null : loadImgAny(imgCandidates(deck, c.index))));
 
     const maxLen = Math.max(...rows.map(r => r.length));
     const UNIT = Math.min(220, (W - 2 * PAD - (maxLen - 1) * GAP) / maxLen);   // 每張牌同大小
@@ -1431,7 +1451,7 @@ show("select");
                 var box = rows[i].querySelector(".spread-btns");
                 var b = document.createElement("button");
                 b.className = "spread-btn";
-                b.innerHTML = '<span><span aria-hidden="true">✦</span> 生命靈數流年</span><small>輸入生日</small>';
+                b.innerHTML = '<span>生命靈數流年</span><small>輸入生日</small>';
                 b.onclick = openYear;
                 box.appendChild(b);
                 return;
