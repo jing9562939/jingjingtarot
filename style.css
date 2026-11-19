@@ -1,0 +1,203 @@
+/* =====================================================
+   靖靖塔羅 JingJing Tarot｜全站共用樣式
+===================================================== */
+
+/* ---------- 色彩與常用數值（改這裡，全站同步） ---------- */
+:root {
+    --bg:            #f7f3ed;
+    --bg-soft:       #f5f0e9;
+    --bg-sand:       #eee8df;
+    --bg-sand-2:     #f2ede6;
+    --bg-paper:      #fffdf9;
+    --card:          rgba(255, 253, 249, 0.85);
+    --line:          #e8e0d7;
+    --line-strong:   #d8cec2;
+
+    --text:          #5f5a55;
+    --text-heading:  #625d57;
+    --text-body:     #766f68;
+    --text-muted:    #938a81;
+    --text-faint:    #a0988f;
+
+    --accent:        #8c8379;
+    --accent-dark:   #6f675f;
+
+    --shadow-soft:   0 10px 30px rgba(100, 90, 80, 0.08);
+    --max-width:     1100px;
+    --font:          "Noto Sans TC", "Microsoft JhengHei", "PingFang TC", sans-serif;
+}
+
+
+/* ---------- 基本設定 ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+    margin: 0;
+    font-family: var(--font);
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.8;
+}
+
+a { text-decoration: none; color: inherit; }
+
+img { max-width: 100%; height: auto; }
+
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+/* 鍵盤使用者可略過導覽列 */
+.skip-link {
+    position: absolute; left: -9999px; top: 0;
+    background: var(--accent); color: #fff; padding: 8px 16px; z-index: 2000;
+}
+.skip-link:focus { left: 10px; top: 10px; }
+
+
+/* ---------- 導覽列 ---------- */
+header {
+    background: rgba(255, 253, 249, 0.96);
+    border-bottom: 1px solid #e8e0d6;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-container {
+    max-width: var(--max-width);
+    margin: auto;
+    padding: 16px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.logo {
+    display: block;
+    width: 104px;                /* 中文與英文兩行都撐滿這個寬度，左右對齊、字距均分 */
+    font-size: 22px;
+    font-weight: 500;
+    color: #716c66;
+    white-space: nowrap;
+}
+.logo-zh, .logo-en { display: flex; justify-content: space-between; }
+.logo i { font-style: normal; }
+.logo-en {
+    font-size: 12px;
+    color: #a39a90;
+    margin-top: -4px;
+}
+.logo-en .sp { width: 5px; }
+
+nav { display: flex; gap: 5px; flex-wrap: wrap; justify-content: center; }
+nav a {
+    padding: 8px 12px;
+    font-size: 14px;
+    color: #77716a;
+    border-radius: 20px;
+    transition: background 0.3s, color 0.3s;
+}
+nav a:hover,
+nav a[aria-current="page"] { background: #eee6dc; color: #59534d; }
+
+
+/* ---------- 頁面主視覺（內頁） ---------- */
+.page-hero {
+    min-height: 360px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 70px 20px;
+    background: radial-gradient(circle at 50% 30%, #fffdf9 0%, #f8f3ec 55%, #eee7dd 100%);
+}
+.page-hero-content { max-width: 760px; }
+.page-symbol { font-size: 40px; margin-bottom: 12px; }
+.page-hero h1 {
+    margin: 0;
+    font-size: 42px;
+    font-weight: 400;
+    letter-spacing: 5px;
+    color: var(--text-heading);
+}
+.page-hero .english { margin-top: 5px; font-size: 15px; letter-spacing: 4px; color: #9b938a; }
+.page-line { width: 60px; height: 1px; background: #bdb3a8; margin: 25px auto; }
+.page-hero p { margin: 0; font-size: 15px; color: #918980; }
+
+
+/* ---------- 共用區塊 ---------- */
+.section { max-width: var(--max-width); margin: auto; padding: 85px 25px; }
+
+.section-title { text-align: center; margin-bottom: 50px; }
+.section-title h2 {
+    margin: 0;
+    font-size: 28px;
+    font-weight: 400;
+    letter-spacing: 3px;
+    color: #665f58;
+}
+.section-title p { margin: 8px 0 0; color: var(--text-faint); font-size: 14px; }
+
+
+/* ---------- 預約 CTA ---------- */
+.cta { text-align: center; background: var(--bg-soft); padding: 90px 20px; }
+.cta h2 { margin: 0 0 12px; font-size: 28px; font-weight: 400; letter-spacing: 3px; color: #655e57; }
+.cta p { color: #928980; font-size: 14px; margin: 0 0 25px; }
+
+.cta-button {
+    display: inline-block;
+    padding: 12px 32px;
+    border-radius: 30px;
+    background: var(--accent);
+    color: #fff;
+    font-size: 14px;
+    transition: background 0.3s, transform 0.3s;
+}
+.cta-button:hover { background: var(--accent-dark); transform: translateY(-2px); }
+
+
+/* ---------- Footer ---------- */
+footer {
+    background: #e4ddd4;
+    text-align: center;
+    padding: 35px 20px;
+    color: #817970;
+    font-size: 13px;
+}
+footer .brand { font-size: 18px; letter-spacing: 2px; margin-bottom: 8px; }
+footer .social { margin: 15px 0; }
+footer .social a { margin: 0 10px; }
+footer .social a:hover { color: #5f574f; }
+footer .copyright { font-size: 11px; color: #9c948b; }
+
+
+/* ---------- 手機版 ---------- */
+@media (max-width: 800px) {
+    .nav-container { flex-direction: column; padding: 15px 15px 10px; }
+    nav { gap: 2px; }
+    nav a { font-size: 13px; padding: 6px 8px; }
+
+    .page-hero { min-height: 320px; padding: 60px 20px; }
+    .page-hero h1 { font-size: 34px; letter-spacing: 3px; }
+    .page-hero .english { font-size: 13px; }
+
+    .section { padding: 65px 20px; }
+    .section-title { margin-bottom: 35px; }
+}
+
+
+/* ---------- 減少動態（系統設定為「減少動態效果」時） ---------- */
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { transition: none !important; animation: none !important; }
+}
+
+
+/* ---------- 行程類別標籤（首頁「最新公告」與課程訊息頁共用） ---------- */
+.tag { display: inline-block; padding: 1px 12px; border-radius: 20px; font-size: 12px; line-height: 1.7; white-space: nowrap; }
+.tag.market { background: #f0dccb; color: #8a5a3a; }   /* 擺攤 */
+.tag.study  { background: #dfe3f0; color: #56608a; }   /* 進修 */
+.tag.teach  { background: #dbe6d8; color: #4f6b4a; }   /* 教學 */
+.tag.trip   { background: #f2dde0; color: #94505a; }   /* 員工旅遊 */

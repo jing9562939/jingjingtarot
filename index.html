@@ -94,19 +94,21 @@ header {
 }
 
 .logo {
+    display: block;
+    width: 104px;                /* 中文與英文兩行都撐滿這個寬度，左右對齊、字距均分 */
     font-size: 22px;
     font-weight: 500;
     color: #716c66;
-    letter-spacing: 1px;
     white-space: nowrap;
 }
-.logo span {
-    display: block;
+.logo-zh, .logo-en { display: flex; justify-content: space-between; }
+.logo i { font-style: normal; }
+.logo-en {
     font-size: 12px;
-    letter-spacing: 2px;
     color: #a39a90;
     margin-top: -4px;
 }
+.logo-en .sp { width: 5px; }
 
 nav { display: flex; gap: 5px; flex-wrap: wrap; justify-content: center; }
 nav a {
@@ -405,7 +407,7 @@ footer .social a:focus-visible { outline: 2px solid #7A5F6D; outline-offset: 3px
 
 <header>
     <div class="nav-container">
-        <a href="index.html" class="logo">靖靖塔羅<span>JingJing Tarot</span></a>
+        <a href="index.html" class="logo" aria-label="靖靖塔羅 JingJing Tarot"><span class="logo-zh" aria-hidden="true"><i>靖</i><i>靖</i><i>塔</i><i>羅</i></span><span class="logo-en" aria-hidden="true"><i>J</i><i>i</i><i>n</i><i>g</i><i>J</i><i>i</i><i>n</i><i>g</i><i class="sp"></i><i>T</i><i>a</i><i>r</i><i>o</i><i>t</i></span></a>
         <nav aria-label="主選單">
             <a href="index.html" aria-current="page">首頁</a>
             <a href="about.html">關於我</a>
