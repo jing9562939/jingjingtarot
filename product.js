@@ -46,7 +46,21 @@ const CR_WORKS = [
     },
 ];
 */
-const CR_WORKS = [];
+const CR_WORKS = [
+    {
+        category: "水晶設計款",
+        colors: ["粉色", "紅橘色"],
+        name: "熾愛與守護",
+        price: "NT$ 2,490",
+        status: "現貨",
+        info: "朱砂、紫馬粉・手鍊",
+        image: "pink-02.jpg",
+        material: "朱砂、紫馬粉、金飾配件",
+        concept: "極致的深紅，遇到溫柔的冰粉",
+        size: "手圍 15cm",
+        orderUrl: ""
+    }
+];
 
 /* ---------- 購買須知（顯示在商品區下方，可展開收合） ----------
    title：標題（可自行修改、增減）　content：內容（留空會顯示「待補充」；用 \n 分段）
