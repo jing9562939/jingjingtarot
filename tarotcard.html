@@ -311,7 +311,18 @@ footer .social { margin: 4px 0; }
 /* 牌位 */
 .spread { display: flex; flex-direction: column; align-items: center; gap: 24px; }
 .spread-row { display: flex; justify-content: center; align-items: flex-start; gap: 22px; }
+/* 二擇一等「格狀牌陣」：每欄寬度＝牌寬，所有牌框、標籤、牌名高度一致 */
+.spread-grid { display: grid; grid-template-columns: repeat(3, var(--slot-w)); column-gap: 76px; row-gap: 40px; justify-content: center; }
+.spread-grid .slot-label { min-height: 22px; }
+/* 牌陣說明 */
+.spread-guide { max-width: 640px; margin: 18px auto 4px; padding: 20px 24px; background: #fff; border: 1px solid #E6DBD0; border-radius: 14px; text-align: left; }
+.spread-guide h3 { margin: 0 0 6px; font-size: 17px; font-weight: 500; letter-spacing: 1px; color: #51423B; border-left: 3px solid #A58A94; padding-left: 10px; }
+.spread-guide .guide-intro { margin: 0 0 12px; font-size: 14.5px; line-height: 1.9; color: #7A6A62; }
+.spread-guide ol { list-style: none; margin: 0; padding: 0; }
+.spread-guide li { padding: 7px 0; border-top: 1px dashed #E6DBD0; font-size: 14px; line-height: 1.8; color: #7A6A62; }
+.spread-guide li b { font-weight: 500; color: #51423B; }
 .spread { --slot-w: clamp(64px, 21vw, 150px); }
+.spread:has(.spread-grid) { --slot-w: clamp(72px, 24vw, 150px); }
 .slot { width: var(--slot-w); flex: none; text-align: center; }
 .slot-label { font-size: 14px; letter-spacing: 1px; color: #7A5F6D; margin-bottom: 8px; }
 .slot.main .slot-label { display: inline-block; padding: 0 14px; border: 1px solid #A58A94; border-radius: 6px; background: #F0E7EA; color: #7A5F6D; }
@@ -424,6 +435,8 @@ button.card-wrap.empty.next { border-color: #A58A94; background: rgba(196,168,10
     .deck-name { min-width: 100%; }
     .draw-wrap { padding: 20px 14px 40px; }
     .spread-row { gap: 6px; }
+    .spread-grid { column-gap: 16px; row-gap: 28px; }
+    .spread-guide { padding: 16px 16px; }
     .slot-label { font-size: 12px; }
     .slot-name { font-size: 12.5px; }
     .spread-row.has-main .slot:not(.main) { margin-top: 30px; }
@@ -565,6 +578,7 @@ button.card-wrap.empty.next { border-color: #A58A94; background: rgba(196,168,10
             <button class="btn ghost" id="drawBack">返回線上抽牌</button>
             <button class="btn ghost" id="redrawBtn">重新抽牌</button>
         </div>
+        <div class="spread-guide" id="spreadGuide" hidden></div>
         <div class="progress" id="progress"></div>
 
         <div class="spread" id="spread"></div>
@@ -718,7 +732,18 @@ const IG_URL   = "https://www.instagram.com/jing9562939/";
 const SP = {
     universal: { name: "萬用牌陣", labels: ["主要牌","次要牌","次要牌","次要牌","心態牌"], perRow: 4, main: [0] },
     time:      { name: "時間之流", labels: ["心態牌","過去","現在","未來"], perRow: 4, main: [0] },   // 抽牌順序：心態牌 → 過去 → 現在 → 未來（心態牌比照萬用牌陣的主要牌樣式）
-    choose2:   { name: "二擇一牌陣", labels: ["現況","選擇 A 過程","選擇 A 結果","選擇 B 過程","選擇 B 結果"], layout: [[0],[1,2],[3,4]] },
+    choose2:   { name: "二擇一牌陣",
+                 labels: ["現況/心態","選擇 A 的狀況","選擇 A 的結果","選擇 B 的狀況","選擇 B 的結果"],
+                 /* grid：每張牌的位置（col＝第幾欄、row＝第幾列，row 用 "1 / span 2" 代表跨兩列並垂直置中）
+                    左邊 現況/心態　右上 A 的狀況、A 的結果　右下 B 的狀況、B 的結果 */
+                 grid: [ { col: 1, row: "1 / span 2", center: true }, { col: 2, row: 1 }, { col: 3, row: 1 }, { col: 2, row: 2 }, { col: 3, row: 2 } ],
+                 guide: { title: "在兩個選項中，尋找最有利的方向",
+                          intro: "請在心中默想兩個明確的選項，並依照下方牌陣順序，抽取 5 張牌",
+                          steps: [ ["第1張｜現況/心態", "你當下的處境與心態。"],
+                                   ["第2張｜選擇 A 的狀況", "選擇 A 後的近期狀況。"],
+                                   ["第3張｜選擇 A 的結果", "選擇 A 可能帶來的結果。"],
+                                   ["第4張｜選擇 B 的狀況", "選擇 B 後的近期狀況。"],
+                                   ["第5張｜選擇 B 的結果", "選擇 B 可能帶來的結果。"] ] } },
     daily:     { name: "每日塔羅", labels: ["今日指引"], main: [0] },       // 偉特塔羅的單張牌，每天抽一張
     single:    { name: "單張牌", labels: ["本次指引"], main: [0] },
     three:     { name: "三張牌陣", labels: ["現況","建議","結果"] }
@@ -872,6 +897,12 @@ function startDraw() {
     $("crumb").textContent = sec.title + (deck.label ? "・" + deck.label : "") + (deck.beta ? "（測試中）" : "");
     $("drawTitle").textContent = sp.name;
     $("summary").hidden = true;
+    const gd = $("spreadGuide");
+    if (sp.guide) {
+        gd.innerHTML = "<h3>" + sp.guide.title + '</h3><p class="guide-intro">' + sp.guide.intro + "</p><ol>" +
+            sp.guide.steps.map(st => "<li><b>" + st[0] + "：</b>" + st[1] + "</li>").join("") + "</ol>";
+        gd.hidden = false;
+    } else { gd.innerHTML = ""; gd.hidden = true; }
 
     // 牌背圖（有放 back 圖檔就使用，沒有則用預設花紋）
     const root = views.draw;
@@ -929,40 +960,57 @@ function renderSlots(animateIdx) {
     spread.classList.toggle("one", slotCount(sp) === 1);
     const next = nextEmpty();
 
+    // 建立單一牌位（牌框＋標籤＋牌名）
+    const buildSlot = i => {
+        const slot = document.createElement("div");
+        slot.className = "slot" + (isMain(sp, i) ? " main" : "");
+        slot.innerHTML = '<div class="slot-label">' + sp.labels[i] + "</div><div class='slot-name'></div>";
+        const nameEl = slot.querySelector(".slot-name");
+
+        if (picks[i]) {
+            const wrap = document.createElement("div");
+            wrap.className = "card-wrap";
+            const card = document.createElement("div");
+            card.className = "card" + (i === animateIdx ? "" : " flipped");
+            card.appendChild(buildFront(deck, picks[i]));
+            const back = document.createElement("div");
+            back.className = "face back";
+            card.appendChild(back);
+            wrap.appendChild(card);
+            slot.insertBefore(wrap, nameEl);
+            nameEl.innerHTML = nameHtml(deck, picks[i]);
+            if (i === animateIdx) requestAnimationFrame(() => requestAnimationFrame(() => card.classList.add("flipped")));
+        } else {
+            // 空的牌框：點一下就抽牌
+            const btn = document.createElement("button");
+            btn.className = "card-wrap empty" + (i === next ? " next" : " locked");
+            btn.textContent = i === next ? "點此抽牌" : "依序抽牌";
+            btn.setAttribute("aria-label", (i === next ? "抽牌：" : "請先依序抽牌，目前無法抽：") + sp.labels[i]);
+            if (i !== next) btn.setAttribute("aria-disabled", "true");
+            btn.onclick = () => drawSlot(i);
+            slot.insertBefore(btn, nameEl);
+        }
+        return slot;
+    };
+
+    if (sp.grid) {                      // 格狀牌陣（二擇一）：依 sp.grid 的欄／列擺放
+        const g = document.createElement("div");
+        g.className = "spread-grid";
+        sp.grid.forEach((cell, i) => {
+            const slot = buildSlot(i);
+            slot.style.gridColumn = String(cell.col);
+            slot.style.gridRow = String(cell.row);
+            if (cell.center) slot.style.alignSelf = "center";
+            g.appendChild(slot);
+        });
+        spread.appendChild(g);
+        return;
+    }
+
     layoutRows().forEach(row => {
         const rowEl = document.createElement("div");
         rowEl.className = "spread-row" + (row.some(i => isMain(sp, i)) && row.length > 1 ? " has-main" : "");
-        row.forEach(i => {
-            const slot = document.createElement("div");
-            slot.className = "slot" + (isMain(sp, i) ? " main" : "");
-            slot.innerHTML = '<div class="slot-label">' + sp.labels[i] + "</div><div class='slot-name'></div>";
-            const nameEl = slot.querySelector(".slot-name");
-
-            if (picks[i]) {
-                const wrap = document.createElement("div");
-                wrap.className = "card-wrap";
-                const card = document.createElement("div");
-                card.className = "card" + (i === animateIdx ? "" : " flipped");
-                card.appendChild(buildFront(deck, picks[i]));
-                const back = document.createElement("div");
-                back.className = "face back";
-                card.appendChild(back);
-                wrap.appendChild(card);
-                slot.insertBefore(wrap, nameEl);
-                nameEl.innerHTML = nameHtml(deck, picks[i]);
-                if (i === animateIdx) requestAnimationFrame(() => requestAnimationFrame(() => card.classList.add("flipped")));
-            } else {
-                // 空的牌框：點一下就抽牌
-                const btn = document.createElement("button");
-                btn.className = "card-wrap empty" + (i === next ? " next" : " locked");
-                btn.textContent = i === next ? "點此抽牌" : "依序抽牌";
-                btn.setAttribute("aria-label", (i === next ? "抽牌：" : "請先依序抽牌，目前無法抽：") + sp.labels[i]);
-                if (i !== next) btn.setAttribute("aria-disabled", "true");
-                btn.onclick = () => drawSlot(i);
-                slot.insertBefore(btn, nameEl);
-            }
-            rowEl.appendChild(slot);
-        });
+        row.forEach(i => rowEl.appendChild(buildSlot(i)));
         spread.appendChild(rowEl);
     });
 }
@@ -1069,14 +1117,15 @@ async function buildResultCanvas() {
     const rows = layoutRows();
     const imgs = await Promise.all(picks.map(c => c.blank ? null : loadImgAny(imgCandidates(deck, c.index))));
 
-    const maxLen = Math.max(...rows.map(r => r.length));
-    const UNIT = Math.min(220, (W - 2 * PAD - (maxLen - 1) * GAP) / maxLen);   // 每張牌同大小
+    const GGAP = 90, GROW = 50;      // 格狀牌陣（二擇一）的牌距：左右 90、上下 50
+    const maxLen = sp.grid ? 3 : Math.max(...rows.map(r => r.length));
+    const UNIT = Math.min(220, (W - 2 * PAD - (maxLen - 1) * (sp.grid ? GGAP : GAP)) / maxLen);   // 每張牌同大小
     const plan = rows.map(row => {
         const unit = UNIT;
         return { row, unit, h: unit * 12 / 7, off: row.some(i => isMain(sp, i)) && row.length > 1 ? 50 : 0 };
     });
     const HEAD = 230, LABEL = 46, NAME = 100, ROWGAP = 20, FOOT = 110;
-    const H = HEAD + plan.reduce((a, p) => a + LABEL + p.h + NAME + ROWGAP + p.off, 0) + FOOT;
+    const H = HEAD + (sp.grid ? 2 * (LABEL + UNIT * 12 / 7 + NAME + GROW) : plan.reduce((a, p) => a + LABEL + p.h + NAME + ROWGAP + p.off, 0)) + FOOT;
 
     const cv = document.createElement("canvas");
     cv.width = W; cv.height = H;
@@ -1088,48 +1137,62 @@ async function buildResultCanvas() {
     ctx.fillStyle = "#51423B"; ctx.font = "30px " + FONT;
     ctx.fillText(sec.title + (deck.label ? "・" + deck.label : "") + "｜" + sp.name, W / 2, 190);
 
-    let y = HEAD;
-    plan.forEach(p => {
-        const w = p.unit, h = p.h;
-        const total = w * p.row.length + GAP * (p.row.length - 1);
-        let x = (W - total) / 2;
-        p.row.forEach(i => {
-            const c = picks[i], im = imgs[i];
-            const yo = isMain(sp, i) ? 0 : p.off;
-            ctx.fillStyle = isMain(sp, i) ? "#7A5F6D" : "#857c73";
-            ctx.font = (isMain(sp, i) ? "500 30px " : "26px ") + FONT;
-            ctx.fillText(sp.labels[i], x + w / 2, y + yo + 30);
+    // 繪製單一牌位：top＝牌位頂端（標籤上緣）
+    const drawOne = (i, x, top, w, h) => {
+        const c = picks[i], im = imgs[i];
+        ctx.fillStyle = isMain(sp, i) ? "#7A5F6D" : "#857c73";
+        ctx.font = (isMain(sp, i) ? "500 30px " : "26px ") + FONT;
+        ctx.fillText(sp.labels[i], x + w / 2, top + 30);
 
-            const cy = y + yo + LABEL;
-            ctx.save();
-            roundPath(ctx, x, cy, w, h, 14); ctx.clip();
-            if (c.blank) {
-                ctx.fillStyle = "#FFFFFF"; ctx.fillRect(x, cy, w, h);
-            } else if (im) {
-                ctx.translate(x + w / 2, cy + h / 2);
-                if (c.reversed) ctx.rotate(Math.PI);
-                const ir = im.width / im.height, br = w / h;
-                let dw = w, dh = h;
-                if (ir > br) dw = h * ir; else dh = w / ir;
-                ctx.drawImage(im, -dw / 2, -dh / 2, dw, dh);
-            } else {
-                ctx.fillStyle = "#FFFFFF"; ctx.fillRect(x, cy, w, h);
-                ctx.fillStyle = "#51423B"; ctx.font = "26px " + FONT; ctx.fillText(c.name, x + w / 2, cy + h / 2);
-            }
-            ctx.restore();
-            ctx.strokeStyle = isMain(sp, i) ? "#A58A94" : "#E6DBD0";
-            ctx.lineWidth = isMain(sp, i) ? 4 : 2;
-            roundPath(ctx, x, cy, w, h, 14); ctx.stroke();
+        const cy = top + LABEL;
+        ctx.save();
+        roundPath(ctx, x, cy, w, h, 14); ctx.clip();
+        if (c.blank) {
+            ctx.fillStyle = "#FFFFFF"; ctx.fillRect(x, cy, w, h);
+        } else if (im) {
+            ctx.translate(x + w / 2, cy + h / 2);
+            if (c.reversed) ctx.rotate(Math.PI);
+            const ir = im.width / im.height, br = w / h;
+            let dw = w, dh = h;
+            if (ir > br) dw = h * ir; else dh = w / ir;
+            ctx.drawImage(im, -dw / 2, -dh / 2, dw, dh);
+        } else {
+            ctx.fillStyle = "#FFFFFF"; ctx.fillRect(x, cy, w, h);
+            ctx.fillStyle = "#51423B"; ctx.font = "26px " + FONT; ctx.fillText(c.name, x + w / 2, cy + h / 2);
+        }
+        ctx.restore();
+        ctx.strokeStyle = isMain(sp, i) ? "#A58A94" : "#E6DBD0";
+        ctx.lineWidth = isMain(sp, i) ? 4 : 2;
+        roundPath(ctx, x, cy, w, h, 14); ctx.stroke();
 
-            ctx.fillStyle = "#51423B"; ctx.font = "28px " + FONT; ctx.fillText(c.name, x + w / 2, cy + h + 42);
-            if (deck.reversible && !c.blank) {
-                ctx.fillStyle = c.reversed ? "#94644d" : "#8d7d6d"; ctx.font = "24px " + FONT;
-                ctx.fillText(c.reversed ? "逆位" : "正位", x + w / 2, cy + h + 80);
-            }
-            x += w + GAP;
+        ctx.fillStyle = "#51423B"; ctx.font = "28px " + FONT; ctx.fillText(c.name, x + w / 2, cy + h + 42);
+        if (deck.reversible && !c.blank) {
+            ctx.fillStyle = c.reversed ? "#94644d" : "#8d7d6d"; ctx.font = "24px " + FONT;
+            ctx.fillText(c.reversed ? "逆位" : "正位", x + w / 2, cy + h + 80);
+        }
+    };
+
+    if (sp.grid) {                      // 格狀牌陣：依 sp.grid 的欄／列擺放，左邊牌位垂直置中
+        const w = UNIT, h = UNIT * 12 / 7, rowH = LABEL + h + NAME + GROW;
+        const x0 = (W - (w * 3 + GGAP * 2)) / 2;
+        sp.grid.forEach((cell, i) => {
+            const x = x0 + (cell.col - 1) * (w + GGAP);
+            const top = HEAD + (cell.center ? rowH / 2 : (parseInt(cell.row, 10) - 1) * rowH);
+            drawOne(i, x, top, w, h);
         });
-        y += LABEL + p.h + NAME + ROWGAP + p.off;
-    });
+    } else {
+        let y = HEAD;
+        plan.forEach(p => {
+            const w = p.unit, h = p.h;
+            const total = w * p.row.length + GAP * (p.row.length - 1);
+            let x = (W - total) / 2;
+            p.row.forEach(i => {
+                drawOne(i, x, y + (isMain(sp, i) ? 0 : p.off), w, h);
+                x += w + GAP;
+            });
+            y += LABEL + p.h + NAME + ROWGAP + p.off;
+        });
+    }
 
     ctx.fillStyle = "#9c948b"; ctx.font = "22px " + FONT;
     ctx.fillText(new Date().toLocaleDateString("zh-TW") + "　｜　牌卡不是替你決定，而是陪你看見。", W / 2, H - 50);
