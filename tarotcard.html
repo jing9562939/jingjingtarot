@@ -483,13 +483,10 @@ button.card-wrap.empty.next { border-color: #A58A94; background: rgba(196,168,10
 .ln-facts { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 30px; font-size: 14.5px; color: #7A6A62; }
 .ln-facts b { font-weight: 500; color: #51423B; letter-spacing: 1px; margin-left: 4px; }
 .ln-num {
-    width: 132px; height: 132px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 6px 0 2px;
-    font-family: Georgia, "Times New Roman", serif; font-size: 70px; line-height: 1; color: #51423B; background: #fff;
-    border: 2px solid #A58A94; box-shadow: 0 0 0 8px rgba(165,138,148,0.14), inset 0 0 0 6px #fff, inset 0 0 0 7px rgba(165,138,148,0.55);
+    margin: 0; font-weight: 500; font-size: 75px; line-height: 1.05; color: #51423B;   /* 數字字高比中文小，所以字級放大 25%，視覺上與名稱同樣大 */
 }
 .ln-label { font-size: 13px; letter-spacing: 3px; color: #7A5F6D; }
-.ln-name { margin: 0; font-size: 26px; font-weight: 500; letter-spacing: 3px; line-height: 1.5; color: #51423B; }
-.ln-theme { margin: 0; font-size: 16px; letter-spacing: 1px; color: #7A6A62; }
+.ln-name { margin: 0; font-size: 60px; font-weight: 500; letter-spacing: 3px; line-height: 1.3; color: #51423B; }   /* 與 .ln-num 同字級 */
 .ln-todo { display: inline-block; padding: 0 12px; border-radius: 999px; font-size: 13px; line-height: 1.9; background: #F3E3E6; color: #94505A; letter-spacing: 1px; }
 .ln-reading {
     margin-top: 16px; padding: 26px 24px; background: #fffdf9; border: 1px solid #E6DBD0; border-radius: 18px;
@@ -510,8 +507,8 @@ button.card-wrap.empty.next { border-color: #A58A94; background: rgba(196,168,10
 .ln-note p:last-child { margin-bottom: 0; }
 .ln-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 22px; }
 @media (max-width: 800px) {
-    .ln-num { width: 112px; height: 112px; font-size: 58px; }
-    .ln-name { font-size: 24px; }
+    .ln-num { font-size: 60px; }
+    .ln-name { font-size: 48px; letter-spacing: 2px; }
     .ln-summary { padding: 26px 16px 24px; }
     .ln-reading { padding: 22px 18px; }
 }
@@ -663,9 +660,7 @@ button.card-wrap.empty.next { border-color: #A58A94; background: rgba(196,168,10
                 </div>
                 <div class="ln-label">個人流年數字</div>
                 <div class="ln-num" id="lnNum" aria-label="個人流年數字"></div>
-                <div class="ln-label" id="lnSeries"></div>
                 <h3 class="ln-name" id="lnName"></h3>
-                <p class="ln-theme" id="lnTheme"></p>
             </div>
             <div class="ln-reading" id="lnReading"></div>
 
@@ -1530,10 +1525,9 @@ show("select");
     function info(n) {
         var row = (dataOk && LN_DATA[n]) || {};
         var ph = (typeof LN_PLACEHOLDER !== "undefined") ? LN_PLACEHOLDER : {};
-        return { name: row.name || "", theme: row.theme || "", reading: row.reading || "",
-                 phName: ph.name || "名稱待填寫", phTheme: ph.theme || "主題待填寫", phReading: ph.reading || "解讀內容待填寫" };
+        return { name: row.name || "", reading: row.reading || "",
+                 phName: ph.name || "名稱待填寫", phReading: ph.reading || "解讀內容待填寫" };
     }
-    function titleLine(n) { var i = info(n); return "流年" + n + (i.name ? "｜" + i.name : "") + (i.theme ? "｜" + i.theme : ""); }
     function paragraphs(text) { return String(text).split(/\n+/).map(function (x) { return x.trim(); }).filter(Boolean); }
 
     /* ---------- 入口：在「希臘生命靈數」旁新增按鈕 ---------- */
@@ -1582,9 +1576,7 @@ show("select");
         g("lnBirth").textContent = r.birthY + " / " + pad(r.birthM) + " / " + pad(r.birthD);
         g("lnYear").textContent = r.calcYear + " 年";
         g("lnNum").textContent = r.num;
-        g("lnSeries").textContent = "流年 " + r.num;
         g("lnName").innerHTML = i.name ? esc(i.name) : '<span class="ln-todo">' + esc(i.phName) + "</span>";
-        g("lnTheme").innerHTML = i.theme ? esc(i.theme) : '<span class="ln-todo">' + esc(i.phTheme) + "</span>";
         var ps = paragraphs(i.reading);
         g("lnReading").innerHTML = "<h4>流年解讀</h4>" + (ps.length ? ps.map(function (p) { return "<p>" + esc(p) + "</p>"; }).join("") : '<p><span class="ln-todo">' + esc(i.phReading) + "</span></p>");
         renderNotes();
@@ -1612,9 +1604,9 @@ show("select");
             "【靖靖塔羅 生命靈數流年】",
             "出生日期：" + r.birthY + " / " + pad(r.birthM) + " / " + pad(r.birthD),
             "流年計算年份：" + r.calcYear + " 年",
-            "個人流年數字：" + r.num,
-            "流年：" + titleLine(r.num)
+            "個人流年數字：" + r.num
         ];
+        if (i.name) lines.push("流年名稱：" + i.name);
         if (i.reading.trim()) lines.push("", "流年解讀：", paragraphs(i.reading).join("\n"));
         return lines.join("\n");
     }
@@ -1636,7 +1628,7 @@ show("select");
         measure.font = "28px " + FONT;
         var lines = i.reading.trim() ? wrapLines(measure, i.reading, W - PAD * 2 - 80) : [];
         var LH = 48, readH = lines.length ? lines.length * LH + 110 : 0;
-        var H = 660 + readH + 130;
+        var H = 650 + readH + 130;
         var cv = document.createElement("canvas"); cv.width = W; cv.height = H;
         var ctx = cv.getContext("2d");
         ctx.fillStyle = "#FAF7F2"; ctx.fillRect(0, 0, W, H);
@@ -1647,18 +1639,12 @@ show("select");
         ctx.fillStyle = "#7A6A62"; ctx.font = "26px " + FONT;
         ctx.fillText("出生日期　" + r.birthY + " / " + pad(r.birthM) + " / " + pad(r.birthD), W / 2, 245);
         ctx.fillText("流年計算年份　" + r.calcYear + " 年", W / 2, 285);
-        // 流年數字（同心圈）
-        var cx = W / 2, cy = 430;
-        [86, 76, 70].forEach(function (rad, k) {
-            ctx.beginPath(); ctx.arc(cx, cy, rad, 0, Math.PI * 2);
-            ctx.strokeStyle = k === 0 ? "rgba(165,138,148,0.28)" : (k === 1 ? "#A58A94" : "rgba(165,138,148,0.55)");
-            ctx.lineWidth = k === 0 ? 10 : (k === 1 ? 4 : 2); ctx.stroke();
-        });
-        ctx.fillStyle = "#51423B"; ctx.font = "96px " + SERIF; ctx.textBaseline = "middle"; ctx.fillText(String(r.num), cx, cy + 6); ctx.textBaseline = "alphabetic";
-        ctx.fillStyle = "#7A5F6D"; ctx.font = "26px " + FONT; ctx.fillText("流年 " + r.num, cx, 560);
-        ctx.fillStyle = "#51423B"; ctx.font = "500 46px " + FONT; ctx.fillText(i.name || i.phName, cx, 620);
-        ctx.fillStyle = "#7A6A62"; ctx.font = "30px " + FONT; ctx.fillText(i.theme || i.phTheme, cx, 672);
-        var y = 720;
+        // 個人流年數字（不加圈圈，只留數字）
+        var cx = W / 2, cy = 460;
+        ctx.fillStyle = "#7A5F6D"; ctx.font = "26px " + FONT; ctx.fillText("個人流年數字", cx, 352);
+        ctx.fillStyle = "#51423B"; ctx.font = "500 138px " + FONT; ctx.textBaseline = "middle"; ctx.fillText(String(r.num), cx, cy); ctx.textBaseline = "alphabetic";
+        ctx.fillStyle = "#51423B"; ctx.font = "500 110px " + FONT; ctx.fillText(i.name || i.phName, cx, 650);
+        var y = 710;
         if (lines.length) {
             ctx.fillStyle = "#fffdf9"; roundPath(ctx, PAD - 20, y, W - (PAD - 20) * 2, readH - 30, 24); ctx.fill();
             ctx.strokeStyle = "#E6DBD0"; ctx.lineWidth = 2; roundPath(ctx, PAD - 20, y, W - (PAD - 20) * 2, readH - 30, 24); ctx.stroke();
