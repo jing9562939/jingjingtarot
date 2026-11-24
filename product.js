@@ -68,6 +68,33 @@ const CR_WORKS = [
 */
 const CR_WORKS = [
     {
+        category: "水晶素串",
+        colors: ["紅橘色"],
+        name: "精品紅幽靈",
+        price: "NT$ 7,900",
+        status: "現貨",
+        info: "紅幽靈",
+        image: "red-01.jpg",
+        material: "紅幽靈",
+        concept: "內在沉澱與外在行動力的平衡",
+        size: "手圍 16cm",
+        tags: ["收藏級精品"],
+        orderUrl: ""
+    },
+    {
+        category: "水晶設計款",
+        colors: ["粉色", "綠色", "白色透明"],
+        name: "春日溫柔",
+        price: "NT$ 1,680",
+        status: "現貨",
+        info: "紫馬粉、葡萄石・手鍊",
+        image: "pink-01.jpg",
+        material: "白水晶兔、紫馬粉、葡萄石",
+        concept: "",
+        size: "手圍 15cm",
+        orderUrl: ""
+    },
+    {
         category: "水晶設計款",
         colors: ["粉色", "紅橘色"],
         name: "熾愛與守護",
@@ -78,6 +105,7 @@ const CR_WORKS = [
         material: "朱砂、紫馬粉、金飾配件",
         concept: "極致的深紅，遇到溫柔的冰粉",
         size: "手圍 15cm",
+        tags: ["限量商品／孤品"],
         orderUrl: ""
     },
     {
