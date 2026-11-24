@@ -15,7 +15,7 @@
     <meta property="og:site_name" content="靖靖塔羅 JingJing Tarot">
     <meta property="og:locale" content="zh_TW">
     <meta property="og:title" content="讓美好，從生活開始｜靖靖塔羅 JingJing Tarot">
-    <meta property="og:description" content="水晶・手作・生命靈數">
+    <meta property="og:description" content="水晶・水晶手作・課程諮詢">
     <meta property="og:url" content="https://jing9562939.github.io/jingjingtarot/product.html">
     <meta property="og:image" content="https://jing9562939.github.io/jingjingtarot/images/og-cover.png">
     <meta property="og:image:width" content="1200">
@@ -23,7 +23,7 @@
     <meta property="og:image:alt" content="靖靖塔羅 JingJing Tarot｜找到答案，也找回自己的方向">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="讓美好，從生活開始｜靖靖塔羅 JingJing Tarot">
-    <meta name="twitter:description" content="水晶・手作・生命靈數">
+    <meta name="twitter:description" content="水晶・水晶手作・課程諮詢">
     <meta name="twitter:image" content="https://jing9562939.github.io/jingjingtarot/images/og-cover.png">
 
 
@@ -524,6 +524,17 @@ body.pd-lock { overflow: hidden; }
     .pd-grid { grid-template-columns: repeat(3, 1fr); gap: 28px 22px; }
     .pd-item-name { font-size: 15.5px; }
 }
+
+/* ===== 頁面標題區：比照服務項目（單欄靠左、下方快速前往按鈕）===== */
+.pd-hero .pd-wrap { display: block; }
+.pd-hero .pd-hero-sub { max-width: 520px; }
+.pd-tabs { display: flex; flex-wrap: wrap; justify-content: flex-start; gap: 8px; margin-top: 26px; }
+.pd-tabs a {
+    padding: 7px 18px; border-radius: 999px; font-size: 14px; letter-spacing: 1px; line-height: 1.6; color: var(--d-brown);
+    background: rgba(255,255,255,0.65); border: 1px solid var(--d-line); transition: background 0.3s, border-color 0.3s;
+}
+.pd-tabs a:hover { background: #fff; border-color: var(--d-mauve); }
+@media (min-width: 900px) { .pd-hero .pd-wrap { display: block; } }
 </style>
 </head>
 
@@ -547,40 +558,17 @@ body.pd-lock { overflow: hidden; }
 
 <main id="main" class="pd-page">
 
-    <!-- 1. 主視覺 -->
+    <!-- 1. 頁面標題（與服務項目同樣排版）＋快速前往按鈕 -->
     <section class="pd-hero" aria-labelledby="pd-title">
         <div class="pd-wrap">
             <div class="pd-hero-text">
                 <span class="pd-eyebrow">身心靈產品 Crystal · DIY · Numerology</span>
                 <h1 id="pd-title">讓美好，從生活開始</h1>
-                <p class="pd-hero-sub">水晶・手作・生命靈數</p>
-                <div class="pd-btns">
-                    <a class="pd-btn pd-btn--main" href="#shop">逛逛水晶商品</a>
-                    <a class="pd-btn pd-btn--sub" href="#" data-line target="_blank" rel="noopener noreferrer">LINE 詢問</a>
+                <p class="pd-hero-sub">水晶・水晶手作・課程諮詢</p>
+                <div class="pd-tabs" role="navigation" aria-label="快速前往">
+                    <a href="#shop">水晶商品</a>
+                    <a href="#diy">水晶 DIY 手作課程</a>
                 </div>
-            </div>
-            <div class="pd-img pd-img--54 pd-hero-img" data-page-img="hero" data-alt="水晶與生活風格照片">
-                <div class="pd-ph"><b aria-hidden="true">✦</b>主視覺照片待補充<br>images/crystal/hero.jpg</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 2. 三大服務入口 -->
-    <section class="pd-entry" aria-label="三大服務">
-        <div class="pd-wrap">
-            <div class="pd-entry-grid">
-                <a class="pd-entry-card" href="#shop">
-                    <div class="pd-img" data-page-img="shop" data-alt="水晶商品"><div class="pd-ph"><b aria-hidden="true">✦</b>照片待補充</div></div>
-                    <div class="pd-entry-body"><h3>水晶商品</h3><p>挑一件屬於你的水晶</p></div>
-                </a>
-                <a class="pd-entry-card" href="#diy">
-                    <div class="pd-img" data-page-img="diy" data-alt="DIY 手作課程"><div class="pd-ph"><b aria-hidden="true">✦</b>照片待補充</div></div>
-                    <div class="pd-entry-body"><h3>DIY 手作課程</h3><p>親手做出專屬作品</p></div>
-                </a>
-                <a class="pd-entry-card" href="#course">
-                    <div class="pd-img" data-page-img="course" data-alt="其他課程"><div class="pd-ph"><b aria-hidden="true">✦</b>照片待補充</div></div>
-                    <div class="pd-entry-body"><h3>其他課程</h3><p>生命靈數初階與進階</p></div>
-                </a>
             </div>
         </div>
     </section>
@@ -682,6 +670,10 @@ body.pd-lock { overflow: hidden; }
         <a href="https://www.instagram.com/jing9562939/" target="_blank" rel="noopener noreferrer" aria-label="Instagram 追蹤靖靖塔羅">
             <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><defs><linearGradient id="ftIg" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#FEDA75"/><stop offset="0.3" stop-color="#FA7E1E"/><stop offset="0.55" stop-color="#D62976"/><stop offset="0.8" stop-color="#962FBF"/><stop offset="1" stop-color="#4F5BD5"/></linearGradient></defs><rect width="24" height="24" rx="6" fill="url(#ftIg)"/><rect x="5.3" y="5.3" width="13.4" height="13.4" rx="4" fill="none" stroke="#fff" stroke-width="1.7"/><circle cx="12" cy="12" r="3.1" fill="none" stroke="#fff" stroke-width="1.7"/><circle cx="16.1" cy="7.9" r="1" fill="#fff"/></svg>
             <span>Instagram</span>
+        </a>
+        <a href="mailto:jing9562939@gmail.com" aria-label="寄信給靖靖塔羅（jing9562939@gmail.com）">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect width="24" height="24" rx="6" fill="#8C7B72"/><rect x="5" y="7" width="14" height="10" rx="1.8" fill="none" stroke="#fff" stroke-width="1.6"/><path d="M5.6 8.2 12 13l6.4-4.8" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>Email</span>
         </a>
     </div>
     <div class="copyright">© 2026 JingJing Tarot. All Rights Reserved.</div>
