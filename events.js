@@ -40,8 +40,8 @@ const EVENTS = [
     },
     {
         start: "2026-12-19", end: "2026-12-20", type: "market",
-        title: "擺攤",
-        time: "12:00–18:00", place: "美麗島捷運站",
+        title: "擺攤 (水晶手作)",
+        time: "11:00–18:00", place: "美麗島捷運站BC區",
         note: "水晶DIY體驗 Part II。",
         link: "https://cal.com/jing9562939/15min?user=jing9562939"
     },
