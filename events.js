@@ -52,6 +52,13 @@ const EVENTS = [
         note: "歡迎線上預約。",
         link: "https://cal.com/jing9562939/15min?user=jing9562939"
     },
+   {
+        start: "2027-01-09", end: "2027-01-11", type: "trip",
+        title: "員工旅遊",
+        time: "08:00–00:00", place: "員工旅遊",
+        note: "歡迎線上預約。",
+        link: "https://cal.com/jing9562939/15min?user=jing9562939"
+    },
 ];
 
 
