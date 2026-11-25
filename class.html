@@ -567,7 +567,7 @@ function eventHtml(ev) {
         '<div class="ev-body"><h3><span class="tag ' + ev.type + '">' + TYPE_NAME[ev.type] + "</span><span>" + esc(head) + "</span></h3>" +
         "<p>" + fmtRange(ev) + (when ? "・" + when : "") + "</p>" +
         (ev.note ? "<p>" + esc(ev.note) + "</p>" : "") +
-        (ev.link ? '<a class="ev-link" href="' + esc(ev.link) + '" target="_blank" rel="noopener noreferrer">了解詳情／預約</a>' : "") +
+        (ev.link ? '<a class="ev-link" href="' + esc(ev.link) + '" target="_blank" rel="noopener noreferrer">' + esc(ev.linkText || "了解詳情／預約") + '</a>' : "") +
         "</div></div>";
 }
 

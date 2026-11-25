@@ -43,7 +43,7 @@ const EVENTS = [
         title: "擺攤 (水晶手作)",
         time: "11:00–18:00", place: "美麗島捷運站BC區",
         note: "水晶DIY體驗 Part II。",
-        link: "https://cal.com/jing9562939/15min?user=jing9562939"
+        link: "https://forms.gle/SKHr41rEemRs2Fea6", linkText: "水晶手作報名"
     },
     {
         start: "2026-12-21", end: "2026-12-27", type: "trip",
