@@ -552,6 +552,20 @@ body.pd-lock { overflow: hidden; }
 @media (min-width: 900px) { .pd-page .pd-notice-card { font-size: 13.5px; line-height: 1.75; padding: 12px 20px 12px 36px; } }
 @media (max-width: 899px) { .pd-hero .pd-board { margin-top: 28px; } }
 .pd-hero .pd-eyebrow { display: block; margin: 0; font-size: 13px; line-height: 1.8; letter-spacing: 3px; }
+
+/* ===== 篩選即時生效（電腦版不需要「套用」按鈕）；DIY 課程卡片 ===== */
+@media (min-width: 720px) { .pd-apply { display: none; } }
+.pd-dc { margin-top: 44px; }
+.pd-dc h3 { margin-bottom: 16px; font-size: 19px; letter-spacing: 2px; text-align: center; }
+.pd-dc-grid { display: grid; gap: 14px; }
+.pd-dc-card { display: flex; flex-direction: column; padding: 22px 20px; background: #fff; border: 1px solid var(--d-line); border-radius: 20px; box-shadow: 0 6px 20px rgba(81,66,59,0.06); }
+.pd-dc-card .pd-m-tag { align-self: flex-start; }
+.pd-dc-card .pd-m-dl dt { width: 7.6em; }
+.pd-dc-card h4 { font-size: 19px; letter-spacing: 1px; line-height: 1.5; }
+.pd-dc-intro { margin-top: 6px; font-size: 14.5px; line-height: 1.8; color: var(--d-soft); }
+.pd-dc-card .pd-m-list { margin-top: 12px; }
+.pd-dc-card .pd-m-dl { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--d-line); }
+@media (min-width: 900px) { .pd-dc-grid { grid-template-columns: repeat(3, 1fr); gap: 18px; } }
 </style>
 </head>
 
@@ -611,7 +625,7 @@ body.pd-lock { overflow: hidden; }
                 <button type="button" class="pd-filter-toggle" id="pdFilterToggle" aria-expanded="false" aria-controls="pdSide">篩選商品</button>
                 <aside class="pd-side" id="pdSide" aria-label="商品篩選">
                     <div class="pd-side-top">
-                        <button type="button" class="pd-apply" id="pdApply">套用篩選 (0/0)</button>
+                        <button type="button" class="pd-apply" id="pdApply">查看商品</button>
                         <button type="button" class="pd-clear" id="pdClear" hidden>清除篩選</button>
                     </div>
                     <div id="pdGroups"></div>
@@ -643,25 +657,16 @@ body.pd-lock { overflow: hidden; }
                         <a class="pd-btn pd-btn--main" id="pdDiyInquiry" href="#" target="_blank" rel="noopener noreferrer">課程詢問</a>
                         <a class="pd-btn pd-btn--sub" id="pdDiyBook" href="#" target="_blank" rel="noopener noreferrer">預約體驗</a>
                     </div>
-                    <button type="button" class="pd-link" id="pdDiyMore">查看課程詳情</button>
                 </div>
+            </div>
+            <div class="pd-dc">
+                <h3>水晶 DIY 手作課程</h3>
+                <div class="pd-dc-grid" id="pdDiyCourses"></div>
             </div>
             <div class="pd-students">
                 <h3>學員作品</h3>
                 <div class="pd-student-grid" id="pdStudents"></div>
             </div>
-        </div>
-    </section>
-
-    <!-- 5. 其他課程 -->
-    <section class="pd-courses pd-section" id="course" aria-labelledby="pd-course-title">
-        <div class="pd-wrap">
-            <div class="pd-head">
-                <h2 id="pd-course-title">其他課程</h2>
-                <span class="pd-en">Numerology Academy</span>
-                <p id="pdNumIntro"></p>
-            </div>
-            <div class="pd-course-grid" id="pdCourses"></div>
         </div>
     </section>
 
@@ -794,13 +799,14 @@ body.pd-lock { overflow: hidden; }
         return true;
     }
     function updateBar() {
-        var all = GROUPS.reduce(function (n, g) { return n + g.opts.length; }, 0);
-        $("pdApply").textContent = "套用篩選 (" + total(pending) + "/" + all + ")";
+        $("pdApply").textContent = "查看 " + shown + " 件商品";   // 手機版：收起篩選面板
         $("pdClear").hidden = !(total(pending) || total(applied));
     }
+    var shown = 0;
     function renderGrid() {
         var list = [];
         works.forEach(function (w, i) { if (matches(w)) list.push([w, i]); });
+        shown = list.length;
         $("pdGrid").innerHTML = list.length ? list.map(function (x) { return tile(x[0], x[1]); }).join("") :
             '<div class="pd-empty">' + (total(applied) ? "沒有符合條件的商品，" : "") + '作品陸續上架中，歡迎 <a href="' + esc(CR_LINE) + '" target="_blank" rel="noopener noreferrer" style="border-bottom:1px solid #A58A94">LINE 詢問</a>。' +
             (total(applied) ? '<br><button type="button" class="pd-clear" id="pdEmptyClear">清除篩選</button>' : "") + "</div>";
@@ -818,11 +824,6 @@ body.pd-lock { overflow: hidden; }
                     return '<li><label class="pd-chk" for="' + cid + '"><input type="checkbox" id="' + cid + '" data-g="' + g.key + '" value="' + esc(o.label) + '"><span class="pd-chk-t">' + esc(o.label) + '</span><span class="pd-chk-n">(' + o.n + ")</span></label></li>";
                 }).join("") + "</ul></section>";
         }).join("");
-        var diy = (typeof CR_FILTER_DIY !== "undefined" ? CR_FILTER_DIY : []).filter(function (d) { return CR_COURSES.some(function (c) { return c.mode === d.mode; }); });
-        if (diy.length) {
-            html += '<section class="pd-fg"><button type="button" class="pd-fg-head" aria-expanded="true" aria-controls="pdG_diy"><span>水晶 DIY 手作</span><i aria-hidden="true">−</i></button>' +
-                '<ul class="pd-fg-list" id="pdG_diy">' + diy.map(function (d) { return '<li><button type="button" class="pd-side-link" data-mode="' + esc(d.mode) + '">' + esc(d.label) + "</button></li>"; }).join("") + "</ul></section>";
-        }
         $("pdGroups").innerHTML = html;
         updateBar();
     }
@@ -835,7 +836,8 @@ body.pd-lock { overflow: hidden; }
         var c = e.target; if (!c.matches("input[type=checkbox]")) return;
         var arr = pending[c.getAttribute("data-g")], k = arr.indexOf(c.value);
         if (c.checked && k < 0) arr.push(c.value); else if (!c.checked && k >= 0) arr.splice(k, 1);
-        updateBar();
+        applied = { type: pending.type.slice(), wear: pending.wear.slice(), status: pending.status.slice() };   // 勾選後立即篩選
+        renderGrid();
     });
     $("pdGroups").addEventListener("click", function (e) {
         var h = e.target.closest(".pd-fg-head");
@@ -844,12 +846,8 @@ body.pd-lock { overflow: hidden; }
             h.setAttribute("aria-expanded", open ? "false" : "true"); list.hidden = open; h.querySelector("i").textContent = open ? "+" : "−";
             return;
         }
-        var l = e.target.closest(".pd-side-link");
-        if (l) diyModal(l.getAttribute("data-mode"));
     });
     $("pdApply").onclick = function () {
-        applied = { type: pending.type.slice(), wear: pending.wear.slice(), status: pending.status.slice() };
-        renderGrid();
         if (!isDesktop()) { $("pdSide").classList.remove("is-open"); $("pdFilterToggle").setAttribute("aria-expanded", "false"); $("pdFilterToggle").textContent = "篩選商品"; $("pdResults").scrollIntoView({ behavior: "smooth", block: "start" }); }
     };
     $("pdClear").onclick = clearAll;
@@ -907,43 +905,14 @@ body.pd-lock { overflow: hidden; }
         return '<figure class="pd-student">' + imgBox("pd-img--11", s.image, s.name ? s.name + "的作品" : "學員作品", "學員作品照片待補充") +
             (s.name || s.note ? "<figcaption>" + (s.name ? esc(s.name) + "　" : "") + esc(s.note || "") + "</figcaption>" : "") + "</figure>";
     }).join("");
-    function diyModal(mode) {
-        var info = function (c) {
-            return [["課程時間", c.time], ["課程費用", c.price], ["材料是否包含", c.material], ["上課地點", c.place], ["人數限制", c.limit], ["報名及詢問方式", c.signup]]
-                .map(function (r) { return "<div><dt>" + r[0] + "</dt><dd>" + val(r[1]) + "</dd></div>"; }).join("");
-        };
-        openModal('<h3 id="pdModalTitle">水晶 DIY 手作課程</h3>' + CR_COURSES.map(function (c) {
-            return '<div class="pd-m-sec" data-mode="' + esc(c.mode) + '"><span class="pd-m-tag">' + esc(c.mode) + "</span><h4 style=\"font-size:19px\">" + esc(c.name) + '</h4><p class="pd-m-info">' + esc(c.intro) + "</p>" +
-                '<ul class="pd-m-list">' + c.learn.map(function (l) { return "<li>" + esc(l) + "</li>"; }).join("") + '</ul><dl class="pd-m-dl">' + info(c) + "</dl></div>";
-        }).join("") + '<div class="pd-m-actions pd-btns"><a class="pd-btn pd-btn--main" href="' + esc(CR_DIY.inquiryUrl || CR_LINE) + '" target="_blank" rel="noopener noreferrer">課程詢問</a>' +
-            '<a class="pd-btn pd-btn--sub" href="' + esc(CR_DIY.bookUrl || CR_LINE) + '" target="_blank" rel="noopener noreferrer">預約體驗</a></div>');
-        if (mode) {   // 從左側篩選欄進來：捲到並標示對應課程
-            var sec = $("pdModalBody").querySelector('.pd-m-sec[data-mode="' + mode + '"]');
-            if (sec) { sec.classList.add("pd-m-sec--hl"); $("pdModalBox").scrollTop = Math.max(0, sec.offsetTop - 16); }
-        }
-    }
-    $("pdDiyMore").onclick = function () { diyModal(); };
-
-    /* ---------- 其他課程（生命靈數） ---------- */
-    var N = CR_NUMEROLOGY;
-    $("pdNumIntro").textContent = N.intro;
-    $("pdCourses").innerHTML = N.courses.map(function (c, i) {
-        return '<article class="pd-course' + (c.key === "package" ? " pd-course--pkg" : "") + '"><h3>' + esc(c.name) + "</h3><p>" + esc(c.short) + "</p>" +
-            '<div class="pd-btns"><button type="button" class="pd-btn pd-btn--sub" data-c="' + i + '">了解課程</button>' +
-            '<a class="pd-btn pd-btn--main" href="' + esc(c.signupUrl || CR_LINE) + '" target="_blank" rel="noopener noreferrer">立即報名</a></div></article>';
+    /* 水晶 DIY 手作課程：直接顯示在教室下方（資料來自 product.js 的 CR_COURSES，沒填的欄位顯示「待補充」） */
+    $("pdDiyCourses").innerHTML = CR_COURSES.map(function (c) {
+        var rows = [["課程時間", c.time], ["課程費用", c.price], ["材料是否包含", c.material], ["上課地點", c.place], ["人數限制", c.limit], ["報名及詢問方式", c.signup]]
+            .map(function (r) { return "<div><dt>" + r[0] + "</dt><dd>" + val(r[1]) + "</dd></div>"; }).join("");
+        return '<article class="pd-dc-card"><span class="pd-m-tag">' + esc(c.mode) + "</span><h4>" + esc(c.name) + "</h4><p class=\"pd-dc-intro\">" + esc(c.intro) + "</p>" +
+            '<ul class="pd-m-list">' + c.learn.map(function (l) { return "<li>" + esc(l) + "</li>"; }).join("") + '</ul><dl class="pd-m-dl">' + rows + "</dl></article>";
     }).join("");
-    $("pdCourses").querySelectorAll("[data-c]").forEach(function (b) {
-        b.onclick = function () {
-            var c = N.courses[+b.getAttribute("data-c")];
-            var tag = N.syllabusConfirmed ? "" : ' <span class="pd-todo">課綱待確認</span>';
-            openModal('<h3 id="pdModalTitle">' + esc(c.name) + '</h3><p class="pd-m-info"><b style="font-weight:500;color:#7A5F6D">適合對象</b>　' + esc(c.target) + "</p>" +
-                '<div class="pd-m-sec"><h4 style="font-size:16px;letter-spacing:2px;color:#7A5F6D">' + (c.key === "package" ? "套裝內容" : "建議課綱") + tag + "</h4>" +
-                '<ul class="pd-m-list">' + c.syllabus.map(function (s) { return "<li>" + esc(s) + "</li>"; }).join("") + "</ul>" +
-                '<dl class="pd-m-dl">' + [["課程時間", c.time], ["課程價格", c.price], ["課程總時數", c.hours], ["教材資訊", c.material]]
-                    .map(function (r) { return "<div><dt>" + r[0] + "</dt><dd>" + val(r[1]) + "</dd></div>"; }).join("") + "</dl></div>" +
-                '<div class="pd-m-actions"><a class="pd-btn pd-btn--main pd-btn--block" href="' + esc(c.signupUrl || CR_LINE) + '" target="_blank" rel="noopener noreferrer">' + esc(c.signupLabel) + "</a></div>");
-        };
-    });
+
 })();
 </script>
 

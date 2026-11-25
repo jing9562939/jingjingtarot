@@ -41,13 +41,6 @@ const CR_CATEGORY_MAP = {
     "水晶戒指": { wear: "水晶戒指" },
     "水晶擺件": { wear: "桌上擺件" }
 };
-/* 水晶 DIY 手作：點選後直接打開對應課程詳情（mode 要和下方 CR_COURSES 的 mode 完全相同） */
-const CR_FILTER_DIY = [
-    { label: "一對一", mode: "一對一預約教學" },
-    { label: "小班", mode: "小班教學" },
-    { label: "團體包班", mode: "團體包班" }
-];
-
 /* 新增商品：複製一組 { } 貼進下面的 [ ]，記得前一組結尾加逗號。範例（請取消註解並改成真實資料）：
    category 要和上面五個分類之一完全相同；colors 可以填多個顏色（名稱要和上面九種顏色相同）
 const CR_WORKS = [
@@ -69,56 +62,109 @@ const CR_WORKS = [
 const CR_WORKS = [
     {
         category: "水晶素串",
+        colors: ["茶棕色"],
+        name: "天然冰曜石 (Ice-grade Obsidian) (鑽石切面) 7mm",
+        price: "NT$ 990",
+        status: "現貨",
+        info: "象徵守護平安、冷靜思考、過濾生活紛擾、增添自信氣場",
+        image: "18.jpg",
+        material: "100% 天然冰曜石 (Natural Ice Obsidian)，黑曜石家族中質地通透的冰種品",
+        concept: "像凝固的夜色與冰晶，在每個轉動瞬間折射出黑鑽般的微光",
+        size: "手圍 14~16cm (可調手圍)",
+        orderUrl: ""
+    },
+    {
+        category: "水晶素串",
+        colors: ["黑色"],
+        name: "天然黑曜石 (Black Obsidian) 6mm",
+        price: "NT$ 550",
+        status: "現貨",
+        info: "擁有如深邃夜空般純粹的墨黑色澤，表面散發溫潤內斂的玻璃光澤，低調經典且極具高級感；喜歡極簡百搭風格的人",
+        image: "20.jpg",
+        material: "100% 天然黑曜石 (Natural Black Obsidian，屬天然火山玻璃礦物)",
+        concept: "黑曜石是大自然火山熔岩迅速冷卻後的結晶，純粹的墨黑色澤不帶一絲浮誇，卻擁有令人安心的沉穩氣質。在傳統文化中，它一直是最具代表性的「守護石」，象徵著為你過濾生活中的喧囂與紛擾。",
+        size: "手圍 14~16cm (可調手圍)",
+        tags: ["人氣熱銷"],
+        orderUrl: ""
+    },
+    {
+        category: "水晶素串",
+        colors: ["黑色"],
+        name: "天然銀曜石 (Silver Obsidian) 14mm",
+        price: "NT$ 1,890",
+        status: "現貨",
+        info: "深邃墨黑底色中包裹著細密天然礦物微粒，隨光線角度流轉出如星河般的銀白色光暈，低調卻極具層次感",
+        image: "25.jpg",
+        material: "100% 天然銀曜石 (Natural Silver Obsidian，屬天然火山玻璃黑曜石家族)",
+        concept: "銀曜石是大自然火山熔岩冷卻後的結晶，看似低調純黑，卻在光線轉動間藏著溫柔的銀白微光，就像黑夜裡閃爍的星河。在傳統文化中，它兼具沉穩守護與聚福招財的美好寓意，陪伴你在喧囂的日常裡，保有一份不被輕易打擾的從容與專注。",
+        size: "手圍 16cm (可調手圍)",
+        orderUrl: ""
+    },
+    {
+        category: "水晶素串",
         colors: ["紅橘色"],
-        name: "精品紅幽靈",
+        name: "精品紅幽靈 8mm",
         price: "NT$ 7,900",
         status: "現貨",
-        info: "紅幽靈",
+        info: "天然紅幽靈 (Red Phantom Quartz)",
         image: "red-01.jpg",
-        material: "紅幽靈",
-        concept: "內在沉澱與外在行動力的平衡",
-        size: "手圍 16cm",
+        material: "天然異象水晶 (白水晶晶體中包裹著天然紅色火山泥／赤鐵礦微粒)",
+        concept: "嚴選晶體清透、內部礦物層次分明的天然紅幽靈，低調的磚紅與暖橘色調非常襯膚色，沒有正紅色的張揚，反而多了一份文青復古的溫潤質感。在礦石寓意上象徵「事業順遂與人緣魅力」，是一份兼具美感與祝福的日常陪伴。",
+        size: "手圍 14~16cm (可調手圍)",
         tags: ["收藏級精品"],
         orderUrl: ""
     },
     {
         category: "水晶設計款",
         colors: ["粉色", "綠色", "白色透明"],
-        name: "春日溫柔",
+        name: "春日溫柔・紫馬粉 x 葡萄石",
         price: "NT$ 1,680",
         status: "現貨",
         info: "紫馬粉、葡萄石・手鍊",
         image: "pink-01.jpg",
         material: "白水晶兔、紫馬粉、葡萄石",
-        concept: "",
-        size: "手圍 15cm",
+        concept: "把春天第一抹花開與新綠，溫柔地戴在手腕上",
+        size: "手圍 14~16cm (可調手圍)",
         orderUrl: ""
     },
     {
         category: "水晶設計款",
         colors: ["粉色", "紅橘色"],
-        name: "熾愛與守護",
+        name: "熾愛與守護・朱砂 x 紫馬粉",
         price: "NT$ 2,490",
         status: "現貨",
         info: "朱砂、紫馬粉・手鍊",
         image: "pink-02.jpg",
         material: "朱砂、紫馬粉、金飾配件",
         concept: "極致的深紅，遇到溫柔的冰粉",
-        size: "手圍 15cm",
+        size: "手圍 14~16cm (可調手圍)",
         tags: ["限量商品／孤品"],
         orderUrl: ""
     },
     {
         category: "水晶設計款",
         colors: ["綠色", "粉色"],
-        name: "春日微光",
+        name: "春日微光・葡萄石 x 紫馬粉",
         price: "NT$ 1,190",
         status: "現貨",
         info: "葡萄石、紫馬粉・手鍊",
         image: "green-01.jpg",
         material: "葡萄石、紫馬粉、黃塔晶",
         concept: "願你在每個日常裡被溫柔以待",
-        size: "手圍 15cm",
+        size: "手圍 14~16cm (可調手圍)",
+        orderUrl: ""
+    },
+    {
+        category: "水晶擺件",
+        colors: ["黑色"],
+        name: "銀曜石招財貓 (Silver Obsidian Lucky Cat)",
+        price: "NT$ 1,680",
+        status: "現貨",
+        info: "立體招財貓雕刻憨態可掬，低調內斂卻自帶高級質感。",
+        image: "181.jpg",
+        material: "100% 天然銀曜石 (Natural Silver Obsidian，屬天然火山玻璃黑曜石家族)",
+        concept: "適合擺放於辦公桌、書桌、收銀台或玄關財位，為日常空間增添一份好運與安心陪伴。",
+        size: "26~30mm",
         orderUrl: ""
     }
 ];
@@ -162,15 +208,15 @@ const CR_DIY = {
 /* 課程詳情（點「查看課程詳情」後顯示） */
 const CR_COURSES = [
     {
-        mode: "小班教學", name: "水晶手作體驗課",
-        intro: "認識水晶與材料，從選珠、配色到手鍊製作，適合初學者的入門體驗。",
-        learn: ["認識水晶與材料", "選珠及配色", "手鍊製作", "適合初學者"],
-        time: "", price: "", material: "", place: "", limit: "", signup: ""
-    },
-    {
         mode: "一對一預約教學", name: "一對一水晶設計教學",
         intro: "從個人喜好出發，選材、搭配並學習手作技法，完成專屬於你的作品。",
         learn: ["個人喜好討論", "水晶選材與搭配", "手作技法教學", "完成個人專屬作品"],
+        time: "", price: "", material: "", place: "", limit: "", signup: ""
+    },
+    {
+        mode: "小班教學", name: "水晶手作體驗課",
+        intro: "認識水晶與材料，從選珠、配色到手鍊製作，適合初學者的入門體驗。",
+        learn: ["認識水晶與材料", "選珠及配色", "手鍊製作", "適合初學者"],
         time: "", price: "", material: "", place: "", limit: "", signup: ""
     },
     {
