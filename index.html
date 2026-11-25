@@ -422,6 +422,16 @@ a:hover > .home-card-go, a:hover > .home-event-go { background: var(--h-mauve-da
 .home-head p { font-size: 14.5px; color: #7A6A62; }
 @media (min-width: 900px) { .home-hero h1 { letter-spacing: 2px; } .home-hero { padding: 64px 0 72px; } }
 
+
+/* ===== 全站統一：頁面標題區（高度、位置、字級一致，以服務項目為基準）===== */
+@media (min-width: 900px) {
+    .home-hero { box-sizing: border-box; min-height: 450px; padding: 56px 0 64px; display: flex; align-items: stretch; }
+    .home-hero .home-wrap { box-sizing: border-box; width: 100%; max-width: 1100px; margin: 0 auto; padding: 0 25px; min-height: 330px;
+        display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 56px; align-items: start; }
+    .home-hero .home-photo { align-self: center; }
+    .home-hero .home-photo { width: 320px; justify-self: center; }
+}
+.home-hero .home-eyebrow { display: block; margin: 0; font-size: 13px; line-height: 1.8; letter-spacing: 3px; }
 </style>
 </head>
 

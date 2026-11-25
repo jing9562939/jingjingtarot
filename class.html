@@ -394,6 +394,17 @@ footer .social a:focus-visible { outline: 2px solid #7A5F6D; outline-offset: 3px
     .pg-hero .home-hero { padding: 64px 25px 72px; gap: 56px; grid-template-columns: 1.15fr 0.85fr; }
 }
 
+
+/* ===== 全站統一：頁面標題區（高度、位置、字級一致，以服務項目為基準）===== */
+@media (min-width: 900px) {
+    .pg-hero { box-sizing: border-box; min-height: 450px; padding: 56px 0 64px; display: flex; align-items: stretch; }
+    .pg-hero .home-hero { box-sizing: border-box; width: 100%; max-width: 1100px; margin: 0 auto; padding: 0 25px; min-height: 330px;
+        display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 56px; align-items: start; }
+    .pg-hero .board { align-self: center; }
+}
+
+@media (min-width: 900px) { .pg-hero .ev-list { max-height: 270px; } }
+.pg-hero .hero-text .pg-eyebrow { display: block; margin: 0; font-size: 13px; line-height: 1.8; letter-spacing: 3px; }
 </style>
 </head>
 

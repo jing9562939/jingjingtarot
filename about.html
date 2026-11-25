@@ -390,6 +390,20 @@ a.about-card:hover .about-card-go { background: var(--a-mauve-dark); color: #fff
 .about-head p { color: #7A5F6D; }
 @media (min-width: 900px) { .about-hero { padding: 64px 0 72px; } }
 
+
+/* ===== 全站統一：頁面標題區（高度、位置、字級一致，以服務項目為基準）===== */
+@media (min-width: 900px) {
+    .about-hero { box-sizing: border-box; min-height: 450px; padding: 56px 0 64px; display: flex; align-items: stretch; }
+    .about-hero .about-wrap { box-sizing: border-box; width: 100%; max-width: 1100px; margin: 0 auto; padding: 0 25px; min-height: 330px;
+        display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 56px; align-items: start; }
+    .about-hero .about-profile { align-self: center; }
+}
+
+.about-hero .about-photo { width: 170px; height: 170px; aspect-ratio: 1 / 1; flex: none; }
+.about-hero .about-exp { margin-top: 14px; padding-top: 12px; }
+.about-hero .about-exp li { font-size: 13.5px; line-height: 1.7; padding-top: 3px; padding-bottom: 3px; }
+@media (max-width: 899px) { .about-hero .about-photo { width: 200px; height: 200px; } }
+.about-hero .about-eyebrow { display: block; margin: 0; font-size: 13px; line-height: 1.8; letter-spacing: 3px; }
 </style>
 </head>
 
