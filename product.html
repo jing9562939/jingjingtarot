@@ -566,6 +566,15 @@ body.pd-lock { overflow: hidden; }
 .pd-dc-card .pd-m-list { margin-top: 12px; }
 .pd-dc-card .pd-m-dl { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--d-line); }
 @media (min-width: 900px) { .pd-dc-grid { grid-template-columns: repeat(3, 1fr); gap: 18px; } }
+/* 電腦版：三張課程卡片的每一列（時間、費用、材料…）上下對齊 */
+@media (min-width: 900px) {
+  .pd-dc-grid { row-gap: 0; }
+  .pd-dc-card { display: grid; grid-row: span 10; grid-template-rows: subgrid; row-gap: 0; align-content: start; }
+  .pd-dc-card .pd-m-dl { display: contents; }
+  .pd-dc-card .pd-m-dl > div { padding-top: 6px; }
+  .pd-dc-card .pd-m-dl > div:first-child { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--d-line); }
+  .pd-dc-card .pd-m-list { align-self: start; }
+}
 </style>
 </head>
 
